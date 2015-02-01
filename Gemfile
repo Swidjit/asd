@@ -21,6 +21,9 @@ gem 'foundation-icons-sass-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+gem 'jquery-datetimepicker-rails'
+
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails', '~> 4.0.0'

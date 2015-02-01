@@ -16,4 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on("ready", function() {
+	$('.datetimepicker').datetimepicker();
+});
+
 $(function(){ $(document).foundation(); });
