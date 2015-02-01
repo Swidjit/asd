@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
 
   def show
-
+    @user = User.where(:username=>params[:display_name]).first
   end
 
   def update
