@@ -4,10 +4,13 @@
   -@meal.dietary_list.each do |t|
     =link_to t, meals_path(:dietary=>t)
   -if @meal.dishes.present?
-    = render @meal.dishes
+    #dishes
+      = render @meal.dishes
   -if current_user == @meal.user
     %h3 attending
     =render @meal.rsvps
+    #new-dish
+    %button#add-dish add dish
 
   -if current_user.rsvps.where(:meal_id=>@meal.id).present?
     =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
@@ -30,3 +33,8 @@
   .comments
     = render :partial => 'comments/comment', :collection => @comments, :as => :comment
   = render :partial => 'comments/form', :locals => { :comment => @new_comment }
+
+:javascript
+  $('#add-dish').on("click", function() {
+    $('#new-dish').html("#{escape_javascript render :partial => 'dishes/new'}");
+  });

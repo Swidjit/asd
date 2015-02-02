@@ -1,6 +1,11 @@
 class DishesController < ApplicationController
   respond_to :json, :html
   def create
+    @dish = Dish.create(dish_params)
+    @dish.meal_id = params[:meal_id]
+    if @dish.save
+
+    end
   end
 
   def destroy

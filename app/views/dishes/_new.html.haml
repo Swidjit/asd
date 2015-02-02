@@ -1,0 +1,8 @@
+#new-dish-form
+  =form_for :dish, :url=>meal_dishes_path(@meal), :method=>:post, :remote=>:true do |f|
+    =f.label :title
+    =f.text_field :title, :placeholder => "title of dish"
+    =f.label :description
+    =f.text_field :description, :placeholder => "describe your dish (optional)"
+    =f.submit "save dish"
+
