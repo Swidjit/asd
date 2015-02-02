@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   end
 
+  resources :comments, :only => [:create, :destroy]
+
   root :to => 'meals#index'
   get 'pages/:page_name' => 'pages#index', :as => :pages
   get '/:display_name' => 'users#show', :as => :profile

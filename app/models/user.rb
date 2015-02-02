@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :watches
   has_many :blacklists
   has_many :subscriptions, :dependent => :delete_all
+  has_many :comments
 
   acts_as_taggable_on :dietary
 

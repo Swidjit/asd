@@ -16,7 +16,8 @@ class MealsController < ApplicationController
 
   def show
     @meal = Meal.find(params[:id])
-
+    @comments = @meal.comment_threads.order('created_at desc')
+    @new_comment = Comment.build_from(@meal, current_user.id, "")
   end
 
   def edit
