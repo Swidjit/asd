@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :meals do
     resources :rsvps
+    resources :watches
   end
 
   root :to => 'pages#home'

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :meals
   has_many :rsvps
+  has_many :watches
 
   validates :username,
   :uniqueness => {
