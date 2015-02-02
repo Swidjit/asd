@@ -3,14 +3,14 @@
     %hr/
     .row
       .large-6.columns
-        %p © Copyright A Playground for the Mind
+        %p © Copyright Swidjit, Inc.
       .large-6.columns
         %ul.inline-list.right
           %li
-            %a{:href => "#"} Link 1
+            =link_to "about", pages_path("about")
           %li
-            %a{:href => "#"} Link 2
+            =link_to "how it works", pages_path("how_it_works")
           %li
-            %a{:href => "#"} Link 3
+            =link_to "privacy", pages_path("privacy")
           %li
-            %a{:href => "#"} Link 4
+            =link_to "contact", '/contact-us'

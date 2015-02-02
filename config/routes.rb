@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   end
 
-  root :to => 'pages#home'
+  root :to => 'meals#index'
   get 'pages/:page_name' => 'pages#index', :as => :pages
   get '/:display_name' => 'users#show', :as => :profile
 end
