@@ -1,15 +1,15 @@
 =form_for @meal do |f|
   =f.hidden_field :user_id, :value => current_user.id
   =f.label :title
-  =f.text_field :title
+  =f.text_field :title, :value => "Meal by @#{current_user.username}"
   =f.label :description
-  =f.text_area :description
+  =f.text_area :description, :placeholder => "optionally describe your meal"
   =f.label :address
-  =f.text_field :address
+  =f.text_field :address, :value => current_user.address.nil? ? "" : current_user.address, :placeholder => "street address for your meal"
   =f.label :cost
-  =f.text_field :cost
+  =f.number_field :cost, :value=>1, :min => 1, :max => 4
   =f.label :dine_in_count
-  =f.text_field :dine_in_count
+  =f.number_field :dine_in_count, :value=>4, :min => 2, :max => 20
   =f.label :start_time
   =f.text_field :start_time, :class => "datetimepicker"
   =f.label :end_time
