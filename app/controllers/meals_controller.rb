@@ -29,6 +29,10 @@ class MealsController < ApplicationController
     end
   end
 
+  def index
+    @meals = Meal.all.order(start_time: :desc)
+  end
+
   private
 
   def meal_params
