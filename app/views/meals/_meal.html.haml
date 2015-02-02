@@ -3,19 +3,20 @@
   %p=meal.description
   %p=meal.start_time.strftime("%d/%m %H:%M")
   =link_to "@"+meal.user.username, profile_path(meal.user.username)
-  %br
-  -if current_user.rsvps.where(:meal_id=>meal.id).present?
-    =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-      .rsvp cancel rsvp
-  -else
-    -if meal.rsvps_count < meal.dine_in_count
+  -if user_signed_in?
+    %br
+    -if current_user.rsvps.where(:meal_id=>meal.id).present?
       =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-        .rsvp rsvp
-  %br
-  -if current_user.watches.where(:meal_id=>meal.id).present?
-    =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-      .watch unwatch
-  -else
-    =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-      .watch watch
-  .message
+        .rsvp cancel rsvp
+    -else
+      -if meal.rsvps_count < meal.dine_in_count
+        =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
+          .rsvp rsvp
+    %br
+    -if current_user.watches.where(:meal_id=>meal.id).present?
+      =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+        .watch unwatch
+    -else
+      =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+        .watch watch
+    .message

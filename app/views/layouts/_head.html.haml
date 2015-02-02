@@ -13,7 +13,7 @@
     -if user_signed_in?
       %ul.right
         %li.has-dropdown
-          %a{:href => profile_path(current_user.username)}=current_user.username
+          %a{:href => "#"}=current_user.username
           %ul.dropdown
             %li
               %a{:href => edit_user_path(current_user)} Account Settings

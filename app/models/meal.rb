@@ -6,5 +6,6 @@ class Meal < ActiveRecord::Base
 
   belongs_to :user
   has_many :rsvps
-  has_many :watches
+  has_many :watchesv
+
 end

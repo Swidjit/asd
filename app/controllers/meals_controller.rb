@@ -46,6 +46,14 @@ class MealsController < ApplicationController
       tags = params[:dietary].split(',')
       @meals = @meals.tagged_with([tags],:on => :dietary, :any => true)
     end
+
+    #ok this is going to be messy for now
+    @ids = @meals.map(&:id)
+    @hidden_meals = Meal.where('user_id in (?)',Blacklist.where(:blacklisted_user_id=>current_user).map(&:user_id)).map(&:id)
+    puts @hidden_meals
+    puts @ids
+    @meal_ids = @ids - @hidden_meals
+    @meals = Meal.where('id in (?)', @meal_ids)
   end
 
   def custom
