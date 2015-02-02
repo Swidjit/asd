@@ -48,6 +48,14 @@ class MealsController < ApplicationController
     end
   end
 
+  def autocomplete_dietary_search
+    @tags = ActsAsTaggableOn::Tag.most_used
+    puts @tags
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
+    end
+  end
+
   private
 
   def meal_params

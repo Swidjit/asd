@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :meals do
     resources :rsvps
     resources :watches
+    collection do
+      get 'autocomplete_dietary_search'
+    end
+
   end
 
   root :to => 'pages#home'
