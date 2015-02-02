@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
-  resources :users
+  resources :users do
+    resource :blacklists
+  end
   resources :meals do
     resources :rsvps
     resources :watches

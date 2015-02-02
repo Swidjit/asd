@@ -1,3 +1,11 @@
-=@user.username
--if current_user == @user
-  =link_to "edit profile", edit_user_path(@user)
+#user
+  =@user.username
+  -if current_user == @user
+    =link_to "edit profile", edit_user_path(@user)
+  -unless current_user == @user
+    =link_to user_blacklists_path(@user), :method=>:post, :remote=>:true do
+      .blacklist
+        -if @user.blacklists.map(&:blacklisted_user_id).include?(current_user.id)
+          remove blacklist
+        -else
+          blacklist

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :meals
   has_many :rsvps
   has_many :watches
+  has_many :blacklists
 
   acts_as_taggable_on :dietary
 
