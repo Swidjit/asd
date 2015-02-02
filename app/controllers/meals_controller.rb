@@ -41,11 +41,16 @@ class MealsController < ApplicationController
     else
       @meals = Meal.all.order(start_time: :desc)
     end
+
+    if params.has_key?(:dietary)
+      tags = params[:dietary].split(',')
+      @meals = @meals.tagged_with([tags],:on => :dietary, :any => true)
+    end
   end
 
   private
 
   def meal_params
-    params.require(:meal).permit(:user_id, :title, :description, :address, :start_time, :end_time, :cost, :dine_in_count, :take_out_count)
+    params.require(:meal).permit(:user_id, :title, :description, :address, :start_time, :end_time, :cost, :dine_in_count, :take_out_count, :dietary_list)
   end
 end

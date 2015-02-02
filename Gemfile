@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'jquery-datetimepicker-rails'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
