@@ -42,6 +42,10 @@ class MealsController < ApplicationController
       @meals = Meal.all.order(start_time: :desc)
     end
 
+    if params.has_key?(:following)
+      @meals = @meals.where('user_id in (?)',current_user.subscriptions.where(:subscription_type=>"user").map(&:subscription_id))
+    end
+
     if params.has_key?(:dietary)
       tags = params[:dietary].split(',')
       @meals = @meals.tagged_with([tags],:on => :dietary, :any => true)

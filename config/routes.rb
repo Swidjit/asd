@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   resources :users do
     resource :blacklists
+    resources :subscriptions, :only => [:create,:destroy,:index]
   end
   resources :meals do
     resources :rsvps
