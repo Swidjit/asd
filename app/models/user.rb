@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :meals
+  has_many :rsvps
 
   validates :username,
   :uniqueness => {

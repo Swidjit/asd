@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
-  resources :meals
+  resources :meals do
+    resources :rsvps
+  end
 
   root :to => 'pages#home'
   get 'pages/:page_name' => 'pages#index', :as => :pages

@@ -1,5 +1,8 @@
-=link_to meal.title, meal_path(meal)
-%p=meal.description
-%p=meal.start_time.strftime("%d/%m %H:%M")
-=link_to "@"+meal.user.username, profile_path(meal.user.username)
-%br
+.meal[meal]
+  =link_to meal.title, meal_path(meal)
+  %p=meal.description
+  %p=meal.start_time.strftime("%d/%m %H:%M")
+  =link_to "@"+meal.user.username, profile_path(meal.user.username)
+  %br
+  =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
+    .rsvp rsvp
