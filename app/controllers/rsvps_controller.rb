@@ -9,10 +9,18 @@ class RsvpsController < ApplicationController
         format.js {render 'destroy', :locals=>{id:params[:meal_id]}}
       end
     else
-      @rsvp = Rsvp.new(:meal_id=>params[:meal_id], :user_id=>current_user.id)
-      @rsvp.save
-      respond_with do |format|
-        format.js {render 'create', :locals=>{id:params[:meal_id]}}
+      @meal = Meal.find(params[:meal_id])
+      if @meal.rsvps_count < @meal.dine_in_count
+        @rsvp = Rsvp.new(:meal_id=>params[:meal_id], :user_id=>current_user.id)
+        @rsvp.save
+        respond_with do |format|
+          format.js {render 'create', :locals=>{id:params[:meal_id]}}
+        end
+
+      else
+        respond_with do |format|
+          format.js {render 'failed', :locals=>{id:params[:meal_id]}}
+        end
       end
     end
   end

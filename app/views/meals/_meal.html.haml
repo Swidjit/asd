@@ -4,5 +4,11 @@
   %p=meal.start_time.strftime("%d/%m %H:%M")
   =link_to "@"+meal.user.username, profile_path(meal.user.username)
   %br
-  =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-    .rsvp rsvp
+  -if current_user.rsvps.where(:meal_id=>meal.id).present?
+    =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
+      .rsvp cancel rsvp
+  -else
+    -if meal.rsvps_count < meal.dine_in_count
+      =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
+        .rsvp rsvp
+  .message

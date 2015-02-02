@@ -5,10 +5,12 @@
   -if current_user == @meal.user
     %h3 attending
     =render @meal.rsvps
+
+  -if current_user.rsvps.where(:meal_id=>@meal.id).present?
+    =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
+      .rsvp cancel rsvp
   -else
-    -if current_user.rsvps.where(:meal_id=>@meal.id).present?
-      =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
-        .rsvp cancel rsvp
-    -else
+    -if @meal.rsvps_count < @meal.dine_in_count
       =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
         .rsvp rsvp
+  .message
