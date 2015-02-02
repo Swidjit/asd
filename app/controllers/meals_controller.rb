@@ -16,6 +16,7 @@ class MealsController < ApplicationController
 
   def show
     @meal = Meal.find(params[:id])
+
   end
 
   def edit
@@ -30,7 +31,16 @@ class MealsController < ApplicationController
   end
 
   def index
-    @meals = Meal.all.order(start_time: :desc)
+    if params.has_key?(:type)
+      types = params[:type].split(',')
+      if types.include?("watched")
+        @meals = Meal.where("id in (?)",current_user.watches.map(&:meal_id))
+      elsif types.include?("rsvped")
+        @meals = Meal.where("id in (?)",current_user.rsvps.map(&:meal_id))
+      end
+    else
+      @meals = Meal.all.order(start_time: :desc)
+    end
   end
 
   private
