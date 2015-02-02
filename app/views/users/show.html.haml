@@ -4,6 +4,15 @@
   %h4 about
   =@user.about
   %hr
+  .row
+    .large-6.columns
+      %h3 upcoming meals
+      -@user.meals.future.each do |meal|
+        =render meal
+    .large-6.columns
+      %h3 previous meals
+      -@user.meals.past.each do |meal|
+        =render meal
   -if current_user == @user
     =link_to "edit profile", edit_user_path(@user)
   -unless current_user == @user

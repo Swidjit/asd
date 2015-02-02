@@ -6,6 +6,11 @@ class Meal < ActiveRecord::Base
 
   belongs_to :user
   has_many :rsvps
-  has_many :watchesv
+  has_many :watches
+
+  scope :future, lambda { where('start_time > ?', Time.now) }
+  scope :past, lambda { where('start_time <= ?', Time.now) }
+
+
 
 end
