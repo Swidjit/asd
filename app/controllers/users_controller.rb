@@ -56,9 +56,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    accessible = [ :name, :email, :dietary_list ] # extend with your own params
-    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-    params.require(:user).permit(accessible)
+    params.require(:user).permit([:name, :first_name, :last_name, :email, :address, :about, :dietary_list,:password, :password_confirmation])
   end
 
 end

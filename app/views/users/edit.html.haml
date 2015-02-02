@@ -1,6 +1,15 @@
 =form_for @user, :url => user_path(@user), :method => :patch do |f|
   =f.label :username
   =f.text_field :username
+  =f.label :first_name
+  =f.text_field :first_name
+  =f.label :last_name
+  =f.text_field :last_name
+  =f.label :about
+  =f.text_area :about
+  =f.label :address
+  =f.text_field :address
+
   =f.label :dietary
   =f.text_field :dietary_list, :data => {:pre => @user.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
   =f.submit
