@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  respond_to :json, :html
   def create
     @comment_hash = params[:comment]
     @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
@@ -12,11 +13,30 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-      @comment = Comment.find(params[:id])
-      if @comment.destroy
-        render :json => @comment, :status => :ok
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+
+    else
+      render :js => "alert('error deleting comment');"
+    end
+  end
+
+  def update
+    @comment = Comment.find params[:id]
+
+    respond_to do |format|
+      if @comment.update_attributes(comment_params)
+        format.html { redirect_to(@comment, :notice => 'User was successfully updated.') }
+        format.json { respond_with_bip(@comment) }
       else
-        render :js => "alert('error deleting comment');"
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@comment) }
       end
     end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+
 end

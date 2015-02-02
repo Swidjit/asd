@@ -105,18 +105,8 @@
   margin-top: 0;
 }
 
-.delete-link {
-  background: url('profile.svg') no-repeat 2px 2px;
-  background-size: 15px;
-  width: 20px;
-  height: 20px;
-  float: right;
-}
-.edit-link {
-  background: url('profile.svg') no-repeat 2px 2px;
-  background-size: 15px;
-  width: 20px;
-  height: 20px;
-  float: right;
+.editable textarea {
+  width: 450px;
+
 }
 

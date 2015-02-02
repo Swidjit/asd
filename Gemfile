@@ -28,6 +28,8 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'acts_as_commentable_with_threading'
 gem 'simple_form'
 
+gem 'best_in_place', github: 'bernat/best_in_place'
+
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails', '~> 4.0.0'

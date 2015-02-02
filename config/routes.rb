@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :comments, :only => [:create, :destroy]
+  resources :comments, :only => [:create, :destroy, :update]
 
   root :to => 'meals#index'
   get 'pages/:page_name' => 'pages#index', :as => :pages
