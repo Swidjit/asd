@@ -7,7 +7,9 @@ class Meal < ActiveRecord::Base
   belongs_to :user
   has_many :rsvps
   has_many :watches
+  has_many :dishes
   acts_as_commentable
+  accepts_nested_attributes_for :dishes
 
 
   scope :future, lambda { where('start_time > ?', Time.now) }

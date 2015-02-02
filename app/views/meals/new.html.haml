@@ -4,6 +4,10 @@
   =f.text_field :title, :value => "Meal by @#{current_user.username}"
   =f.label :description
   =f.text_area :description, :placeholder => "optionally describe your meal"
+  =f.fields_for :dishes do |f1|
+    =f1.text_field :title
+    =f1.text_field :description
+
   =f.label :address
   =f.text_field :address, :value => current_user.address.nil? ? "" : current_user.address, :placeholder => "street address for your meal"
   =f.label :cost

@@ -3,7 +3,8 @@
   =link_to "edit", edit_meal_path(@meal)
   -@meal.dietary_list.each do |t|
     =link_to t, meals_path(:dietary=>t)
-
+  -if @meal.dishes.present?
+    = render @meal.dishes
   -if current_user == @meal.user
     %h3 attending
     =render @meal.rsvps
