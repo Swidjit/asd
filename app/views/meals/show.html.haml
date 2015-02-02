@@ -1,2 +1,6 @@
 =@meal.title
 =link_to "edit", edit_meal_path(@meal)
+
+-if current_user == @meal.user
+  %h3 attending
+  =render @meal.rsvps
