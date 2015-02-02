@@ -1,6 +1,14 @@
 .dish[dish]
-  %h5=dish.title
-  %p=dish.description
+  %h5
+    =best_in_place dish, :title,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-title", :classes => 'editable', :as => :textarea
+
+    =link_to "#", :id => "edit-dish-#{dish.id}-title" do
+      %i.fi-pencil
+  =best_in_place dish, :description,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-desc", :classes => 'editable', :as => :textarea
+
+  =link_to "#", :id => "edit-dish-#{dish.id}-desc" do
+    %i.fi-pencil
+  %br
   -if dish.meal.user == current_user
     =link_to meal_dish_path(dish.meal, dish), :method => :delete, :remote => :true do
       %i.fi-trash

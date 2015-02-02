@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :meals do
     resources :rsvps
     resources :watches
-    resources :dishes, :only => [:destroy]
+    resources :dishes
     collection do
       get 'autocomplete_dietary_search'
       get 'custom'
