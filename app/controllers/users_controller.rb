@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:edit, :update, :destroy]
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
-
+  respond_to :js
   def show
     @user = User.where(:username=>params[:display_name]).first
   end
@@ -46,6 +46,25 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_url }
       format.json { head :no_content }
+    end
+  end
+
+  def transfer_credits
+    @user = User.find(params[:user_id])
+    if current_user.credits >= params[:credits].to_i
+      current_user.decrement!(:credits, params[:credits].to_i)
+      @user.increment!(:credits, params[:credits].to_i)
+      respond_to do |format|
+        format.js
+      end
+    end
+
+  end
+
+  def autocomplete
+    @users = User.where("username LIKE (?) or first_name LIKE (?) or last_name LIKE (?)","%#{params[:q]}%","%#{params[:q]}%","%#{params[:q]}%")
+    respond_to do |format|
+      format.json { render :json => @users.collect{|tag| {:id => tag.id, :name => tag.username}} }
     end
   end
 
