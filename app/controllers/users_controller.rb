@@ -7,12 +7,16 @@ class UsersController < ApplicationController
     @user = User.where(:username=>params[:display_name]).first
   end
 
+  def edit
+
+  end
+
   def update
     # authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to profile_path(@user.username), notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -52,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    accessible = [ :name, :email ] # extend with your own params
+    accessible = [ :name, :email, :dietary_list ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
     params.require(:user).permit(accessible)
   end

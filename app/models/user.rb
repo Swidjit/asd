@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :rsvps
   has_many :watches
 
+  acts_as_taggable_on :dietary
+
   validates :username,
   :uniqueness => {
     :case_sensitive => false

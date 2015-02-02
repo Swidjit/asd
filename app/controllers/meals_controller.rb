@@ -48,6 +48,12 @@ class MealsController < ApplicationController
     end
   end
 
+  def custom
+    dietary_tags = current_user.dietary_list.split(',')
+    @meals = Meal.tagged_with([dietary_tags],:on => :dietary, :any => true)
+    render :index
+  end
+
   def autocomplete_dietary_search
     @tags = ActsAsTaggableOn::Tag.most_used
     puts @tags
