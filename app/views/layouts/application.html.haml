@@ -15,7 +15,32 @@
 
   %body
     =render :partial => 'layouts/head'
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    #main-content
+      .row.full-width
+        #side-bar.large-3.medium-4.columns.show-for-medium-up.panel
+          =render :partial => 'layouts/side_menu'
+        .large-9.medium-8.small-12.columns
+          = yield
+    #menu.hide-for-medium-up
+      =render :partial => 'layouts/side_menu'
     =render :partial => 'layouts/footer'
+
+:javascript
+  $('#menu-button').on("click", function() {
+    if($('#menu').hasClass("shown")) {
+      $('#menu').animate({
+        left: -480,
+        easing: 'linear'
+      }, 'slow');
+      $('#menu').removeClass("shown");
+    }
+    else {
+      $('#menu').animate({
+        left: 0,
+        easing: 'linear'
+      }, 'slow');
+      $('#menu').addClass("shown");
+    }
+
+
+  });

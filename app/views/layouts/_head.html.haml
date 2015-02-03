@@ -1,29 +1,17 @@
-%nav.top-bar{"data-topbar" => "", :role => "navigation"}
-  %ul.title-area
-    %li.name
-      %h1
-        %a{:href => root_path}
-          %i.fi-play
-          Kitchen Swingers
-    / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-    %li.toggle-topbar.menu-icon
-      %a{:href => "#"}
-        %span Menu
-  %section.top-bar-section
+#top-bar
+  #header-left
+    #menu-button
+      %i.fi-list
+  #header-right
     -if user_signed_in?
-      %ul.right
-        %li.has-dropdown
-          %a{:href => "#"}=current_user.username
-          %ul.dropdown
-            %li
-              %a{:href => edit_user_path(current_user)} Account Settings
-            %li.active
-              = link_to "Log out", destroy_session_path(:user), :method => :delete
-      %ul.right
-        %li.active
-          =link_to "post meal", new_meal_path
+      =link_to new_meal_path, :id=>"new-meal-button" do
+        %button.large
+          %i.fi-plus
+          post a meal
     -else
-      %ul.right
-        %li.active
-          =link_to "Login/Signup", new_user_session_path
+      =link_to new_user_session_path, :id=>"new-meal-button" do
+        %button
+          %i.fi-add
+          login
+  #header-logo
 
