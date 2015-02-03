@@ -1,22 +1,33 @@
 .meal[meal]
-  =link_to meal.title, meal_path(meal)
-  %p=meal.description
-  %p=meal.start_time.strftime("%d/%m %H:%M")
-  =link_to "@"+meal.user.username, profile_path(meal.user.username)
+  .meal-row
+    .meal-title
+      =link_to meal.title, meal_path(meal)
+  .meal-row
+    .meal-meta
+      =meal.start_time.strftime("%d/%m %H:%M")
+      hosted by
+      =link_to "@"+meal.user.username, profile_path(meal.user.username)
+  .meal-row
+    .meal-description
+      =meal.description
+    -if meal.dishes.present?
+      =render :collection => meal.dishes.limit(2), :partial => 'dishes/feed'
+    -meal.dietary_list.each do |t|
+      =link_to t, meals_path(:dietary=>t)
+
   -if user_signed_in?
     %br
     -if current_user.rsvps.where(:meal_id=>meal.id).present?
       =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-        .rsvp cancel rsvp
+        %button.rsvp cancel rsvp
     -else
       -if meal.rsvps_count < meal.dine_in_count
         =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-          .rsvp rsvp
-    %br
+          %button.rsvp rsvp
     -if current_user.watches.where(:meal_id=>meal.id).present?
       =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-        .watch unwatch
+        %button.watch unwatch
     -else
       =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-        .watch watch
+        %button.watch watch
     .message

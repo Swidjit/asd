@@ -1,10 +1,9 @@
 .dish[dish]
-  %h5
-    =best_in_place dish, :title,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-title", :classes => 'editable', :as => :textarea
+  =best_in_place dish, :title,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-title", :classes => 'editable dish-title', :as => :textarea
 
-    =link_to "#", :id => "edit-dish-#{dish.id}-title" do
-      %i.fi-pencil
-  =best_in_place dish, :description,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-desc", :classes => 'editable', :as => :textarea
+  =link_to "#", :id => "edit-dish-#{dish.id}-title" do
+    %i.fi-pencil
+  =best_in_place dish, :description,:url => meal_dish_path(dish.meal, dish), :activator => "#edit-dish-#{dish.id}-desc", :class => 'editable dish-desc', :as => :textarea
 
   =link_to "#", :id => "edit-dish-#{dish.id}-desc" do
     %i.fi-pencil

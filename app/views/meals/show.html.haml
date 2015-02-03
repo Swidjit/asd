@@ -1,38 +1,67 @@
-.meal[@meal]
-  =@meal.title
-  =link_to "edit", edit_meal_path(@meal)
-  -@meal.dietary_list.each do |t|
-    =link_to t, meals_path(:dietary=>t)
-  -if @meal.dishes.present?
-    #dishes
-      = render @meal.dishes
-  -if current_user == @meal.user
-    %h3 attending
-    =render @meal.rsvps
-    #new-dish
-    %button#add-dish add dish
+.row
+  .large-8.columns
+    .meal[@meal]
 
-  -if current_user.rsvps.where(:meal_id=>@meal.id).present?
-    =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
-      .rsvp cancel rsvp
-  -else
-    -if @meal.rsvps_count < @meal.dine_in_count
-      =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
-        .rsvp rsvp
-  %br
-  -if current_user.watches.where(:meal_id=>@meal.id).present?
-    =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
-      .watch unwatch
-  -else
-    =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
-      .watch watch
+      %h3=@meal.title
+      -if @meal.user == current_user
+        =link_to edit_meal_path(@meal) do
+          %button edit
+      -else
 
-  .message
+        -if current_user.rsvps.where(:meal_id=>@meal.id).present?
+          =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
+            %button.rsvp cancel rsvp
+        -else
+          -if @meal.rsvps_count < @meal.dine_in_count
+            =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
+              %button.rsvp rsvp (#{@meal.cost} credits)
+        -if current_user.watches.where(:meal_id=>@meal.id).present?
+          =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
+            %button.watch unwatch
+        -else
+          =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
+            %button.watch watch
+      .message
+      %p=@meal.description
+      -if @meal.dishes.present?
+        #dishes.panel
+          %h4 dishes
+          = render @meal.dishes
+      -if @meal.user == current_user
+        #new-dish
+        %button#add-dish add dish
+      %h5 Labels
+      -@meal.dietary_list.each do |t|
+        =link_to t, meals_path(:dietary=>t)
+      %h4 Comments
+      .comments
+        = render :partial => 'comments/comment', :collection => @comments, :as => :comment
+      = render :partial => 'comments/form', :locals => { :comment => @new_comment }
+  .large-4.columns
+    .panel
+      %h4 dinner info
+      time
+      =@meal.start_time.strftime("%H:%M")
+      date
+      =@meal.start_time.strftime("%m/%d")
+      dine-in seats
+      =@meal.dine_in_count
+      available seats
+      =@meal.dine_in_count - @meal.rsvps_count
+      credits
+      =@meal.cost
 
-  %h2 Comments
-  .comments
-    = render :partial => 'comments/comment', :collection => @comments, :as => :comment
-  = render :partial => 'comments/form', :locals => { :comment => @new_comment }
+
+    -if current_user == @meal.user
+      %h3 attending
+      =render @meal.rsvps
+
+
+
+
+
+
+
 
 :javascript
   $('#add-dish').on("click", function() {
