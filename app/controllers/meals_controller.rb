@@ -58,6 +58,18 @@ class MealsController < ApplicationController
       tags = params[:dietary].split(',')
       @meals = @meals.tagged_with([tags],:on => :dietary, :any => true)
     end
+    if params.has_key?(:cuisine)
+      tags = params[:cuisine].split(',')
+      @meals = @meals.tagged_with([tags],:on => :cuisine, :any => true)
+    end
+    if params.has_key?(:location)
+      tags = params[:location].split(',')
+      @meals = @meals.tagged_with([tags],:on => :location, :any => true)
+    end
+    if params.has_key?(:env)
+      tags = params[:env].split(',')
+      @meals = @meals.tagged_with([tags],:on => :env, :any => true)
+    end
 
     #lets only show events in the future her
     @meals = @meals.future

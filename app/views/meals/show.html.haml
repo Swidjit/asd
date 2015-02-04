@@ -1,33 +1,58 @@
 .row
   .large-8.columns
     .meal[@meal]
-      -if @new_item != true
-        =form_for @meal do |f|
-          =f.text_field :dietary_list, :data => {:pre => @meal.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
-          -@dietary_tags.each do |t|
-            .tag-suggestion{:value => "dietary"}
-              %a= t
-          %hr
-          =f.text_field :cuisine_list, :data => {:pre => @meal.cuisine_list.collect{|tag| {:id => tag, :name => tag}}}
-          -@cuisine_tags.each do |t|
-            .tag-suggestion{:value => "cuisine"}
-              %a= t
-          %hr
-          =f.text_field :env_list, :data => {:pre => @meal.env_list.collect{|tag| {:id => tag, :name => tag}}}
-          -@env_tags.each do |t|
-            .tag-suggestion{:value => "env"}
-              %a= t
-          %hr
-          =f.text_field :location_list, :data => {:pre => @meal.location_list.collect{|tag| {:id => tag, :name => tag}}}
-          -@location_tags.each do |t|
-            .tag-suggestion{:value => "location"}
-              %a= t
-          %hr
-          =f.submit "add tags", :class => "button"
       %h3=@meal.title
       -if @meal.user == current_user
         =link_to edit_meal_path(@meal) do
           %button edit
+        -if @new_item == true
+          #tag-form.reveal-modal{"data-reveal" => ""}
+            %a.close-reveal-modal ×
+            =form_for @meal do |f|
+              .row
+                .tag-category
+                  %h4 dietary tags
+                  %p does your meal mostly or entirely meet any dietary labels?
+                .large-7.columns
+                  -@dietary_tags.each do |t|
+                    .tag-suggestion{:value => "dietary"}
+                      %a= t
+                .large-5.columns
+                  =f.text_field :dietary_list, :data => {:pre => @meal.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
+              .row{:style=>"margin-top:15px;"}
+                .tag-category
+                  %h4 cuisine tags
+                  %p does your meal fit into any of the suggested culinary categories?
+                .large-7.columns
+                  -@cuisine_tags.each do |t|
+                    .tag-suggestion{:value => "cuisine"}
+                      %a= t
+                .large-5.columns
+                  =f.text_field :cuisine_list, :data => {:pre => @meal.cuisine_list.collect{|tag| {:id => tag, :name => tag}}}
+              .row{:style=>"margin-top:15px;"}
+                .tag-category
+                  %h4 environmental tags
+                  %p describe your environment
+                .large-7.columns
+                  -@env_tags.each do |t|
+                    .tag-suggestion{:value => "env"}
+                      %a= t
+                .large-5.columns
+                  =f.text_field :env_list, :data => {:pre => @meal.env_list.collect{|tag| {:id => tag, :name => tag}}}
+              .row{:style=>"margin-top:15px;"}
+                .tag-category
+                  %h4 locations
+                  %p what neighborhood/town is the meal in?
+                .large-7.columns
+                  -@location_tags.each do |t|
+                    .tag-suggestion{:value => "location"}
+                      %a= t
+                .large-5.columns
+                  =f.text_field :location_list, :data => {:pre => @meal.location_list.collect{|tag| {:id => tag, :name => tag}}}
+              %div{:style=>"text-align: center"}
+                =f.submit "add tags", :class => "button large"
+          :javascript
+            $("#tag-form").foundation("reveal","open")
       -else
 
         -if current_user.rsvps.where(:meal_id=>@meal.id).present?
@@ -49,12 +74,10 @@
         #dishes.panel
           %h4 dishes
           = render @meal.dishes
-      -if @meal.user == current_user
-        #new-dish
-        %button#add-dish add dish
-      %h5 Labels
-      -@meal.dietary_list.each do |t|
-        =link_to t, meals_path(:dietary=>t)
+          -if @meal.user == current_user
+            #new-dish
+            %button#add-dish add dish
+      =render :partial => 'tags'
       %h4 Comments
       .comments
         = render :partial => 'comments/comment', :collection => @comments, :as => :comment
@@ -77,6 +100,7 @@
     -if current_user == @meal.user
       %h3 attending
       =render @meal.rsvps
+
 
 :javascript
   $(document).on('ready page:load', function(){
@@ -117,6 +141,7 @@
 
       var tag_list_selector = "#meal_"+$(this).parent().attr("value")+"_list";
       $(tag_list_selector).tokenInput('add', {id: $(this).text(), name: $(this).text()});
+      $(this).parent().remove();
       return false
     });
     $('#add-dish').on("click", function() {

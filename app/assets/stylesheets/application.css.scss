@@ -283,19 +283,37 @@
 
 /* tags */
 .tag-suggestion a {
-  font-size: 13px;
-  padding: 0px 5px;
+  font-size: 19px;
+  padding: 2px 7px;
   margin: 2px;
-  height: 25px;
-  background: #395771;
-  line-height: 25px;
-  color: #CCC;
+  height: 34px;
+  background: #ddd;
+  line-height: 29px;
+  color: #000;
   display: inline;
   float: left;
   cursor: pointer;
-  font-weight: 400;
+  font-weight: 500;
 }
 .tag-suggestion a:hover {
     background: #90ac88;
     color: #333545;
+}
+
+#tag-form {
+  h4, p {
+    display:inline;
+  }
+  h4 {
+    margin-right: 9px;
+  }
+  .button {
+    margin-top: 20px;
+
+  }
+}
+.tag-category {
+  padding: 4px 8px;
+  background-color: #ede;
+  margin-bottom: 8px;
 }
