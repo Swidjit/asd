@@ -19,8 +19,9 @@
 //= require best_in_place
 
 $(document).on('ready page:load', function(){
-	$('.datetimepicker').datetimepicker();
+
 	jQuery(".best_in_place").best_in_place();
+
 });
 
 $(function(){ $(document).foundation(); });

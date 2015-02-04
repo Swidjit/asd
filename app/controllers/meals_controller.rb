@@ -4,7 +4,7 @@ class MealsController < ApplicationController
 
   def new
     @meal = Meal.new
-    6.times { @meal.dishes.build }
+    4.times { @meal.dishes.build }
   end
 
   def create
