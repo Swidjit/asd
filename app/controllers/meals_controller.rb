@@ -16,9 +16,15 @@ class MealsController < ApplicationController
   end
 
   def show
-    @meal = Meal.find(params[:id])
+    @meal = Meal.find(params[:id]) unless @meal.present?
+    @new_item = true if @meal.created_at > (Time.now - 2.seconds)
     @comments = @meal.comment_threads.order('created_at desc')
     @new_comment = Comment.build_from(@meal, current_user.id, "")
+    @dietary_tags = Meal.dietary_counts
+    @cuisine_tags = Meal.cuisine_counts
+    @location_tags = Meal.location_counts
+    @env_tags = Meal.env_counts
+
   end
 
   def edit
@@ -78,6 +84,6 @@ class MealsController < ApplicationController
   private
 
   def meal_params
-    params.require(:meal).permit(:user_id, :title, :description, :address, :start_time, :end_time, :cost, :dine_in_count, :take_out_count, :dietary_list, dishes_attributes: [:title, :description])
+    params.require(:meal).permit(:user_id, :title, :description, :address, :start_time, :end_time, :cost, :dine_in_count, :take_out_count, :dietary_list, :cuisine_list, :env_list, :location_list, dishes_attributes: [:title, :description])
   end
 end

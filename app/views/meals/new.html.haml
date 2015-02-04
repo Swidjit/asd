@@ -42,15 +42,7 @@
 :javascript
   $(document).on('ready page:load', function(){
     $('.datetimepicker').datetimepicker();
-      $("#meal_dietary_list").tokenInput(
-        "#{autocomplete_dietary_search_meals_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#meal_dietary_list").data("pre"),
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
+
+
+
   });
