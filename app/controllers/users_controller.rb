@@ -5,6 +5,14 @@ class UsersController < ApplicationController
   respond_to :js
   def show
     @user = User.where(:username=>params[:display_name]).first
+
+    if user_signed_in?
+      #probably a better way to do this
+      @meals1 = @user.rsvps.map(&:meal_id)
+      @meals2 = current_user.rsvps.map(&:meal_id)
+      #make this Meal.past to only show meals that have happened
+      @common_meals = Meal.where('id in (?)',(@meals1&@meals2))
+    end
   end
 
   def edit
