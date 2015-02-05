@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       post 'transfer_credits'
       get 'autocomplete'
     end
+    member do
+      get 'notifications'
+    end
   end
   resources :meals do
     resources :rsvps

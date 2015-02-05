@@ -14,6 +14,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :meal
 
+  after_create :notify_users
+
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme
@@ -45,5 +47,18 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
+  end
+
+  def notify_users
+    meal = Object.const_get(self.commentable_type).find(commentable_id)
+    unless self.user == meal.user
+      notification = Notification.new
+      notification.notifier = self
+      notification.sender = self.user
+
+      notification.receiver = meal.user
+
+      notification.save
+    end
   end
 end
