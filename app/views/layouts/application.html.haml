@@ -44,7 +44,8 @@
     }
 
   });
-
-  $('#notifications-button').on("click", function() {
-    $.get("#{notifications_user_path(current_user)}");
-  });
+-if user_signed_in?
+  :javascript
+    $('#notifications-button').on("click", function() {
+      $.get("#{notifications_user_path(current_user)}");
+    });

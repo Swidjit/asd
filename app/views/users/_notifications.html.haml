@@ -3,3 +3,6 @@
     -case notification.notifier_type
       -when 'Comment'
         %li="#{User.find(notification.sender_id).name} commented on your response to #{Meal.find(Comment.find(notification.notifier_id).commentable_id).title}"
+    -case notification.notifier_type
+      -when 'Flag'
+        %li="Uh oh, you were flagged for your conduct during #{Meal.find(Flag.find(notification.notifier_id).meal_id).title} for violating #{Term.find(Flag.find(notification.notifier_id).abused_term).title}"
