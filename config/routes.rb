@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resource :blacklists
     resources :subscriptions, :only => [:create,:destroy,:index]
+    resources :flags
     collection do
       post 'transfer_credits'
       get 'autocomplete'

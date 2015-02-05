@@ -42,6 +42,7 @@
           =render :partial => 'subscriptions/unfollow_user', :locals => {user:@user}
         -else
           =render :partial => 'subscriptions/follow_user', :locals => {user:@user}
+        =link_to "flag user", "#", :"data-reveal-id"=>"flag-user"
         =link_to "#", :id => "message-button" do
           button.small message #{@user.name}
 
@@ -53,9 +54,21 @@
             =hidden_field_tag :user_id, @user.id
             =number_field_tag :credits, 1, in: 1..100
             =submit_tag "Send Credits", :class => "button"
-
           %a.close-reveal-modal ×
+        #flag-user.reveal-modal{"data-reveal" => ""}
+          %h4 Flag #{@user.username}
 
+
+          =form_for :flag, :url => user_flags_path(@user.id), :method=>:post, :remote=>:true do
+            =hidden_field_tag :flagged_user, @user.id
+            %label Which meal does this flag relate to?
+            -# code here needs to wait until we know which meals users attended together
+            =hidden_field_tag :meal_id
+            %label which etiquette rule did this user break?
+            =select_tag :abused_term, options_from_collection_for_select(Term.all, "id", "title")
+            =text_area_tag :comment, nil,:placeholder => "add an optional comment here to explain your reason for flagging"
+            =submit_tag "Flag User", :class => "button"
+          %a.close-reveal-modal ×
 
 :javascript
   $(document).on('ready page:load', function(){
