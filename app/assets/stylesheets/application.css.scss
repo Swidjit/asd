@@ -201,7 +201,7 @@
   height: 60px;
 }
 #menu-button:hover {
-  background-color: #c0c;
+  background-color: #922A1E;
 }
 
 #main-content {
@@ -213,37 +213,43 @@
 }
 #side-bar {
   position:fixed;
+  z-index: 500;
 }
 
 #profile-section {
   position: relative;
   height: 100px;
   width: 100%;
-  background-color: #ccc;
+  background-color: #C3B157;
 }
 #filter-section {
   a {
-    color: #c0c;
+    color: #922A1E;
     display: block;
+    font-size: 20px;
   }
+  padding: 10px;
 }
 #profile-image, #profile-links {
   width: 50%;
   float: left;
+  text-align:center;
   li {
     list-style-type: none;
   }
   a {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 14px;
   }
 }
 #menu {
    position:absolute;
    width: 480px;
-   background-color: #4fe;
-   top: 0px;
+   background-color: #87A35E;
+   top: 60px;
    bottom: 0px;
    left: -480px;
+   z-index: 500;
 }
 
 /* new meal form */
