@@ -2,26 +2,27 @@ class RsvpsController < ApplicationController
   respond_to :js
 
   def create
-    @rsvp = Rsvp.where(:meal_id=>params[:meal_id], :user_id=>current_user.id)
-    if @rsvp.present?
-      @rsvp.first.destroy
-      respond_with do |format|
-        format.js {render 'destroy', :locals=>{id:params[:meal_id]}}
-      end
-    else
-      @meal = Meal.find(params[:meal_id])
-      if @meal.rsvps_count < @meal.dine_in_count
-        @rsvp = Rsvp.new(:meal_id=>params[:meal_id], :user_id=>current_user.id)
-        @rsvp.save
-        respond_with do |format|
-          format.js {render 'create', :locals=>{id:params[:meal_id]}}
-        end
+    @meal = Meal.find(params[:meal_id])
 
-      else
-        respond_with do |format|
-          format.js {render 'failed', :locals=>{id:params[:meal_id]}}
-        end
-      end
+    #will have to change this eventually to make sure current_count + new_count < max_rsvp_count
+    if params[:rsvp][:dine_in_count].to_i > 0 && @meal.rsvps.dine_in.sum(:num) < @meal.dine_in_count
+      @rsvp = Rsvp.new(:meal_id=>params[:rsvp][:meal_id], :user_id=>current_user.id, :rsvp_type => "dine_in", :num => params[:rsvp][:dine_in_count])
+      @rsvp.save
+    end
+    if params[:rsvp][:take_out_count].to_i > 0 && @meal.rsvps.take_out.sum(:num) < @meal.take_out_count
+      @rsvp = Rsvp.new(:meal_id=>params[:rsvp][:meal_id], :user_id=>current_user.id, :rsvp_type => "take_out", :num => params[:rsvp][:take_out_count])
+      @rsvp.save
+    end
+    respond_with do |format|
+      format.js {render 'create', :locals=>{id:params[:meal_id]}}
+    end
+  end
+
+  def destroy
+    @meal = Meal.find(params[:meal_id])
+    @rsvps = Rsvp.where(:meal_id => params[:meal_id], :user_id => current_user.id).destroy_all
+    respond_with do |format|
+      format.js {render 'destroy', :locals=>{id:params[:meal_id]}}
     end
   end
 

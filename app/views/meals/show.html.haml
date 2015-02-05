@@ -54,20 +54,32 @@
           :javascript
             $("#tag-form").foundation("reveal","open")
       -else
-
-        -if current_user.rsvps.where(:meal_id=>@meal.id).present?
-          =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
-            %button.rsvp cancel rsvp
-        -else
-          -if @meal.rsvps_count < @meal.dine_in_count
-            =link_to meal_rsvps_path(@meal.id), :remote => :true, :method=>:post do
-              %button.rsvp rsvp (#{@meal.cost} credits)
+        #rsvp[@meal]
+          -if current_user.rsvps.where(:meal_id=>@meal.id).present?
+            =link_to meal_rsvp_path(@meal.id, 0), :remote => :true, :method=>:delete do
+              %button.rsvp cancel rsvp
+          -else
+            -if @meal.rsvps_count < @meal.dine_in_count
+              =link_to "#", :"data-reveal-id"=>"rsvp-form" do
+                %button rsvp
         -if current_user.watches.where(:meal_id=>@meal.id).present?
           =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
             %button.watch unwatch
         -else
           =link_to meal_watches_path(@meal.id), :remote => :true, :method=>:post do
             %button.watch watch
+        #rsvp-form.reveal-modal{"data-reveal" => ""}
+          %h3 rsvp for #{@meal.title}
+          =form_for :rsvp, :url => meal_rsvps_path(@meal.id), :method=>:post, :remote=>:true do |f|
+            =f.hidden_field :meal_id, :value => @meal.id
+            %p #{@meal.cost} credits per rsvp
+            %label how many rsvps
+            dine in:
+            =f.number_field :dine_in_count, :value => 1, :min => 0, :max => @meal.dine_in_count - @meal.rsvps.dine_in.sum(:num)
+            take out:
+            =f.number_field :take_out_count, :value => 0, :min => 0, :max => @meal.take_out_count - @meal.rsvps.take_out.sum(:num)
+            %br
+            =f.submit "rsvp", :class => "button"
       .message
       %p=@meal.description
       -if @meal.dishes.present?
@@ -89,13 +101,10 @@
       =@meal.start_time.strftime("%H:%M")
       date
       =@meal.start_time.strftime("%m/%d")
-      dine-in seats
-      =@meal.dine_in_count
-      available seats
-      =@meal.dine_in_count - @meal.rsvps_count
       credits
       =@meal.cost
-
+      .rsvp-info
+        =render :partial => 'meals/rsvp_info'
 
     -if current_user == @meal.user
       %h3 attending

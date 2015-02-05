@@ -1,1 +1,2 @@
-$('#meal_#{id} .rsvp').html("rsvp");
+$('#rsvp_meal_#{id}').html("#{j render :partial => 'rsvps/rsvp_button'}");
+$('.rsvp-info').html("#{j render :partial => 'meals/rsvp_info'}");

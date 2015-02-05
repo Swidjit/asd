@@ -317,3 +317,17 @@
   background-color: #ede;
   margin-bottom: 8px;
 }
+
+
+#rsvp-form {
+  input[type=number] {
+    display: inline;
+    width: 60px;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 13px;
+    color: #922A1E;
+  }
+}
