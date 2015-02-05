@@ -70,16 +70,23 @@
             %button.watch watch
         #rsvp-form.reveal-modal{"data-reveal" => ""}
           %h3 rsvp for #{@meal.title}
+          -Term.all.each do |t|
+            .term-title=t.title
+            .term-description=t.description
+          %p #{@meal.cost} credits per rsvp
           =form_for :rsvp, :url => meal_rsvps_path(@meal.id), :method=>:post, :remote=>:true do |f|
             =f.hidden_field :meal_id, :value => @meal.id
-            %p #{@meal.cost} credits per rsvp
+
             %label how many rsvps
             dine in:
             =f.number_field :dine_in_count, :value => 1, :min => 0, :max => @meal.dine_in_count - @meal.rsvps.dine_in.sum(:num)
             take out:
             =f.number_field :take_out_count, :value => 0, :min => 0, :max => @meal.take_out_count - @meal.rsvps.take_out.sum(:num)
             %br
-            =f.submit "rsvp", :class => "button"
+            =check_box_tag 'rsvp-checkbox', '', false
+            agree to terms and conditions
+            %br
+            =f.submit "rsvp", :class => "button disabled", :id =>"submit-rsvp"
       .message
       %p=@meal.description
       -if @meal.dishes.present?
@@ -145,6 +152,15 @@
         prePopulate: $("#meal_env_list").data("pre"),
       }
     );
+
+    $("#rsvp-checkbox").change(function() {
+        if(this.checked) {
+            $('#submit-rsvp').removeClass("disabled");
+        }
+        else {
+          $('#submit-rsvp').addClass("disabled");
+        }
+    });
 
     $(".tag-suggestion a").click(function() {
 
