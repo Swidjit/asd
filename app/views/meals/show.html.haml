@@ -79,9 +79,12 @@
 
             %label how many rsvps
             dine in:
-            =f.number_field :dine_in_count, :value => 1, :min => 0, :max => @meal.dine_in_count - @meal.rsvps.dine_in.sum(:num)
+            =f.number_field :dine_in_count, :value => 0, :min => 0, :max => @meal.dine_in_count - @meal.rsvps.dine_in.sum(:num), :class => "rsvp-count dine-in-count"
             take out:
-            =f.number_field :take_out_count, :value => 0, :min => 0, :max => @meal.take_out_count - @meal.rsvps.take_out.sum(:num)
+            =f.number_field :take_out_count, :value => 0, :min => 0, :max => @meal.take_out_count - @meal.rsvps.take_out.sum(:num), :class => "rsvp-count take-out-count"
+
+            .total-credits credits needed: 0
+            .credits-avail credits available: #{current_user.credits}
             %br
             =check_box_tag 'rsvp-checkbox', '', false
             agree to terms and conditions
@@ -160,6 +163,12 @@
         else {
           $('#submit-rsvp').addClass("disabled");
         }
+    });
+
+    $(".rsvp-count").bind('keyup mouseup', function () {
+      var cost = "#{@meal.cost.to_i}";
+      var total_credits = $('.take-out-count').val() * cost +  $('.dine-in-count').val() * cost;
+      $('.total-credits').html("credits needed: " + total_credits);
     });
 
     $(".tag-suggestion a").click(function() {
