@@ -1,0 +1,9 @@
+$('#notifications').toggle();
+$(document).click(function() {
+$('#notifications').toggle();
+$(document).unbind( "click" );
+});
+$('#notifications').click(function(e) {
+e.stopPropagation();
+return false;
+});

@@ -251,7 +251,23 @@
    left: -480px;
    z-index: 500;
 }
-
+#notifications {
+  position: absolute;
+  top: 125px;
+  left: 20px;
+  right: 20px;
+  max-height: 200px;
+  padding: 0px 8px;
+  background-color: #c0c;
+  display: none;
+  p {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 2px 0 5px;
+    color: #fff;
+    border-bottom: 1px solid gray;
+  }
+}
 /* new meal form */
 #new_meal {
   input[type=number] {

@@ -7,6 +7,9 @@
         %li=link_to "your profile", profile_path(current_user.username)
         %li=link_to "account settings", edit_user_path(current_user)
         %li=link_to "logout", destroy_session_path(:user), :method => :delete
+        %li#notifications-button notifications
+#notifications.red
+  =render 'users/notifications'
 #filter-section
   %h4 explore meals
   =link_to "all upcoming", meals_path

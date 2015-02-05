@@ -68,6 +68,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def notifications
+    @notifications = current_user.notifications.includes(:sender,:notifier).reverse_order
+    @notifications.each do |n|
+      n.read = true
+      n.save!
+    end
+  end
   private
 
   def set_user

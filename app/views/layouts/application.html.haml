@@ -43,5 +43,8 @@
       $('#menu').addClass("shown");
     }
 
+  });
 
+  $('#notifications-button').on("click", function() {
+    $.get("#{notifications_user_path(current_user)}");
   });
