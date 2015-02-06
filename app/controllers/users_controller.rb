@@ -61,7 +61,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     if current_user.credits >= params[:credits].to_i
       current_user.decrement!(:credits, params[:credits].to_i)
-      @user.increment!(:credits, params[:credits].to_i)
+      @user.increment!(:credits,params[:credits].to_i)
+      @xfer = Transfer.new(:recipient_id=>@user.id,:sender_id=>current_user.id,:credits=>params[:credits].to_i, :category=>"transfer", :transfer_status=>"complete")
+      @xfer.save
       respond_to do |format|
         format.js
       end
