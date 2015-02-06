@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   resources :users do
     resource :blacklists
+    resources :whitelists
     resources :subscriptions, :only => [:create,:destroy,:index]
     resources :flags
     collection do

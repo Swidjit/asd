@@ -37,6 +37,12 @@
               remove blacklist
             -else
               blacklist
+        =link_to user_whitelists_path(@user), :method=>:post, :remote=>:true do
+          .whitelist
+            -if @user.whitelists.map(&:whitelisted_user_id).include?(current_user.id)
+              remove whitelist
+            -else
+              whitelist
         -@subscription = current_user.subscriptions.where(:subscription_id => @user.id).first
         -if @subscription.present?
           =render :partial => 'subscriptions/unfollow_user', :locals => {user:@user}

@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :rsvps
   has_many :watches
   has_many :blacklists
+
+  has_many :whitelists
   has_many :subscriptions, :dependent => :delete_all
   has_many :notifications, :foreign_key => :receiver_id
   has_many :comments
