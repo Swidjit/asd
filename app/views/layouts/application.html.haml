@@ -15,16 +15,10 @@
 
   %body
     =render :partial => 'layouts/head'
-    #main-content
-      .row.full-width
-        #side-bar.large-3.medium-4.columns.show-for-medium-up.panel
-          =render :partial => 'layouts/side_menu'
-        .large-9.medium-8.small-12.columns
-          = yield
-    #menu.hide-for-medium-up
+    #menu
       =render :partial => 'layouts/side_menu'
-    =render :partial => 'layouts/footer'
-
+    #content
+      = yield
 
 :javascript
   $('#menu-button').on("click", function() {
