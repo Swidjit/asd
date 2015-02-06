@@ -33,13 +33,13 @@
       -unless current_user == @user
         =link_to user_blacklists_path(@user), :method=>:post, :remote=>:true do
           .blacklist
-            -if @user.blacklists.map(&:blacklisted_user_id).include?(current_user.id)
+            -if current_user.blacklists.map(&:blacklisted_user_id).include?(@user.id)
               remove blacklist
             -else
               blacklist
         =link_to user_whitelists_path(@user), :method=>:post, :remote=>:true do
           .whitelist
-            -if @user.whitelists.map(&:whitelisted_user_id).include?(current_user.id)
+            -if current_user.whitelists.map(&:whitelisted_user_id).include?(@user.id)
               remove whitelist
             -else
               whitelist

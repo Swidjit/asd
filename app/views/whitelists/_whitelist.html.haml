@@ -1,0 +1,4 @@
+.whitelist[whitelist]
+  =User.find(whitelist.whitelisted_user_id).username
+  =link_to user_whitelist_path(whitelist.user, whitelist), :method => :delete, :remote => :true do
+    %button.tiny delete

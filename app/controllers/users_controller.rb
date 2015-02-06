@@ -87,7 +87,13 @@ class UsersController < ApplicationController
   def credit_page
     @user = User.find(params[:id])
     @xfers = @user.transfers
-    puts @xfers
+
+  end
+
+  def manage_lists_page
+    @user = User.find(params[:id])
+    puts @user.whitelists
+    puts "sdfsdfsdf"
 
   end
   private

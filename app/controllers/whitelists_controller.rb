@@ -23,5 +23,12 @@ class WhitelistsController < ApplicationController
       end
     end
   end
-
+  def destroy
+    @whitelist = Whitelist.find(params[:id])
+    if @whitelist.destroy
+        respond_with do |format|
+          format.js {render 'removed_from_list'}
+        end
+    end
+  end
 end

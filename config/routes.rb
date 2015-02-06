@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   resources :users do
-    resource :blacklists
+    resources :blacklists
     resources :whitelists
     resources :subscriptions, :only => [:create,:destroy,:index]
     resources :flags
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'notifications'
       get 'credit_page'
+      get 'manage_lists_page'
     end
   end
   resources :meals do

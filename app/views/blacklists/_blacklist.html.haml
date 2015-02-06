@@ -1,0 +1,4 @@
+.blacklist[blacklist]
+  =User.find(blacklist.blacklisted_user_id).username
+  =link_to user_blacklist_path(blacklist.user, blacklist), :method => :delete, :remote => :true do
+    %button.tiny delete

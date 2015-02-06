@@ -24,4 +24,13 @@ class BlacklistsController < ApplicationController
     end
   end
 
+  def destroy
+    @blacklist = Blacklist.find(params[:id])
+    if @blacklist.destroy
+        respond_with do |format|
+          format.js {render 'removed_from_list'}
+        end
+    end
+  end
+
 end

@@ -32,10 +32,58 @@
                        d.full_name = "(" + d.first_name + ")"
 
                        $("#search_result").append(Jaml.render('user',d));
-                       setClickBehavior();
+                       setBlackListClickBehavior();
                      })
                    }else{
                      $("#search_result").html("no result")
+                   }
+
+                   }, "json");
+
+              //timeout function
+
+              }, 500));
+          });
+      });
+    });
+
+  $(document).ready(function() {
+    jQuery(function(){
+        jQuery('input#search_people2')
+          .data('timeout', null)
+          .keyup(function(){
+              clearTimeout(jQuery(this).data('timeout'));
+              jQuery(this).data('timeout', setTimeout(function(){
+
+               //timeout function
+               $.post('/users/autocomplete', { q: $("input#search_people2").val()}, function(data) {
+
+                  Jaml.register('user', function(user) {
+                    a({href: ("#"), cls: "username", "data-user": user.id, "data-username": user.username},
+                      div(
+                        img({src: user.profile_pic_id}),
+                        span("@",user.username, "  ", user.first_name)
+                        )
+                      )
+                    div({cls: "clearboth"})
+                  });
+
+
+
+                   if(data.length > 0){
+                     $("#search_result2").html("people maching '"+ $("input#search_people").val() + "'")
+                     $(data).each(function(idx, d){
+                       if(d.profile_pic_id == null){
+                         d.profile_pic_id = "/assets/profile-green.svg" //place you default img
+                       }
+
+                       d.full_name = "(" + d.first_name + ")"
+
+                       $("#search_result2").append(Jaml.render('user',d));
+                       setWhiteListClickBehavior();
+                     })
+                   }else{
+                     $("#search_result2").html("no result")
                    }
 
                    }, "json");
