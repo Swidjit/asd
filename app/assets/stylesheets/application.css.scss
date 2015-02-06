@@ -357,3 +357,18 @@
 .disabled {
   display:none;
 }
+
+.user-credits {
+  padding: 10px;
+  background-color: #87A35E;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+#transfers {
+  height: 100px;
+  overflow: hidden;
+}
+#transfers.expanded-list {
+  height: 100%;
+}

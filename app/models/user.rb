@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :notifications, :foreign_key => :receiver_id
   has_many :comments
 
+  has_many :received_transfers, :class_name => 'Transfer', :foreign_key => :recipient_id
+  has_many :sent_transfers, :class_name => 'Transfer', :foreign_key => :sender_id
+
   acts_as_taggable_on :dietary
 
   validates :username,
@@ -78,6 +81,10 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  def transfers
+    received_transfers + sent_transfers
   end
 
 end

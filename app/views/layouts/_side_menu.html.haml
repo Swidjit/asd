@@ -8,6 +8,7 @@
         %li=link_to "account settings", edit_user_path(current_user)
         %li=link_to "logout", destroy_session_path(:user), :method => :delete
         %li=link_to "messages", user_conversations_path(current_user)
+        %li=link_to "credits", credit_page_user_path(current_user)
         %li#notifications-button notifications
   #notifications.red
     =render 'users/notifications'

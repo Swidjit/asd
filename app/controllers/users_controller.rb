@@ -83,6 +83,13 @@ class UsersController < ApplicationController
       n.save!
     end
   end
+
+  def credit_page
+    @user = User.find(params[:id])
+    @xfers = @user.transfers
+    puts @xfers
+
+  end
   private
 
   def set_user

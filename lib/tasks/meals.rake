@@ -2,7 +2,6 @@ namespace :meals do
   task :process_completed  => :environment do
     @old_meals = Meal.past
     @old_meals.each do |m|
-      puts m.id
       m.rsvps.each do |r|
         r.user.decrement!(:credits, m.cost)
         m.user.increment!(:credits, m.cost)

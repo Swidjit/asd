@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'notifications'
+      get 'credit_page'
     end
   end
   resources :meals do
