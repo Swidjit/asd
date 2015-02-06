@@ -20,5 +20,12 @@ h3 Your Messages
 				#message-list
 				= render :partial => 'message_list',:locals => {conversations:@conversations}
 
+javascript:
+	$(document).ready(function() {
 
+		$(".new-message").click(function() {
+			$('body').append("#{escape_javascript( render :partial => 'new_message')}");
+			$('#new-message').foundation("reveal","open");
+		});
+	});	
   

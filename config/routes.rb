@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :flags
     collection do
       post 'transfer_credits'
-      get 'autocomplete'
+      post 'autocomplete'
     end
     member do
       get 'notifications'
@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   root :to => 'meals#index'
   get 'pages/:page_name' => 'pages#index', :as => :pages
   get '/:display_name' => 'users#show', :as => :profile
+  post '/users/search' => 'users#search'
 end

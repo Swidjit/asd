@@ -71,9 +71,7 @@ class UsersController < ApplicationController
 
   def autocomplete
     @users = User.where("username LIKE (?) or first_name LIKE (?) or last_name LIKE (?)","%#{params[:q]}%","%#{params[:q]}%","%#{params[:q]}%")
-    respond_to do |format|
-      format.json { render :json => @users.collect{|tag| {:id => tag.id, :name => tag.username}} }
-    end
+    render file: 'users/search.json.rabl'
   end
 
   def notifications
