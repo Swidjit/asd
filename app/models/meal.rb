@@ -11,6 +11,7 @@ class Meal < ActiveRecord::Base
   acts_as_commentable
   accepts_nested_attributes_for :dishes
 
+  after_save :delete_empty_dishes
 
   scope :future, lambda { where('start_time > ?', Time.now) }
   scope :past, lambda { where('start_time <= ?', Time.now) }
@@ -22,5 +23,12 @@ class Meal < ActiveRecord::Base
   end
   def past
     return true if self.start_time < Time.now
+  end
+
+  def delete_empty_dishes
+    dishes.each do |d|
+      puts d
+      d.destroy if d.title.empty?
+    end
   end
 end

@@ -19,12 +19,13 @@
 
 .row
   .large-7.columns
-    %p=@meal.description
-    =render :partial => 'tags'
-    %h4 Comments
-    .comments
-      = render :partial => 'comments/comment', :collection => @comments, :as => :comment
-    = render :partial => 'comments/form', :locals => { :comment => @new_comment }
+    .meal-body
+      %p=@meal.description
+      =render :partial => 'tags'
+      %h4 Comments
+      .comments
+        = render :partial => 'comments/comment', :collection => @comments, :as => :comment
+      = render :partial => 'comments/form', :locals => { :comment => @new_comment }
 
   .large-5.columns
     .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
