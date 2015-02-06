@@ -4,5 +4,5 @@
 			= f.text_area :body, :label => false, :class => "input-field", :id => "comment-text"
 			= f.input :commentable_id, :as => :hidden, :value => comment.commentable_id
 			= f.input :commentable_type, :as => :hidden, :value => comment.commentable_type
-			= f.button :submit, :class => "button", :disable_with => "Submitting…"
+			= f.submit "comment", :class => "button tiny", :disable_with => "Submitting…"
 

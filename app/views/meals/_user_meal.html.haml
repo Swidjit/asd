@@ -1,0 +1,88 @@
+.row
+  .large-12.columns
+    .meal-header
+      %i.fi-star
+      %h3=@meal.title
+      =link_to edit_meal_path(@meal) do
+        %button edit
+      =link_to meal_path(@meal), :method=>:delete do
+        %button delete
+    .meal-meta
+      -if @meal.future
+        .rsvp-info
+          =render :partial => 'meals/rsvp_info'
+        .meal-time
+          =@meal.start_time.strftime("%m/%d")
+          =@meal.start_time.strftime("%l:%M %P")
+      -else
+        this meal has already happened
+
+.row
+  .large-7.columns
+    %p=@meal.description
+    =render :partial => 'tags'
+    %h4 Comments
+    .comments
+      = render :partial => 'comments/comment', :collection => @comments, :as => :comment
+    = render :partial => 'comments/form', :locals => { :comment => @new_comment }
+
+  .large-5.columns
+    .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
+      -if @meal.dishes.present?
+        #dishes
+          %h5 dishes
+          = render @meal.dishes
+          #new-dish
+          %button#add-dish add dish
+    .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
+      %h5 attending
+      =render @meal.rsvps
+
+-if @new_item == true
+  #tag-form.reveal-modal{"data-reveal" => ""}
+    %a.close-reveal-modal ×
+    =form_for @meal do |f|
+      .row
+        .tag-category
+          %h4 dietary tags
+          %p does your meal mostly or entirely meet any dietary labels?
+        .large-7.columns
+          -@dietary_tags.each do |t|
+            .tag-suggestion{:value => "dietary"}
+              %a= t
+        .large-5.columns
+          =f.text_field :dietary_list, :data => {:pre => @meal.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
+      .row{:style=>"margin-top:15px;"}
+        .tag-category
+          %h4 cuisine tags
+          %p does your meal fit into any of the suggested culinary categories?
+        .large-7.columns
+          -@cuisine_tags.each do |t|
+            .tag-suggestion{:value => "cuisine"}
+              %a= t
+        .large-5.columns
+          =f.text_field :cuisine_list, :data => {:pre => @meal.cuisine_list.collect{|tag| {:id => tag, :name => tag}}}
+      .row{:style=>"margin-top:15px;"}
+        .tag-category
+          %h4 environmental tags
+          %p describe your environment
+        .large-7.columns
+          -@env_tags.each do |t|
+            .tag-suggestion{:value => "env"}
+              %a= t
+        .large-5.columns
+          =f.text_field :env_list, :data => {:pre => @meal.env_list.collect{|tag| {:id => tag, :name => tag}}}
+      .row{:style=>"margin-top:15px;"}
+        .tag-category
+          %h4 locations
+          %p what neighborhood/town is the meal in?
+        .large-7.columns
+          -@location_tags.each do |t|
+            .tag-suggestion{:value => "location"}
+              %a= t
+        .large-5.columns
+          =f.text_field :location_list, :data => {:pre => @meal.location_list.collect{|tag| {:id => tag, :name => tag}}}
+      %div{:style=>"text-align: center"}
+        =f.submit "add tags", :class => "button large"
+  :javascript
+    $("#tag-form").foundation("reveal","open")
