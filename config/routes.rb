@@ -23,6 +23,13 @@ Rails.application.routes.draw do
 
   end
 
+  resources :conversations, :only => [:create,:show,:index, :destroy] do
+    resources :messages, :only => [:create]
+  end
+
+  resources :users, :only => [:edit, :update] do
+    resources :conversations, :only => :index
+  end
   resources :comments, :only => [:create, :destroy, :update]
 
   root :to => 'meals#index'

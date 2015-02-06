@@ -43,9 +43,16 @@
         -else
           =render :partial => 'subscriptions/follow_user', :locals => {user:@user}
         =link_to "flag user", "#", :"data-reveal-id"=>"flag-user"
-        =link_to "#", :id => "message-button" do
-          button.small message #{@user.name}
 
+        %a.button{:"data-reveal-id"=>"message-user", :href=>"#"} message #{@user.name}
+
+        #message-user.reveal-modal{"data-reveal" => ""}
+          =render :partial => 'conversations/message_user', :locals => {user:@user}
+
+        :javascript
+            function showMessageWindow() {
+                $('body').append("#{escape_javascript( render :partial => 'conversations/message_user', :locals => {:user => @user})}");
+            }
 
         #transfer-credits.reveal-modal{"data-reveal" => ""}
           %h4 Transfer credits to #{@user.username}

@@ -1,0 +1,4 @@
+$('#message').empty();
+$('#message').html("#{escape_javascript render :partial => 'message_thread', :locals => {conversation:@conversation}}");
+$('#message-link-#{@conversation.id} .message-item').html("#{escape_javascript render :partial => 'message_link', :locals => {conversation:@conversation}}");
+
