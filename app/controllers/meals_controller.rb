@@ -47,7 +47,7 @@ class MealsController < ApplicationController
         @meals = Meal.where("id in (?)",current_user.rsvps.map(&:meal_id))
       end
     else
-      @meals = Meal.all.order(start_time: :desc)
+      @meals = Meal.future.all.order(start_time: :desc)
     end
 
     if params.has_key?(:following)
@@ -77,7 +77,9 @@ class MealsController < ApplicationController
     @ids = @meals.map(&:id)
     @hidden_meals = Meal.where('user_id in (?)',Blacklist.where(:blacklisted_user_id=>current_user).map(&:user_id)).map(&:id)
     @meal_ids = @ids - @hidden_meals
-    @meals = Meal.where('id in (?)', @meal_ids)
+    @private_meals = Meal.unscoped.future.invite_only.map(&:id)
+    @meal_ids =  @private_meals | @meal_ids
+    @meals = Meal.unscoped.where('id in (?)', @meal_ids).order(start_time: :desc)
   end
 
   def custom

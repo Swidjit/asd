@@ -14,7 +14,7 @@ class Meal < ActiveRecord::Base
 
   scope :future, lambda { where('start_time > ?', Time.now) }
   scope :past, lambda { where('start_time <= ?', Time.now) }
-
-
+  scope :invite_only, lambda { where('visibility = ?', "private") }
+  default_scope -> { where('visibility = ?', "public") }
 
 end
