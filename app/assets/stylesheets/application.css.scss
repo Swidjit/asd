@@ -471,3 +471,25 @@
   font-size: 22px;
   margin: 6px 0;
 }
+
+
+/* login & reg */
+
+.login-form {
+  background-color: #FCB43F;
+  padding: 9px 15px;
+  label {
+    margin-bottom: 3px;
+  }
+  input {
+    font-size: 17px;
+    margin-bottom: 7px;
+  }
+  margin-top: 25px;
+}
+
+#terms {
+  p {
+    font-size: 14px;
+  }
+}
