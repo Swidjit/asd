@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :received_transfers, :class_name => 'Transfer', :foreign_key => :recipient_id
   has_many :sent_transfers, :class_name => 'Transfer', :foreign_key => :sender_id
 
-  acts_as_taggable_on :dietary
+  acts_as_taggable_on :dietary, :cuisine, :env, :location
 
   validates :username,
   :uniqueness => {

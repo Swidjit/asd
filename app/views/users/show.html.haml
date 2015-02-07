@@ -1,26 +1,58 @@
-#main-content
+#user
   .row
-    .large-12.columns
-    #user
-      =@user.username
-      (#{@user.first_name} #{@user.last_name})
-      %h4 about
-      =@user.about
-      %hr
-      .row
-        .large-6.columns
-          %h3 upcoming meals
-          -@user.meals.future.each do |meal|
-            =render meal
-        .large-6.columns
-          %h3 previous meals
-          -@user.meals.past.each do |meal|
-            =render meal
+    .large-2.columns
+      %img{:src => "http://placehold.it/250x150&text=Logo"}/
+    .large-10.columns
+      .profile-name
+        =@user.username
+        (#{@user.first_name} #{@user.last_name})
+      .user-actions
+        -if current_user == @user
+          =link_to edit_user_path(@user) do
+            %button.small edit
+        -else
+          %a.button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
+          -@subscription = current_user.subscriptions.where(:subscription_id => @user.id).first
+          -if @subscription.present?
+            =render :partial => 'subscriptions/unfollow_user', :locals => {user:@user}
+          -else
+            =render :partial => 'subscriptions/follow_user', :locals => {user:@user}
+          =link_to user_blacklists_path(@user), :method=>:post, :remote=>:true do
+            %button.small.blacklist
+              -if current_user.blacklists.map(&:blacklisted_user_id).include?(@user.id)
+                remove blacklist
+              -else
+                blacklist
+          =link_to user_whitelists_path(@user), :method=>:post, :remote=>:true do
+            %button.small.whitelist
+              -if current_user.whitelists.map(&:whitelisted_user_id).include?(@user.id)
+                remove whitelist
+              -else
+                whitelist
 
-      =link_to "xfer credits", "#", :"data-reveal-id"=>"transfer-credits"
+          =link_to "#", :"data-reveal-id"=>"flag-user" do
+            %button.small flag
+          =link_to "#", :"data-reveal-id"=>"transfer-credits" do
+            %button.small xfer credits
+
+
+  .row
+    .large-7.columns
+      %h5 about
+      =@user.about
+      =render :partial => 'tags'
+    .large-5.columns
+      %h5 upcoming meals
+      -@user.meals.future.each do |meal|
+        =render meal
+      %h5 previous meals
+      -@user.meals.past.each do |meal|
+        =render meal
+
+
 
       -if current_user == @user
-        =link_to "edit profile", edit_user_path(@user)
+
 
         #transfer-credits.reveal-modal{"data-reveal" => ""}
           %h4 Transfer credits to another user
@@ -31,26 +63,7 @@
             =submit_tag "Send Credits", :class => "button"
 
       -unless current_user == @user
-        =link_to user_blacklists_path(@user), :method=>:post, :remote=>:true do
-          .blacklist
-            -if current_user.blacklists.map(&:blacklisted_user_id).include?(@user.id)
-              remove blacklist
-            -else
-              blacklist
-        =link_to user_whitelists_path(@user), :method=>:post, :remote=>:true do
-          .whitelist
-            -if current_user.whitelists.map(&:whitelisted_user_id).include?(@user.id)
-              remove whitelist
-            -else
-              whitelist
-        -@subscription = current_user.subscriptions.where(:subscription_id => @user.id).first
-        -if @subscription.present?
-          =render :partial => 'subscriptions/unfollow_user', :locals => {user:@user}
-        -else
-          =render :partial => 'subscriptions/follow_user', :locals => {user:@user}
-        =link_to "flag user", "#", :"data-reveal-id"=>"flag-user"
 
-        %a.button{:"data-reveal-id"=>"message-user", :href=>"#"} message #{@user.name}
 
         #message-user.reveal-modal{"data-reveal" => ""}
           =render :partial => 'conversations/message_user', :locals => {user:@user}

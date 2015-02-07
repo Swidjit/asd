@@ -453,3 +453,18 @@
     }
   }
 }
+
+
+.user-actions {
+  div {
+    display: inline;
+  }
+  button, .button {
+    margin-bottom: 5px !important;
+  }
+}
+
+.profile-name {
+  font-size: 22px;
+  margin: 6px 0;
+}
