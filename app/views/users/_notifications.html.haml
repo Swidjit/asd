@@ -10,8 +10,13 @@
       -when 'Meal'
         -if notification.notifier_action == "cancel"
           %li="A meal you RSVPed to has been cancelled"
+        -elsif notification.notifier_action == "upcoming"
+          %li="Your meal #{Meal.find(notification.notifier_id).title} is happening soon, get ready!"
         -else
           %li="A meal you RSVPed to has been updated: #{Meal.find(notification.notifier_id).title}"
     -case notification.notifier_type
       -when 'Transfer'
         %li="Yay!  You were transferred credits from #{User.find(Transfer.find(notification.notifier_id).sender_id).username} for your recent meal"
+    -case notification.notifier_type
+      -when 'Rsvp'
+        %li="A meal you RSVPed to is happening tomorrow"

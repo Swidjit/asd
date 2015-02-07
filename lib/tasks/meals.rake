@@ -18,4 +18,27 @@ namespace :meals do
       end
     end
   end
+
+  task :notify_of_upcoming => :environment do
+    @upcoming_meals = Meal.upcoming
+    puts @upcoming_meals
+    @upcoming_meals.each do |m|
+      m.rsvps.each do |r|
+        notification = Notification.new
+        notification.notifier = r
+        notification.sender = m.user
+        notification.notifier_action = "upcoming"
+        notification.receiver = r.user
+
+        notification.save
+      end
+      notification = Notification.new
+      notification.notifier = m
+      notification.sender = m.user
+      notification.notifier_action = "upcoming"
+      notification.receiver = m.user
+
+      notification.save
+    end
+  end
 end
