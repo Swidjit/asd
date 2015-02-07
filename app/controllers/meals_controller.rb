@@ -15,6 +15,13 @@ class MealsController < ApplicationController
     end
   end
 
+  def destroy
+    @meal = Meal.find(params[:id])
+    if @meal.destroy
+      redirect_to root_path
+    end
+  end
+
   def show
     @meal = Meal.find(params[:id]) unless @meal.present?
     @new_item = true if @meal.created_at > (Time.now - 2.seconds)
