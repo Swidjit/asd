@@ -6,12 +6,13 @@ class Meal < ActiveRecord::Base
 
   belongs_to :user
   has_many :rsvps
-  has_many :watches
-  has_many :dishes
+  has_many :watches, :dependent => :delete_all
+  has_many :dishes, :dependent => :delete_all
   acts_as_commentable
   accepts_nested_attributes_for :dishes
 
   after_save :delete_empty_dishes
+  before_destroy :notify_rsvped_users
 
   scope :future, lambda { where('start_time > ?', Time.now) }
   scope :past, lambda { where('start_time <= ?', Time.now) }
@@ -29,6 +30,20 @@ class Meal < ActiveRecord::Base
     dishes.each do |d|
       puts d
       d.destroy if d.title.empty?
+    end
+  end
+
+  def notify_rsvped_users
+    rsvps = self.rsvps
+    rsvps.each do |r|
+      notification = Notification.new
+      notification.notifier = self
+      notification.sender = self.user
+      notification.notifier_action = "cancel"
+      notification.receiver = r.user
+
+      notification.save
+      r.destroy
     end
   end
 end
