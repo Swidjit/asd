@@ -11,7 +11,7 @@ class Meal < ActiveRecord::Base
   acts_as_commentable
   accepts_nested_attributes_for :dishes
 
-  after_save :delete_empty_dishes
+  after_save :delete_empty_dishes, :notify_users_of_meal_update
   before_destroy :notify_rsvped_users
 
   scope :future, lambda { where('start_time > ?', Time.now) }
@@ -44,6 +44,19 @@ class Meal < ActiveRecord::Base
 
       notification.save
       r.destroy
+    end
+  end
+
+  def notify_users_of_meal_update
+    rsvps = self.rsvps
+    rsvps.each do |r|
+      notification = Notification.new
+      notification.notifier = self
+      notification.sender = self.user
+      notification.notifier_action = "update"
+      notification.receiver = r.user
+
+      notification.save
     end
   end
 end

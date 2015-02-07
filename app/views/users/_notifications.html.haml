@@ -6,3 +6,12 @@
     -case notification.notifier_type
       -when 'Flag'
         %li="Uh oh, you were flagged for your conduct during #{Meal.find(Flag.find(notification.notifier_id).meal_id).title} for violating #{Term.find(Flag.find(notification.notifier_id).abused_term).title}"
+    -case notification.notifier_type
+      -when 'Meal'
+        -if notification.notifier_action == "cancel"
+          %li="A meal you RSVPed to has been cancelled"
+        -else
+          %li="A meal you RSVPed to has been updated: #{Meal.find(notification.notifier_id).title}"
+    -case notification.notifier_type
+      -when 'Transfer'
+        %li="Yay!  You were transferred credits from #{User.find(Transfer.find(notification.notifier_id).sender_id).username} for your recent meal"
