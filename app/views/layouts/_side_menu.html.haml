@@ -10,20 +10,20 @@
     #user-icon-bar
       %div
         =link_to edit_user_path(current_user) do
-          %i.fi-widget.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "account settings"}
+          =image_tag('settings.png',:size=>'23x23',:class=>"has-tip", "aria-haspopup" => "true", "data-tooltip" => "", :title => "account settings")
       %div
         =link_to "#" do
           #notifications-button
-            %i.fi-alert.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "notifications"}
+            =image_tag('notifications.png',:size=>'23x23',:class=>"has-tip", "aria-haspopup" => "true", "data-tooltip" => "", :title => "notifications")
       %div
         =link_to user_conversations_path(current_user) do
-          %i.fi-mail.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "private messages"}
+          =image_tag('messages.png',:size=>'23x23',:class=>"has-tip", "aria-haspopup" => "true", "data-tooltip" => "", :title => "messages")
       %div
         =link_to credit_page_user_path(current_user) do
-          %i.fi-burst.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "manage credits"}
+          =image_tag('credit.png',:size=>'23x23',:class=>"has-tip", "aria-haspopup" => "true", "data-tooltip" => "", :title => "credits")
       %div
         =link_to destroy_session_path(:user), :method => :delete do
-          %i.fi-x.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "logout"}
+          =image_tag('logout.png',:size=>'23x23',:class=>"has-tip", "aria-haspopup" => "true", "data-tooltip" => "", :title => "logout")
 
   #notifications.red
     =render 'users/notifications'
@@ -35,3 +35,6 @@
     =link_to "attending", meals_path(:type => "rsvped")
     =link_to "following", meals_path(:following => :true)
     =link_to "custom", custom_meals_path
+
+  %h4{:style => "margin-top: 18 px;"} info
+  =link_to "about", pages_path(:page_name=>"about")

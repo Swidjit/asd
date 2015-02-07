@@ -3,24 +3,20 @@
 
     .comment-left
       = image_tag('profile.svg', :size => '50x50')
+
     .comment-content
       .comment-right
-        .comment-meta.clearfix
+        %span.comment-date
+          = comment.created_at.strftime("%B %d, %Y at %l:%M %p")
+          -if user_signed_in? && comment.user == current_user
+            =link_to comment_path(comment), :method => :delete, :remote => :true do
+              %i.fi-trash
+            =link_to "#",:id => "edit-comment-#{comment.id}", :class => 'edit-comment' do
+              %i.fi-pencil
+        %span.comment-author
+          =link_to "@#{comment.user.username}", profile_path(comment.user.username)
+          says
+          =best_in_place comment, :body, :activator => "#edit-comment-#{comment.id}", :classes => 'editable', :as => :textarea
 
-          %span.comment-author
-            =link_to "@#{comment.user.username}", profile_path(comment.user.username)
-            says
-            =best_in_place comment, :body, :activator => "#edit-comment-#{comment.id}", :classes => 'editable', :as => :textarea
-
-          %span.comment-date
-            = comment.created_at.strftime("%B %d, %Y at %l:%M %p")
-
-            - if current_user == comment.user
-              .comment-admin.green
-                =link_to comment_path(comment), :method => :delete, :remote => :true do
-                  %i.fi-trash
-                =link_to "#",:id => "edit-comment-#{comment.id}", :class => 'edit-comment' do
-                  %i.fi-pencil
-            .clearboth
       .edit-message{:style=>"display:none;"}
         click away from comment to save, or ESC to cancel
