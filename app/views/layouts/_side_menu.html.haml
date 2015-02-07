@@ -1,15 +1,30 @@
 -if user_signed_in?
   #profile-section
     #profile-image
-      %i.fi-torso-female{:style=>"font-size:75px;"}
+      =link_to profile_path(current_user.username) do
+        %i.fi-torso-female{:style=>"font-size:75px;"}
     #profile-links
-      %ul
-        %li=link_to "your profile", profile_path(current_user.username)
-        %li=link_to "account settings", edit_user_path(current_user)
-        %li=link_to "logout", destroy_session_path(:user), :method => :delete
-        %li=link_to "messages", user_conversations_path(current_user)
-        %li=link_to "credits", credit_page_user_path(current_user)
-        %li#notifications-button notifications
+      =link_to profile_path(current_user.username) do
+        @#{current_user.username}
+    %hr
+    #user-icon-bar
+      %div
+        =link_to edit_user_path(current_user) do
+          %i.fi-widget
+      %div
+        =link_to user_conversations_path(current_user) do
+          #notifications-button
+            %i.fi-alert
+      %div
+        =link_to user_conversations_path(current_user) do
+          %i.fi-mail
+      %div
+        =link_to credit_page_user_path(current_user) do
+          %i.fi-burst
+      %div
+        =link_to destroy_session_path(:user), :method => :delete do
+          %i.fi-x
+
   #notifications.red
     =render 'users/notifications'
 #filter-section
@@ -19,4 +34,4 @@
     =link_to "watching", meals_path(:type => "watched")
     =link_to "attending", meals_path(:type => "rsvped")
     =link_to "following", meals_path(:following => :true)
-    =link_to "custome", custom_meals_path
+    =link_to "custom", custom_meals_path
