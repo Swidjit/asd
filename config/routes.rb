@@ -38,5 +38,6 @@ Rails.application.routes.draw do
   root :to => 'meals#index'
   get 'pages/:page_name' => 'pages#index', :as => :pages
   get '/:display_name' => 'users#show', :as => :profile
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   post '/users/search' => 'users#search'
 end

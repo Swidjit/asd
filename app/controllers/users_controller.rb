@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :finish_signup]
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
   respond_to :js
   def show
@@ -44,6 +44,9 @@ class UsersController < ApplicationController
       else
         @show_errors = true
       end
+
+    else
+      render :layout => "full"
     end
   end
 
@@ -103,7 +106,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:name, :first_name, :last_name, :email, :address, :about, :dietary_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :dietary_list,:password, :password_confirmation])
   end
 
 end

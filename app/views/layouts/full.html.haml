@@ -1,0 +1,43 @@
+!!! 5
+%html{ :lang => "en"}
+  %head
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "Untitled"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = favicon_link_tag "favicon.ico"
+    = csrf_meta_tag
+
+  %body
+    =render :partial => 'layouts/head'
+    #full-content
+      = yield
+
+:javascript
+  $('#menu-button').on("click", function() {
+    if($('#menu').hasClass("shown")) {
+      $('#menu').animate({
+        left: -480,
+        easing: 'linear'
+      }, 'slow');
+      $('#menu').removeClass("shown");
+    }
+    else {
+      $('#menu').animate({
+        left: 0,
+        easing: 'linear'
+      }, 'slow');
+      $('#menu').addClass("shown");
+    }
+
+  });
+-if user_signed_in?
+  :javascript
+    $('#notifications-button').on("click", function() {
+      $.get("#{notifications_user_path(current_user)}");
+    });

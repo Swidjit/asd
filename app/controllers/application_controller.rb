@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :get_notifications
+  before_filter :get_notifications, :ensure_signup_complete
 
   def get_notifications
     if user_signed_in?
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
     # Redirect to the 'finish_signup' page if the user
     # email hasn't been verified yet
-    if current_user && !current_user.email_verified?
+    if current_user && !current_user.username_set?
       redirect_to finish_signup_path(current_user)
     end
   end
