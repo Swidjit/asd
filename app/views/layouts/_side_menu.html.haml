@@ -10,20 +10,20 @@
     #user-icon-bar
       %div
         =link_to edit_user_path(current_user) do
-          %i.fi-widget
+          %i.fi-widget.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "account settings"}
       %div
-        =link_to user_conversations_path(current_user) do
+        =link_to "#" do
           #notifications-button
-            %i.fi-alert
+            %i.fi-alert.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "notifications"}
       %div
         =link_to user_conversations_path(current_user) do
-          %i.fi-mail
+          %i.fi-mail.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "private messages"}
       %div
         =link_to credit_page_user_path(current_user) do
-          %i.fi-burst
+          %i.fi-burst.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "manage credits"}
       %div
         =link_to destroy_session_path(:user), :method => :delete do
-          %i.fi-x
+          %i.fi-x.has-tip{"aria-haspopup" => "true", "data-tooltip" => "", :title => "logout"}
 
   #notifications.red
     =render 'users/notifications'
