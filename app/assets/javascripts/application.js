@@ -17,10 +17,12 @@
 //= require_tree .
 //= require jquery
 //= require best_in_place
+//= require s3_direct_upload
 
 $(document).on('ready page:load', function(){
 
 	jQuery(".best_in_place").best_in_place();
+	$("#s3-uploader").S3Uploader();
 
 });
 

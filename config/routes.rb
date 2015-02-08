@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'notifications'
       get 'credit_page'
       get 'manage_lists_page'
+      post 'upload_file'
     end
   end
   resources :meals do

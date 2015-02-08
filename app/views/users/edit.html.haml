@@ -14,6 +14,16 @@
   =f.text_field :dietary_list, :data => {:pre => @user.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
   =f.file_field :avatar
   =f.submit
+#user-photo
+  =render :partial => 'users/photo'
+=s3_uploader_form callback_url: upload_file_user_path(@user), remote: :true, callback_param: "user[image_url]", id: "s3-uploader" do
+  =file_field_tag :file
+  =submit_tag
+%script#template-upload{:type => "text/x-tmpl"}
+  .upload{:id => "file-{%=o.unique_id%}"}
+    {%=o.name%}
+    .progress
+      .bar{:style => "width: 0%"}
 
 :javascript
   $(document).on('ready page:load', function(){

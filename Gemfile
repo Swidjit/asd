@@ -30,6 +30,7 @@ gem 'simple_form'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
+gem 's3_direct_upload'
 
 gem 'best_in_place', github: 'bernat/best_in_place'
 gem 'rabl'
