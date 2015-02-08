@@ -31,6 +31,7 @@
             .new-dish
               =f1.text_field :title, :class => "dish-title", :placeholder => "dish title"
               =f1.text_field :description, :class => "dish-description", :placeholder => "dish description"
+    =f.file_field :pic
     =f.submit "post meal", :class => "button"
 :javascript
   $(document).on('ready page:load', function(){

@@ -28,6 +28,9 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'acts_as_commentable_with_threading'
 gem 'simple_form'
 
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
+
 gem 'best_in_place', github: 'bernat/best_in_place'
 gem 'rabl'
 group :assets do

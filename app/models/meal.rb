@@ -11,6 +11,9 @@ class Meal < ActiveRecord::Base
   acts_as_commentable
   accepts_nested_attributes_for :dishes
 
+  has_attached_file :pic, :styles => { :medium => "450x450>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
+
   after_save :delete_empty_dishes, :notify_users_of_meal_update
   before_destroy :notify_rsvped_users
 

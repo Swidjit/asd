@@ -21,6 +21,7 @@
   .large-7.columns
     .meal-body
       %p=@meal.description
+
       =render :partial => 'tags'
       %h4 Comments
       .comments
@@ -28,6 +29,7 @@
       = render :partial => 'comments/form', :locals => { :comment => @new_comment }
 
   .large-5.columns
+    =image_tag @meal.pic.url(:medium)
     .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
       -if @meal.dishes.present?
         #dishes
