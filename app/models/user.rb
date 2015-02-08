@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_many :received_transfers, :class_name => 'Transfer', :foreign_key => :recipient_id
   has_many :sent_transfers, :class_name => 'Transfer', :foreign_key => :sender_id
 
+  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   acts_as_taggable_on :dietary, :cuisine, :env, :location
 
   validates :username,

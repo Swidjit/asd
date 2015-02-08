@@ -294,15 +294,17 @@
   padding: 10px;
 }
 #profile-image, #profile-links {
-  width: 50%;
+  display: inline;
   float: left;
-  text-align:center;
-  li {
-    list-style-type: none;
-  }
   a {
-    font-size: 18px;
+    font-size: 19px;
     line-height: 20px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #242424;
+  }
+  a:hover {
+    color:#000;
   }
 }
 #profile-links {

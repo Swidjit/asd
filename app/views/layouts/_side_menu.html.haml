@@ -2,8 +2,10 @@
   #profile-section
     #profile-image
       =link_to profile_path(current_user.username) do
-        %i.fi-torso-female{:style=>"font-size:75px;"}
-    #profile-links
+        -if current_user.avatar.exists?
+          =image_tag current_user.avatar.url(:thumb), :size=>'60x60', :style => "margin: 5px;"
+        -else
+          %i.fi-torso-female{:style=>"font-size:75px;"}
       =link_to profile_path(current_user.username) do
         @#{current_user.username}
     %hr

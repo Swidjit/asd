@@ -1,7 +1,7 @@
 #user
   .row
     .large-2.columns
-      %img{:src => "http://placehold.it/250x150&text=Logo"}/
+      =image_tag @user.avatar.url(:medium)
     .large-10.columns
       .profile-name
         =@user.username

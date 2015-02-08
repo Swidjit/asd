@@ -28,6 +28,37 @@
 
 :javascript
   $(document).on('ready page:load', function(){
-
+    $("#meal_dietary_list").tokenInput(
+      "#{autocomplete_dietary_search_meals_path}", {
+        preventDuplicates:"true",
+        minChars: 2,
+        theme: "facebook",
+        prePopulate: $("#meal_dietary_list").data("pre"),
+        onAdd: function(item) {
+          item.name = item.name.replace("'","");
+        }
+      }
+    );
+    $("#meal_cuisine_list").tokenInput(
+      "#{autocomplete_dietary_search_meals_path}", {
+        preventDuplicates:"true",
+        theme: "facebook",
+        prePopulate: $("#meal_cuisine_list").data("pre"),
+      }
+    );
+    $("#meal_location_list").tokenInput(
+      "#{autocomplete_dietary_search_meals_path}", {
+        preventDuplicates:"true",
+        theme: "facebook",
+        prePopulate: $("#meal_location_list").data("pre"),
+      }
+    );
+    $("#meal_env_list").tokenInput(
+      "#{autocomplete_dietary_search_meals_path}", {
+        preventDuplicates:"true",
+        theme: "facebook",
+        prePopulate: $("#meal_env_list").data("pre"),
+      }
+    );
 
   });
