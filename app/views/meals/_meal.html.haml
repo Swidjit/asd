@@ -1,45 +1,92 @@
-.meal[meal]
-  .row
+-if meal.dishes.present?
+  .meal[meal]
+    .row
+      .large-5.columns
+        .meal-row
+          .meal-title{:style => "background-color: #F4EFDF;"}
+            =image_tag 'meal.png', :size=>'15x20'
+            =link_to meal.title, meal_path(meal)
+        %div{:style=>"margin-left: 12px;"}
+          .meal-feed-meta
+            .rsvp-info
+              =render :partial => 'meals/rsvp_info', :locals => {meal:meal}
+            =meal.start_time.strftime("%m/%d %l:%M %P")
 
-    .large-8.columns
-      .meal-row
-        .meal-title{:style => "background-color: #F4EFDF;"}
-          =image_tag 'meal.png', :size=>'15x20'
-          =link_to meal.title, meal_path(meal)
-      %div{:style=>"margin-left: 12px;"}
-        .meal-feed-meta
-          .rsvp-info
-            =render :partial => 'meals/rsvp_info', :locals => {meal:meal}
-          =meal.start_time.strftime("%m/%d %l:%M %P")
+          .meal-description
+            =meal.description
 
-        .meal-description
-          =meal.description
-        -if meal.dishes.present?
-          =render :collection => meal.dishes.limit(2), :partial => 'dishes/feed'
-        =render :partial => 'tags', :locals => {meal:meal}
+          =render :partial => 'tags', :locals => {meal:meal}
 
-      -if user_signed_in?
-        .meal-buttons
-          .rsvp
-            -if current_user.rsvps.where(:meal_id=>meal.id).present?
-              =render :partial => 'rsvps/feed_cancel_rsvp_button', :locals => {meal:meal}
+        -if user_signed_in?
+          .meal-buttons
+            .rsvp
+              -if current_user.rsvps.where(:meal_id=>meal.id).present?
+                =render :partial => 'rsvps/feed_cancel_rsvp_button', :locals => {meal:meal}
+              -else
+                -if meal.rsvps_count < meal.dine_in_count
+                  =render :partial => 'rsvps/feed_rsvp_button', :locals => {meal:meal}
+            -if current_user.watches.where(:meal_id=>meal.id).present?
+              =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+                %button.watch unwatch
             -else
-              -if meal.rsvps_count < meal.dine_in_count
-                =render :partial => 'rsvps/feed_rsvp_button', :locals => {meal:meal}
-          -if current_user.watches.where(:meal_id=>meal.id).present?
-            =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-              %button.watch unwatch
-          -else
-            =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
-              %button.watch watch
-          .message
-    .large-4.columns{:style=>"background-color:#E0C8C7;padding: 0px;"}
-      .meal-host
-        =link_to "@"+meal.user.username, profile_path(meal.user.username)
-      -if meal.pic.exists?
-        =image_tag meal.pic.url
-      -else
-        =image_tag 'meal-placeholder.png'
+              =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+                %button.watch watch
+            .message
+      .large-3.columns
 
+        .panel
+          %h5 Menu
+          =render meal.dishes
+
+      .large-4.columns{:style=>"background-color:#E0C8C7;padding: 0px;"}
+        .meal-host
+          =link_to "@"+meal.user.username, profile_path(meal.user.username)
+        -if meal.pic.exists?
+          =image_tag meal.pic.url
+        -else
+          =image_tag 'meal-placeholder.png'
+
+-else
+  .meal[meal]
+    .row
+      .large-8.columns
+        .meal-row
+          .meal-title{:style => "background-color: #F4EFDF;"}
+            =image_tag 'meal.png', :size=>'15x20'
+            =link_to meal.title, meal_path(meal)
+        %div{:style=>"margin-left: 12px;"}
+          .meal-feed-meta
+            .rsvp-info
+              =render :partial => 'meals/rsvp_info', :locals => {meal:meal}
+            =meal.start_time.strftime("%m/%d %l:%M %P")
+
+          .meal-description
+            =meal.description
+          -if meal.dishes.present?
+            =render :collection => meal.dishes.limit(2), :partial => 'dishes/feed'
+          =render :partial => 'tags', :locals => {meal:meal}
+
+        -if user_signed_in?
+          .meal-buttons
+            .rsvp
+              -if current_user.rsvps.where(:meal_id=>meal.id).present?
+                =render :partial => 'rsvps/feed_cancel_rsvp_button', :locals => {meal:meal}
+              -else
+                -if meal.rsvps_count < meal.dine_in_count
+                  =render :partial => 'rsvps/feed_rsvp_button', :locals => {meal:meal}
+            -if current_user.watches.where(:meal_id=>meal.id).present?
+              =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+                %button.watch unwatch
+            -else
+              =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
+                %button.watch watch
+            .message
+      .large-4.columns{:style=>"background-color:#E0C8C7;padding: 0px;"}
+        .meal-host
+          =link_to "@"+meal.user.username, profile_path(meal.user.username)
+        -if meal.pic.exists?
+          =image_tag meal.pic.url
+        -else
+          =image_tag 'meal-placeholder.png'
 
 

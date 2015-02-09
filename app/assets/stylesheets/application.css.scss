@@ -474,12 +474,12 @@
   display:none;
 }
 
-.term-title {
+.term-title, .dish-title {
   font-weight: 600;
   font-size: 16px;
   color: #242424;
 }
-.term-description {
+.term-description,.dish-desc  {
   font-size: 14px;
   color: #6C6D7D;
   line-height: 14px;
