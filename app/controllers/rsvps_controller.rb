@@ -32,7 +32,7 @@ class RsvpsController < ApplicationController
       end
     else
       respond_with do |format|
-        format.js {render 'destroy_from_feed', :locals=>{id:params[:meal_id]}}
+        format.js {render 'destroy_from_feed'}
       end
     end
   end

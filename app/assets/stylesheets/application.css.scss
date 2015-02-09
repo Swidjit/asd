@@ -446,19 +446,35 @@
   input[type=number] {
     display: inline;
     width: 60px;
+    font-size: 22px;
+    height: 40px;
   }
   label {
     display: block;
     margin-bottom: 0.2em;
-    font-size: 13px;
+    font-size: 15px;
     color: #922A1E;
   }
 }
-
+.larger-text {
+  font-size: 18px;
+  color: #7F1B16;
+  font-weight: 600;
+}
 .disabled {
   display:none;
 }
 
+.term-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #242424;
+}
+.term-description {
+  font-size: 14px;
+  color: #6C6D7D;
+  line-height: 14px;
+}
 .user-credits {
   padding: 10px;
   background-color: #87A35E;
