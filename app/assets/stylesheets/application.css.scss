@@ -144,11 +144,13 @@
 .meal {
   margin-bottom: 8px;
   padding: 4px 8px;
+
 }
 .meal-title {
-  font-size: 17px;
+  font-size: 18px;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 5px;
 }
 .meal-meta {
 }
@@ -180,7 +182,22 @@
   }
   font-size: 20px;
   padding: 6px 0;
-  background-color: #eee;
+}
+.meal-feed-meta {
+  div {
+    display: inline;
+    margin: 0 18px 0 0;
+  }
+  i {
+    margin-left: 12px;
+  }
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 0;
+}
+
+.meta-info {
+  margin-right: 8px;
 }
 .meal-body {
   padding: 0px 15px;
@@ -191,6 +208,25 @@
     font-size: 17px;
   }
 }
+
+/* meal n feed */
+.meal-tags {
+  padding: 7px 9px;
+  h5 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+  }
+}
+.meal-host {
+  text-align: right;
+  padding: 6px;
+  a {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
 /* header stuff */
 
 #header-logo {

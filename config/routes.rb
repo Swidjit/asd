@@ -24,7 +24,9 @@ Rails.application.routes.draw do
       get 'autocomplete_dietary_search'
       get 'custom'
     end
-
+    member do
+      get 'show_rsvp'
+    end
   end
 
   resources :conversations, :only => [:create,:show,:index, :destroy] do

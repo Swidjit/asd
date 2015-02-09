@@ -102,6 +102,10 @@ class MealsController < ApplicationController
     end
   end
 
+  def show_rsvp
+    @meal = Meal.unscoped.find(params[:id])
+  end
+
   private
 
   def meal_params

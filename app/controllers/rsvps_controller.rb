@@ -13,8 +13,15 @@ class RsvpsController < ApplicationController
       @rsvp = Rsvp.new(:meal_id=>params[:rsvp][:meal_id], :user_id=>current_user.id, :rsvp_type => "take_out", :num => params[:rsvp][:take_out_count])
       @rsvp.save
     end
+    puts params[:rsvp][:origin]
+    puts "hey"
     respond_with do |format|
-      format.js {render 'create', :locals=>{id:params[:meal_id]}}
+      if params[:rsvp][:origin] == "feed"
+        format.js {render 'create_from_feed', :locals=>{id:params[:meal_id]}}
+      else
+        format.js {render 'create', :locals=>{id:params[:meal_id]}}
+      end
+
     end
   end
 

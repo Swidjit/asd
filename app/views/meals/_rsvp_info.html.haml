@@ -1,6 +1,9 @@
-%i.fi-star
-=@meal.cost
-%i.fi-star
-=@meal.dine_in_count - @meal.rsvps.dine_in.sum(:num)
-%i.fi-star
-=@meal.take_out_count - @meal.rsvps.take_out.sum(:num)
+.meta-info
+  =image_tag 'credit.png', :size=>'15x15'
+  =meal.cost
+.meta-info
+  =image_tag 'dine-in.png', :size=>'15x15'
+  =meal.dine_in_count - meal.rsvps.dine_in.sum(:num)
+.meta-info
+  =image_tag 'take-out.png', :size=>'15x15'
+  =meal.take_out_count - meal.rsvps.take_out.sum(:num)

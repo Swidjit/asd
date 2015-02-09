@@ -10,7 +10,7 @@
     .meal-meta
       -if @meal.future
         .rsvp-info
-          =render :partial => 'meals/rsvp_info'
+          =render :partial => 'meals/rsvp_info', :locals => {meal:@meal}
         .meal-time
           =@meal.start_time.strftime("%m/%d")
           =@meal.start_time.strftime("%l:%M %P")

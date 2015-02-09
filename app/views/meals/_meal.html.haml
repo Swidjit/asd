@@ -1,32 +1,33 @@
-.meal[meal]
+.meal[meal]{:style=>"background-color:#F5F1E3;"}
   .row
 
-    .large-7.columns
-      .meal-row
+    .large-8.columns
+      .meal-row{:style => "background-color: #F4EFDF;"}
         .meal-title
+          =image_tag 'meal.png', :size=>'15x20'
           =link_to meal.title, meal_path(meal)
       .meal-row
-        .meal-meta
-          =meal.start_time.strftime("%d/%m %H:%M")
-          hosted by
-          =link_to "@"+meal.user.username, profile_path(meal.user.username)
+        .meal-feed-meta
+          .rsvp-info
+            =render :partial => 'meals/rsvp_info', :locals => {meal:meal}
+          =meal.start_time.strftime("%m/%d %l:%M %P")
       .meal-row
         .meal-description
           =meal.description
         -if meal.dishes.present?
           =render :collection => meal.dishes.limit(2), :partial => 'dishes/feed'
-        -meal.dietary_list.each do |t|
-          =link_to t, meals_path(:dietary=>t)
+
 
       -if user_signed_in?
         %br
-        -if current_user.rsvps.where(:meal_id=>meal.id).present?
-          =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-            %button.rsvp cancel rsvp
-        -else
-          -if meal.rsvps_count < meal.dine_in_count
-            =link_to meal_rsvps_path(meal.id), :remote => :true, :method=>:post do
-              %button.rsvp rsvp
+          .rsvp
+            -if current_user.rsvps.where(:meal_id=>meal.id).present?
+              =link_to meal_rsvp_path(meal.id, 0), :remote => :true, :method=>:delete do
+                %button.rsvp cancel rsvp
+            -else
+              -if meal.rsvps_count < meal.dine_in_count
+                =link_to "#", :class => "rsvp-button", :value=> meal.id do
+                  %button rsvp
         -if current_user.watches.where(:meal_id=>meal.id).present?
           =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
             %button.watch unwatch
@@ -34,8 +35,16 @@
           =link_to meal_watches_path(meal.id), :remote => :true, :method=>:post do
             %button.watch watch
         .message
-    .large-5.columns
+    .large-4.columns{:style=>"background-color:#E0C8C7;padding: 0px;"}
+      .meal-host
+        =link_to "@"+meal.user.username, profile_path(meal.user.username)
       -if meal.pic.exists?
         =image_tag meal.pic.url
       -else
         =image_tag 'meal-placeholder.png'
+      .meal-tags
+        %h5 dietary:
+        -meal.dietary_list.each do |t|
+          =link_to t, meals_path(:dietary=>t)
+
+
