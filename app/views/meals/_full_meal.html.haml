@@ -37,11 +37,36 @@
 
 
   .large-5.columns
-    .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
-      -if @meal.dishes.present?
+
+    -if @meal.dishes.present?
+      .panel{:style=>"margin-top: 10px; background-color:#E0E5D3;"}
         #dishes
           %h5 dishes
           = render @meal.dishes
+    .host-panel.panel
+      =image_tag @meal.user.avatar.url
+      =link_to "@#{@meal.user.username}", profile_path(@meal.user.username), :class => "larger-text"
+      %br
+      total meals:
+      =@meal.user.meals.past.count
+      %br
+      -if @meal.user.dietary_list.length > 1
+        dietary:
+        -@meal.user.dietary_list.each do |t|
+          =link_to t, users_path(:dietary=>t)
+        %br
+      -if @meal.user.cuisine_list.length > 1
+        cuisine:
+        -@meal.user.cuisine_list.each do |t|
+          =link_to t, users_path(:cuisine=>t)
+      -if @meal.user.location_list.length > 1
+        location:
+        -@meal.user.location_list.each do |t|
+          =link_to t, users_path(:location=>t)
+      -if @meal.user.env_list.length > 1
+        environmental:
+        -@meal.user.env_list.each do |t|
+          =link_to t, users_path(:env=>t)
 .row
   .large-7.columns.left
     %h5 Comments

@@ -2,7 +2,7 @@
   .comment.clearfix
 
     .comment-left
-      = image_tag('profile.svg', :size => '50x50')
+      = image_tag(comment.user.avatar.url(:thumb), :size => '50x50')
 
     .comment-content
       .comment-right

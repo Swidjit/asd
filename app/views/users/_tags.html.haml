@@ -1,16 +1,18 @@
 %br
-dietary:
--@user.dietary_list.each do |t|
-  =link_to t, meals_path(:dietary=>t)
-%br
-cuisine:
--@user.cuisine_list.each do |t|
-  =link_to t, meals_path(:cuisine=>t)
-%br
-location:
--@user.location_list.each do |t|
-  =link_to t, meals_path(:location=>t)
-%br
-environmental:
--@user.env_list.each do |t|
-  =link_to t, meals_path(:env=>t)
+-if @user.dietary_list.length > 1
+  dietary:
+  -@user.dietary_list.each do |t|
+    =link_to t, users_path(:dietary=>t)
+  %br
+-if @user.cuisine_list.length > 1
+  cuisine:
+  -@user.cuisine_list.each do |t|
+    =link_to t, users_path(:cuisine=>t)
+-if @user.location_list.length > 1
+  location:
+  -@user.location_list.each do |t|
+    =link_to t, users_path(:location=>t)
+-if @user.env_list.length > 1
+  environmental:
+  -@user.env_list.each do |t|
+    =link_to t, users_path(:env=>t)
