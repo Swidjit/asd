@@ -103,6 +103,7 @@ class MealsController < ApplicationController
   end
 
   def show_rsvp
+    #change to show rsvp for future events only
     @meal = Meal.unscoped.find(params[:id])
   end
 

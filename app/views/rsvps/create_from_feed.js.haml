@@ -1,4 +1,4 @@
-$('#meal_#{id} .rsvp').html("#{j render :partial => 'rsvps/cancel_rsvp_button', :locals=>{id:id}}");
+$('#meal_#{id} .rsvp').html("#{j render :partial => 'rsvps/feed_cancel_rsvp_button', :locals=>{id:id}}");
 $('#rsvp-form').foundation("reveal","close");
 
 $('#meal_#{id} .rsvp-info').html("#{j render :partial => 'meals/rsvp_info', :locals => {meal:@meal}}");

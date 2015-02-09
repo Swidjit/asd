@@ -18,6 +18,9 @@
 
 @import 'foundation-icons';
 
+.reveal-modal {
+   position: fixed; /* <- */
+}
 .button-icon {
 	font-size: 3em;
 }
