@@ -22,7 +22,7 @@
     .meal-body
       %p=@meal.description
 
-      =render :partial => 'tags'
+      =render :partial => 'tags', :locals => {meal:@meal}
       %h4 Comments
       .comments
         = render :partial => 'comments/comment', :collection => @comments, :as => :comment

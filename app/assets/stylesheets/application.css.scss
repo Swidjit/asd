@@ -147,7 +147,6 @@
 .meal {
   margin-bottom: 8px;
   padding: 4px 8px;
-
 }
 .meal-title {
   font-size: 18px;
@@ -199,6 +198,15 @@
   padding: 6px 0;
 }
 
+.meal-buttons {
+  div {
+    display:inline;
+  }
+  top: 20px;
+  position: relative;
+
+}
+
 .meta-info {
   margin-right: 8px;
 }
@@ -223,6 +231,7 @@
 }
 .meal-host {
   text-align: right;
+  margin-right:10px;
   padding: 6px;
   a {
     font-weight: bold;
@@ -507,6 +516,12 @@
     left: -300px;
     width: 300px;
   }
+  .meal-buttons {
+    text-align:center;
+    margin-bottom: 10px;
+  }
+
+
 }
 
 #user-icon-bar {

@@ -33,7 +33,7 @@
     .meal-body
       %p=@meal.description
 
-      =render :partial => 'tags'
+      =render :partial => 'tags', :locals => {meal:@meal}
 
 
   .large-5.columns
