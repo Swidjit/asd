@@ -1,6 +1,0 @@
-.dish[dish]
-  -if dish.meal.user == current_user
-    =link_to meal_dish_path(dish.meal, dish), :method => :delete, :remote => :true do
-      %i.fi-trash
-  .dish-title=dish.title
-  .dish-desc=dish.description

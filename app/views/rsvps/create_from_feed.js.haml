@@ -1,6 +1,0 @@
-$('#meal_#{@meal.id} .rsvp').html("#{j render :partial => 'rsvps/feed_cancel_rsvp_button', :locals=>{meal:@meal}}");
-$('#rsvp-form').foundation("reveal","close");
-
-$('#meal_#{@meal.id} .rsvp-info').html("#{j render :partial => 'meals/rsvp_info', :locals => {meal:@meal}}");
-
-$( "#meal_#{@meal.id}" ).css("background-color","#D4DBC3");
