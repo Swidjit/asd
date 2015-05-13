@@ -1,0 +1,8 @@
+.row
+  .large-12.columns
+    =render @listings
+#rsvps
+:javascript
+  $(".rsvp-button").on("click", function() {
+    $.get("/listings/" + $(this).attr("value") + "/show_rsvp");
+  });
