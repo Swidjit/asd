@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: ks_development
+  database: asd_development
   pool: 5
   username: swidjit
   password: password

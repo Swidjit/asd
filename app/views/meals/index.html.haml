@@ -1,8 +1,0 @@
-.row
-  .large-12.columns
-    =render @meals
-#rsvps
-:javascript
-  $(".rsvp-button").on("click", function() {
-    $.get("/meals/" + $(this).attr("value") + "/show_rsvp");
-  });

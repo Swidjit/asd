@@ -10,13 +10,10 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag "application", 'data-turbolinks-track' => true
-    = favicon_link_tag "favicon.ico"
     = csrf_meta_tag
 
   %body
     =render :partial => 'layouts/head'
-    #menu
-      =render :partial => 'layouts/side_menu'
     #content
       = yield
 
@@ -38,8 +35,3 @@
     }
 
   });
--if user_signed_in?
-  :javascript
-    $('#notifications-button').on("click", function() {
-      $.get("#{notifications_user_path(current_user)}");
-    });

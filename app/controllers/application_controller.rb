@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :get_notifications, :ensure_signup_complete
+  before_filter :ensure_signup_complete
 
   def get_notifications
     if user_signed_in?

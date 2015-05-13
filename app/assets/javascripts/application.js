@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery
-//= require best_in_place
 //= require s3_direct_upload
 
 $(document).on('ready page:load', function(){

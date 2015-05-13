@@ -6,23 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  has_many :meals
-  has_many :rsvps
-  has_many :watches
-  has_many :blacklists
-
-  has_many :whitelists
-  has_many :subscriptions, :dependent => :delete_all
-  has_many :notifications, :foreign_key => :receiver_id
-  has_many :comments
-
-  has_many :received_transfers, :class_name => 'Transfer', :foreign_key => :recipient_id
-  has_many :sent_transfers, :class_name => 'Transfer', :foreign_key => :sender_id
-
-  has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-  acts_as_taggable_on :dietary, :cuisine, :env, :location
+  has_many :listings
 
   validates :username,
   :uniqueness => {
@@ -92,8 +76,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  def transfers
-    received_transfers + sent_transfers
-  end
 
 end

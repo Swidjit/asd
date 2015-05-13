@@ -22,18 +22,13 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-gem 'jquery-datetimepicker-rails'
 gem 'acts-as-taggable-on', '~> 3.4'
-
-gem 'acts_as_commentable_with_threading'
-gem 'simple_form'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
 gem 's3_direct_upload'
 
-gem 'best_in_place', github: 'bernat/best_in_place'
-gem 'rabl'
+
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails', '~> 4.0.0'

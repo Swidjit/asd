@@ -1,18 +1,18 @@
-#top-bar
-  #header-left
-    #menu-button
-      %i.fi-list
-  #header-right
+.row{:style => "background-color: #ccc;"}
+  .large-6.columns
+    %h4 A Sucky Deal
+  .large-6.columns
     -if user_signed_in?
-      =link_to new_meal_path ,:id=>"new-meal-button" do
-        %button.large
-          %i.fi-plus
-          post a meal
+      =link_to destroy_session_path(:user), :id=>"new-meal-button", :method => :delete do
+        %button.large.right
+          %i.fi-add
+          logout
     -else
       =link_to new_user_session_path, :id=>"new-meal-button" do
-        %button.large
+        %button.large.right
           %i.fi-add
           login
-  =link_to root_path do
-    #header-logo
-
+      =link_to new_user_registration_path, :id=>"new-meal-button" do
+        %button.large.right
+          %i.fi-add
+          register
