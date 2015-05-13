@@ -1,42 +1,37 @@
 #form{:style=>"position:relative; margin-top:0px;"}
-  =form_for @meal do |f|
+  =form_for @listing do |f|
     =f.hidden_field :user_id, :value => current_user.id
     .meal-section
-      %h5 meal basics (optional)
+      %h5 new listing
       .row
         .large-6.columns
           %label title
-          =f.text_field :title, :value => "Meal by @#{current_user.username}"
-          %label capacity
-          dine in:
-          =f.number_field :dine_in_count, :value=>4, :min => 2, :max => 20
-          take out:
-          =f.number_field :take_out_count, :value=>0, :min => 0, :max => 20
-          %label cost (# credits)
-          =f.number_field :cost, :value=>1, :min => 1, :max => 4
+          =f.text_field :title
+          %label description
+          =f.text_field :description
+          %label price
+          =f.number_field :price
+          %label ROI
+          =f.number_field :noi, :step => 'any'
+          %label cap rate
+          =f.number_field :cap_rate, :step => 'any'
+          %label ARV
+          =f.number_field :arv, :step => 'any'
+          %label # units
+          =f.number_field :units, :step => 1
+          %label property type
+          =f.select(:property_type, ['1-4 units','5-10 units'], {}, { :class => 'my_style_class' })
+          %label status
+          =f.select(:property_type, ['distressed','under construction'], {}, { :class => 'my_style_class' })
+
         .large-6.columns
           %label address
           =f.text_field :address, :value => current_user.address.nil? ? "" : current_user.address, :placeholder => "street address for your meal"
-          %label time/date
-          =f.text_field :start_time, :class => "datetimepicker", :placeholder => "start time"
-    .meal-section
-      %h5 meal details (optional)
-      .row
-        .large-6.columns
-          %label describe your meal (optional)
-          =f.text_area :description, :placeholder => "optionally describe your meal"
-        .large-6.columns
-          %label list your dishes (optional)
-          =f.fields_for :dishes do |f1|
-            .new-dish
-              =f1.text_field :title, :class => "dish-title", :placeholder => "dish title"
-              =f1.text_field :description, :class => "dish-description", :placeholder => "dish description"
+          %label city
+          =f.text_field :city
+          %label country
+          =f.text_field :country
+
+
     =f.file_field :pic
-    =f.submit "post meal", :class => "button"
-:javascript
-  $(document).on('ready page:load', function(){
-    $('.datetimepicker').datetimepicker();
-
-
-
-  });
+    =f.submit "post listing", :class => "button"

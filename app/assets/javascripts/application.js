@@ -20,7 +20,6 @@
 
 $(document).on('ready page:load', function(){
 
-	jQuery(".best_in_place").best_in_place();
 	$("#s3-uploader").S3Uploader();
 
 });

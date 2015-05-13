@@ -4,7 +4,6 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
-    4.times { @listing.dishes.build }
   end
 
   def create
@@ -24,13 +23,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id]) unless @listing.present?
-    @new_item = true if @listing.created_at > (Time.now - 2.seconds)
-    @comments = @listing.comment_threads.order('created_at desc')
-    @new_comment = Comment.build_from(@listing, current_user.id, "")
-    @dietary_tags = Listing.dietary_counts
-    @cuisine_tags = Listing.cuisine_counts
-    @location_tags = Listing.location_counts
-    @env_tags = Listing.env_counts
+
 
   end
 
@@ -88,6 +81,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:user_id, :title, :description, :pic, :address, :start_time, :end_time, :cost, :dine_in_count, :take_out_count, :dietary_list, :cuisine_list, :env_list, :location_list, dishes_attributes: [:title, :description])
+    params.require(:listing).permit(:user_id, :title, :description, :pic, :address, :country, :city, :price, :noi, :arv, :property_type, :units, :status)
   end
 end

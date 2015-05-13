@@ -7,6 +7,10 @@
         %button.large.right
           %i.fi-add
           logout
+      =link_to new_listing_path, :id=>"new-meal-button"do
+        %button.large.right
+          %i.fi-add
+          new listing
     -else
       =link_to new_user_session_path, :id=>"new-meal-button" do
         %button.large.right
