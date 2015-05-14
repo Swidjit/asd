@@ -19,3 +19,11 @@
 
 
 #token-form.reveal-modal{"data-reveal" => ""}
+  %h3 looks like you don't have any tokens.
+  %p you'll need to buy some in case someone asks for your lead
+  %button buy tokens
+-if user_signed_in? && @listing.user == current_user
+  -puts current_user.tokens
+  -if current_user.tokens == 0 || current_user.tokens.nil?
+    :javascript
+       $('#token-form').foundation('reveal', 'open');
