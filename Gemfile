@@ -21,6 +21,7 @@ gem 'foundation-icons-sass-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'has_scope'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 

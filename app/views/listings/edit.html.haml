@@ -16,9 +16,9 @@
       %label # units
       =f.number_field :units, :step => 1
       %label property type
-      =f.select(:property_type, ['1-4 units','5-10 units'], {}, { :class => 'my_style_class' })
+      =f.select(:property_type, ['','1-4 units','5-10 units'], {}, { :class => 'my_style_class' })
       %label status
-      =f.select(:property_type, ['distressed','under construction'], {}, { :class => 'my_style_class' })
+      =f.select(:status, ['','distressed','under construction'], {}, { :class => 'my_style_class' })
 
     .large-6.columns
       %label address

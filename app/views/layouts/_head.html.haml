@@ -1,16 +1,22 @@
 .row{:style => "background-color: #ccc;"}
   .large-6.columns
     %h4 A Sucky Deal
+
   .large-6.columns
+
     -if user_signed_in?
       =link_to destroy_session_path(:user), :id=>"new-meal-button", :method => :delete do
         %button.large.right
           %i.fi-add
           logout
-      =link_to new_listing_path, :id=>"new-meal-button"do
+      =link_to new_listing_path, :id=>"new-meal-button" do
         %button.large.right
           %i.fi-add
           new listing
+      =link_to listings_path do
+        %button.large.left
+          %i.fi-add
+          view listings
     -else
       =link_to new_user_session_path, :id=>"new-meal-button" do
         %button.large.right

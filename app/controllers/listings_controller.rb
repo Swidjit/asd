@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
   respond_to :html
+  has_scope :by_degree
 
   def new
     @listing = Listing.new
@@ -40,24 +41,13 @@ class ListingsController < ApplicationController
 
   def index
 
-    @listings = Listing.all
-    if params.has_key?(:dietary)
-      tags = params[:dietary].split(',')
-      @listings = @listings.tagged_with([tags],:on => :dietary, :any => true)
+    @listings = apply_scopes(Listing).all
+    if params.has_key?(:property_type)
+      @listings = @listings.where(:property_type => params[:property_type])
     end
-    if params.has_key?(:cuisine)
-      tags = params[:cuisine].split(',')
-      @listings = @listings.tagged_with([tags],:on => :cuisine, :any => true)
+    if params.has_key?(:status)
+      @listings = @listings.where(:status => params[:status])
     end
-    if params.has_key?(:location)
-      tags = params[:location].split(',')
-      @listings = @listings.tagged_with([tags],:on => :location, :any => true)
-    end
-    if params.has_key?(:env)
-      tags = params[:env].split(',')
-      @listings = @listings.tagged_with([tags],:on => :env, :any => true)
-    end
-
   end
 
   def custom
