@@ -1,22 +1,36 @@
-.listing[listing]
-  .row
-    .large-8.columns
-      .listing-row
-        .listing-title{:style => "background-color: #F4EFDF;"}
-          =image_tag 'listing.png', :size=>'15x20'
-          =link_to listing.title, listing_path(listing)
-      %div{:style=>"margin-left: 12px;"}
-        .listing-feed-meta
-          .price-info
-            =listing.price
+.row
+  .large-12.columns
+    .listing[listing]
+      .row
+        .large-5.columns
+          .feed-listing-image
+            %img{:src => "http://placehold.it/400x300&text=[img]"}/
 
-        .listing-description
-          =listing.description
+        .large-7.columns
 
-      -if user_signed_in?
-        .listing-buttons
-          .get-lead
-          .message
+          .feed-listing-body
 
-
-
+            %h4=listing.title
+            .feed-listing-meta
+              %span=listing.city
+            .listing-description
+              =listing.description
+            %h4
+              $#{listing.price}
+            -if user_signed_in?
+              .listing-buttons
+                %button get lead
+      .row
+        .large-12.columns
+          .feed-listing-number
+            %label noi
+            %span=listing.noi
+          .feed-listing-number
+            %label size
+            %span=listing.units
+          .feed-listing-number
+            %label cap rate
+            %span=listing.cap_rate
+          .feed-listing-number
+            %label arv
+            %span=listing.arv
