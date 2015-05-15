@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :listings
 
-  acts_as_taggable_on :market, :dealmaker, :expertise
+  acts_as_taggable_on :market, :dealmaker, :expertise, :dealmaker_match
 
   validates :username,
   :uniqueness => {

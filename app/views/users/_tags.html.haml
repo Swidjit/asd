@@ -8,6 +8,12 @@
   dealmaker:
   -@user.dealmaker_list.each do |t|
     =link_to t, users_path(:dealmaker=>t)
+%br
+-if @user.dealmaker_match_list.length > 0
+  dealmaker match:
+  -@user.dealmaker_match_list.each do |t|
+    =link_to t, users_path(:dealmaker_match=>t)
+%br
 -if @user.expertise_list.length > 0
   expertise:
   -@user.expertise_list.each do |t|

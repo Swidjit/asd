@@ -6,10 +6,16 @@ class UsersController < ApplicationController
   def show
     @user = User.where(:id=>params[:id]).first
     @market_tags = User.market_counts
+    @expertise_tags = User.expertise_counts
+    @dealmaker_tags = User.dealmaker_counts
+    @dealmaker_match_tags = User.dealmaker_match_counts
   end
 
   def edit
     @market_tags = User.market_counts
+    @expertise_tags = User.expertise_counts
+    @dealmaker_tags = User.dealmaker_counts
+    @dealmaker_match_tags = User.dealmaker_match_counts
   end
 
   def index
@@ -82,7 +88,24 @@ class UsersController < ApplicationController
 
   def autocomplete_market_search
     @tags = User.market_counts.where("name LIKE (?)","%#{params[:q]}%")
-    puts @tags
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
+    end
+  end
+  def autocomplete_dealmaker_search
+    @tags = User.dealmaker_counts.where("name LIKE (?)","%#{params[:q]}%")
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
+    end
+  end
+  def autocomplete_dealmaker_match_search
+    @tags = User.dealmaker_match_counts.where("name LIKE (?)","%#{params[:q]}%")
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
+    end
+  end
+  def autocomplete_expertise_search
+    @tags = User.expertise_counts.where("name LIKE (?)","%#{params[:q]}%")
     respond_to do |format|
       format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end
@@ -100,7 +123,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :avatar, :market_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end
 
 end
