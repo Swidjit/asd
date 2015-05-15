@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :listings
 
+  acts_as_taggable_on :market, :dealmaker, :expertise
+
   validates :username,
   :uniqueness => {
     :case_sensitive => false

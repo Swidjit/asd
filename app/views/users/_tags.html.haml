@@ -1,18 +1,14 @@
 %br
--if @user.dietary_list.length > 1
-  dietary:
-  -@user.dietary_list.each do |t|
-    =link_to t, users_path(:dietary=>t)
+-if @user.market_list.length > 1
+  market:
+  -@user.market_list.each do |t|
+    =link_to t, users_path(:market=>t)
   %br
--if @user.cuisine_list.length > 1
-  cuisine:
-  -@user.cuisine_list.each do |t|
-    =link_to t, users_path(:cuisine=>t)
--if @user.location_list.length > 1
-  location:
-  -@user.location_list.each do |t|
-    =link_to t, users_path(:location=>t)
--if @user.env_list.length > 1
-  environmental:
-  -@user.env_list.each do |t|
-    =link_to t, users_path(:env=>t)
+-if @user.dealmaker_list.length > 1
+  dealmaker:
+  -@user.dealmaker_list.each do |t|
+    =link_to t, users_path(:dealmaker=>t)
+-if @user.expertise_list.length > 1
+  expertise:
+  -@user.expertise_list.each do |t|
+    =link_to t, users_path(:expertise=>t)

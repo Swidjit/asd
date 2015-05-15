@@ -1,8 +1,7 @@
 #user
   .row
-    .large-2.columns
-      =image_tag @user.avatar.url(:medium)
-    .large-10.columns
+
+    .large-12.columns
       .profile-name
         =@user.username
         (#{@user.first_name} #{@user.last_name})
@@ -10,98 +9,11 @@
         -if current_user == @user
           =link_to edit_user_path(@user) do
             %button.small edit
-        -else
-          %a.button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
-          -@subscription = current_user.subscriptions.where(:subscription_id => @user.id).first
-          -if @subscription.present?
-            =render :partial => 'subscriptions/unfollow_user', :locals => {user:@user}
-          -else
-            =render :partial => 'subscriptions/follow_user', :locals => {user:@user}
-          =link_to user_blacklists_path(@user), :method=>:post, :remote=>:true do
-            %button.small.blacklist
-              -if current_user.blacklists.map(&:blacklisted_user_id).include?(@user.id)
-                remove blacklist
-              -else
-                blacklist
-          =link_to user_whitelists_path(@user), :method=>:post, :remote=>:true do
-            %button.small.whitelist
-              -if current_user.whitelists.map(&:whitelisted_user_id).include?(@user.id)
-                remove whitelist
-              -else
-                whitelist
-
-          =link_to "#", :"data-reveal-id"=>"flag-user" do
-            %button.small flag
-          =link_to "#", :"data-reveal-id"=>"transfer-credits" do
-            %button.small xfer credits
 
 
   .row
-    .large-7.columns
+    .large-12.columns
       %h5 about
       =@user.about
       =render :partial => 'tags'
-    .large-5.columns
-      %h5 upcoming meals
-      -@user.meals.future.each do |meal|
-        =render meal
-      %h5 previous meals
-      -@user.meals.past.each do |meal|
-        =render meal
 
-
-
-      -if current_user == @user
-
-
-        #transfer-credits.reveal-modal{"data-reveal" => ""}
-          %h4 Transfer credits to another user
-          %p Just enter the amount you'd like to transfer then click "Send Credits"
-          =form_tag transfer_credits_users_path, :method=>:post, :remote=>:true do
-            =text_field_tag :user_id, nil, {:id => "user-autocomplete"}
-            =number_field_tag :credits, 1, in: 1..100
-            =submit_tag "Send Credits", :class => "button"
-
-      -unless current_user == @user
-
-
-        #message-user.reveal-modal{"data-reveal" => ""}
-          =render :partial => 'conversations/message_user', :locals => {user:@user}
-
-        :javascript
-            function showMessageWindow() {
-                $('body').append("#{escape_javascript( render :partial => 'conversations/message_user', :locals => {:user => @user})}");
-            }
-
-        #transfer-credits.reveal-modal{"data-reveal" => ""}
-          %h4 Transfer credits to #{@user.username}
-          %p Just enter the amount you'd like to transfer then click "Send Credits"
-          =form_tag transfer_credits_users_path, :method=>:post, :remote=>:true do
-            =hidden_field_tag :user_id, @user.id
-            =number_field_tag :credits, 1, in: 1..100
-            =submit_tag "Send Credits", :class => "button"
-          %a.close-reveal-modal ×
-        #flag-user.reveal-modal{"data-reveal" => ""}
-          %h4 Flag #{@user.username}
-
-
-          =form_for :flag, :url => user_flags_path(@user.id), :method=>:post, :remote=>:true do
-            =hidden_field_tag :flagged_user, @user.id
-            %label Which meal does this flag relate to?
-            =select_tag :meal_id, options_from_collection_for_select(@common_meals, "id", "title")
-            %label which etiquette rule did this user break?
-            =select_tag :abused_term, options_from_collection_for_select(Term.all, "id", "title")
-            =text_area_tag :comment, nil,:placeholder => "add an optional comment here to explain your reason for flagging"
-            =submit_tag "Flag User", :class => "button"
-          %a.close-reveal-modal ×
-
-:javascript
-  $(document).on('ready page:load', function(){
-    $("#user-autocomplete").tokenInput(
-      "#{autocomplete_users_path}", {
-        preventDuplicates:"true",
-        minChars: 2,
-        theme: "facebook"
-      }
-    );
-  });

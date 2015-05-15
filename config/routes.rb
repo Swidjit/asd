@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :messages, :only => [:create]
   end
 
-  resources :users, :only => [:edit, :update] do
+  resources :users, :only => [:edit, :update, :index, :show] do
     resources :conversations, :only => :index
     collection do
       post 'autocomplete'

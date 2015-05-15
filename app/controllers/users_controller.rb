@@ -4,19 +4,15 @@ class UsersController < ApplicationController
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
   respond_to :js
   def show
-    @user = User.where(:username=>params[:display_name]).first
-
-    if user_signed_in?
-      #probably a better way to do this
-      @meals1 = @user.rsvps.map(&:meal_id)
-      @meals2 = current_user.rsvps.map(&:meal_id)
-      #make this Meal.past to only show meals that have happened
-      @common_meals = Meal.where('id in (?)',(@meals1&@meals2))
-    end
+    @user = User.where(:id=>params[:id]).first
   end
 
   def edit
 
+  end
+
+  def index
+    @users = User.all
   end
 
   def update
@@ -24,7 +20,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
-        format.html { redirect_to profile_path(@user.username), notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to user_path(@user), notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

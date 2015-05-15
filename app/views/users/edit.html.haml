@@ -1,42 +1,22 @@
-=form_for @user, :url => user_path(@user), :method => :patch do |f|
-  =f.label :username
-  =f.text_field :username
-  =f.label :first_name
-  =f.text_field :first_name
-  =f.label :last_name
-  =f.text_field :last_name
-  =f.label :about
-  =f.text_area :about
-  =f.label :address
-  =f.text_field :address
+.row
+  .large-12.columns
+    =form_for @user, :url => user_path(@user), :method => :patch do |f|
+      =f.label :username
+      =f.text_field :username
+      =f.label :first_name
+      =f.text_field :first_name
+      =f.label :last_name
+      =f.text_field :last_name
+      =f.label :about
+      =f.text_area :about
+      =f.label :address
+      =f.text_field :address
+      =f.label :city
+      =f.text_field :city
+      =f.label :country
+      =f.text_field :county
+      =f.label :market
+      =f.text_field :market_list, :data => {:pre => @user.market_list.collect{|tag| {:id => tag, :name => tag}}}
+      =f.submit "save"
 
-  =f.label :dietary
-  =f.text_field :dietary_list, :data => {:pre => @user.dietary_list.collect{|tag| {:id => tag, :name => tag}}}
-  =f.file_field :avatar
-  =f.submit
-#user-photo
-  =render :partial => 'users/photo'
-=s3_uploader_form callback_url: upload_file_user_path(@user), remote: :true, callback_param: "user[image_url]", id: "s3-uploader" do
-  =file_field_tag :file
-  =submit_tag
-%script#template-upload{:type => "text/x-tmpl"}
-  .upload{:id => "file-{%=o.unique_id%}"}
-    {%=o.name%}
-    .progress
-      .bar{:style => "width: 0%"}
-
-:javascript
-  $(document).on('ready page:load', function(){
-    $("#user_dietary_list").tokenInput(
-      "#{autocomplete_dietary_search_meals_path}", {
-        preventDuplicates:"true",
-        minChars: 2,
-        theme: "facebook",
-        prePopulate: $("#user_dietary_list").data("pre"),
-        onAdd: function(item) {
-          item.name = item.name.replace("'","");
-        }
-      }
-    );
-  });
 
