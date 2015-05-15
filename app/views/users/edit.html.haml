@@ -17,6 +17,31 @@
       =f.text_field :county
       =f.label :market
       =f.text_field :market_list, :data => {:pre => @user.market_list.collect{|tag| {:id => tag, :name => tag}}}
+      .large-12.columns
+        -@market_tags.each do |t|
+          .tag-suggestion{:value => "market"}
+            %a= t
       =f.submit "save"
 
+:javascript
+  $(document).on('ready page:load', function(){
+    $("#user_market_list").tokenInput(
+        "#{autocomplete_market_search_users_path}", {
+          preventDuplicates:"true",
+          minChars: 2,
+          theme: "facebook",
+          prePopulate: $("#user_market_list").data("pre"),
+          allowFreeTagging: true,
+          onAdd: function(item) {
+            item.name = item.name.replace("'","");
+          }
+        }
+      );
 
+    $(".tag-suggestion a").click(function() {
+      var tag_list_selector = "#user_"+$(this).parent().attr("value")+"_list";
+      $(tag_list_selector).tokenInput('add', {id: $(this).text(), name: $(this).text()});
+      $(this).parent().remove();
+      return false
+    });
+  });

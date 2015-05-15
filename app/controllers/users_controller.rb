@@ -5,14 +5,19 @@ class UsersController < ApplicationController
   respond_to :js
   def show
     @user = User.where(:id=>params[:id]).first
+    @market_tags = User.market_counts
   end
 
   def edit
-
+    @market_tags = User.market_counts
   end
 
   def index
     @users = User.all
+    if params.has_key?(:market)
+      tags = params[:market].split(',')
+      @users = @users.tagged_with([tags],:on => :market, :any => true)
+    end
   end
 
   def update
@@ -75,23 +80,12 @@ class UsersController < ApplicationController
     render file: 'users/search.json.rabl'
   end
 
-  def notifications
-    @notifications = current_user.notifications.includes(:sender,:notifier).reverse_order
-    @notifications.each do |n|
-      n.read = true
-      n.save!
+  def autocomplete_market_search
+    @tags = User.market_counts.where("name LIKE (?)","%#{params[:q]}%")
+    puts @tags
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end
-  end
-
-  def credit_page
-    @user = User.find(params[:id])
-    @xfers = @user.transfers.sort_by(&:created_at).reverse
-    puts @xfers
-  end
-
-  def manage_lists_page
-    @user = User.find(params[:id])
-
   end
 
   def upload_file
@@ -106,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :avatar, :dietary_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :avatar, :market_list,:password, :password_confirmation])
   end
 
 end

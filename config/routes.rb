@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :conversations, :only => :index
     collection do
       post 'autocomplete'
+      get 'autocomplete_market_search'
     end
   end
 
