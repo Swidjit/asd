@@ -61,8 +61,11 @@ class User < ActiveRecord::Base
     user
   end
 
-  def username_set?
-    return true unless self.username.nil?
+  def dealmaker_set?
+    puts "ppppsdkljf"
+    puts self.dealmaker_counts.size
+    puts self
+    return true unless self.dealmaker_counts.size == 0
   end
 
   def email_verified?

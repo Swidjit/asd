@@ -42,6 +42,8 @@ class UsersController < ApplicationController
 
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
+    @dealmaker_tags = User.dealmaker_counts
+    @dealmaker_match_tags = User.dealmaker_match_counts
     # authorize! :update, @user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
@@ -67,45 +69,31 @@ class UsersController < ApplicationController
     end
   end
 
-  def transfer_credits
-    @user = User.find(params[:user_id])
-    if current_user.credits >= params[:credits].to_i
-      current_user.decrement!(:credits, params[:credits].to_i)
-      @user.increment!(:credits,params[:credits].to_i)
-      @xfer = Transfer.new(:recipient_id=>@user.id,:sender_id=>current_user.id,:credits=>params[:credits].to_i, :category=>"transfer", :transfer_status=>"complete")
-      @xfer.save
-      respond_to do |format|
-        format.js
-      end
-    end
-
-  end
-
   def autocomplete
     @users = User.where("username LIKE (?) or first_name LIKE (?) or last_name LIKE (?)","%#{params[:q]}%","%#{params[:q]}%","%#{params[:q]}%")
     render file: 'users/search.json.rabl'
   end
 
   def autocomplete_market_search
-    @tags = User.market_counts.where("name LIKE (?)","%#{params[:q]}%")
+    @tags = User.market_counts.where("name LIKE (?)","%#{params[:q].downcase}%")
     respond_to do |format|
       format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end
   end
   def autocomplete_dealmaker_search
-    @tags = User.dealmaker_counts.where("name LIKE (?)","%#{params[:q]}%")
+    @tags = User.dealmaker_counts.where("lower(name) LIKE (?)","%#{params[:q].downcase}%")
     respond_to do |format|
       format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end
   end
   def autocomplete_dealmaker_match_search
-    @tags = User.dealmaker_match_counts.where("name LIKE (?)","%#{params[:q]}%")
+    @tags = User.dealmaker_match_counts.where("lower(name) LIKE (?)","%#{params[:q].downcase}%")
     respond_to do |format|
       format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end
   end
   def autocomplete_expertise_search
-    @tags = User.expertise_counts.where("name LIKE (?)","%#{params[:q]}%")
+    @tags = User.expertise_counts.where("lower(name) LIKE (?)","%#{params[:q].downcase}%")
     respond_to do |format|
       format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
     end

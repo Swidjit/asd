@@ -18,26 +18,3 @@
     #full-content
       = yield
 
-:javascript
-  $('#menu-button').on("click", function() {
-    if($('#menu').hasClass("shown")) {
-      $('#menu').animate({
-        left: -480,
-        easing: 'linear'
-      }, 'slow');
-      $('#menu').removeClass("shown");
-    }
-    else {
-      $('#menu').animate({
-        left: 0,
-        easing: 'linear'
-      }, 'slow');
-      $('#menu').addClass("shown");
-    }
-
-  });
--if user_signed_in?
-  :javascript
-    $('#notifications-button').on("click", function() {
-      $.get("#{notifications_user_path(current_user)}");
-    });

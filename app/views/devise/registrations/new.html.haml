@@ -24,52 +24,6 @@
         %div
           = f.label :password_confirmation
           = f.password_field :password_confirmation, autocomplete: "off"
-        %div
-          =f.label :dealmaker
-          =f.text_field :dealmaker_list, :data => {:pre => @user.dealmaker_list.collect{|tag| {:id => tag, :name => tag}}}
-          .large-12.columns
-            -@dealmaker_tags.each do |t|
-              .tag-suggestion{:value => "dealmaker"}
-                %a= t
-          =f.label :dealmaker_match
-          =f.text_field :dealmaker_match_list, :data => {:pre => @user.dealmaker_match_list.collect{|tag| {:id => tag, :name => tag}}}
-          .large-12.columns
-            - @dealmaker_match_tags.each do |t|
-              .tag-suggestion{:value => "dealmaker_match"}
-                %a= t
+
         %div= f.submit "Sign up", :class => "button"
         = render "devise/shared/links"
-:javascript
-  $(document).on('ready page:load', function(){
-      $("#user_dealmaker_list").tokenInput(
-        "#{autocomplete_dealmaker_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
-      $("#user_dealmaker_match_list").tokenInput(
-        "#{autocomplete_dealmaker_match_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_match_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
-
-    $(".tag-suggestion a").click(function() {
-      var tag_list_selector = "#user_"+$(this).parent().attr("value")+"_list";
-      $(tag_list_selector).tokenInput('add', {id: $(this).text(), name: $(this).text()});
-      $(this).parent().remove();
-      return false
-    });
-  });
