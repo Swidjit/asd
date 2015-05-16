@@ -16,10 +16,14 @@ Rails.application.routes.draw do
     resources :conversations, :only => :index
     collection do
       post 'autocomplete'
+
       get 'autocomplete_market_search'
       get 'autocomplete_expertise_search'
       get 'autocomplete_dealmaker_search'
       get 'autocomplete_dealmaker_match_search'
+    end
+    member do
+      post 'buy_tokens'
     end
   end
 

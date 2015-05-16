@@ -10,7 +10,8 @@
 
           .feed-listing-body
 
-            %h4=listing.title
+            =link_to listing_path(listing) do
+              %h4=listing.title
             .feed-listing-meta
               %span=listing.city
             .listing-description
@@ -23,10 +24,7 @@
             %h4
               $#{listing.price}
             -if user_signed_in?
-              .listing-buttons
-                =link_to generate_lead_listing_path(listing), :method => "post", :remote => "true" do
-                  %button get lead
-                  %span.token_count (#{current_user.tokens} tokens available)
+              =render :partial => 'lead_button', :locals => {listing:listing}
       .row
         .large-12.columns
           .feed-listing-number

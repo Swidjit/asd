@@ -105,6 +105,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def buy_tokens
+    current_user.increment!(:tokens,params[:token_count].to_i)
+    if params.has_key?(:listing_id)
+      @listing = Listing.find(params[:listing_id])
+    end
+  end
 
   private
 

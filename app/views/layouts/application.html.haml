@@ -16,22 +16,18 @@
     =render :partial => 'layouts/head'
     #content
       = yield
-
-:javascript
-  $('#menu-button').on("click", function() {
-    if($('#menu').hasClass("shown")) {
-      $('#menu').animate({
-        left: -480,
-        easing: 'linear'
-      }, 'slow');
-      $('#menu').removeClass("shown");
-    }
-    else {
-      $('#menu').animate({
-        left: 0,
-        easing: 'linear'
-      }, 'slow');
-      $('#menu').addClass("shown");
-    }
-
-  });
+    #buy-token-form.reveal-modal{"data-reveal" => ""}
+      %h4 hmm, looks like you don't have any tokens
+      %p you'll need some to buy a lead.  fortunately, they are only $1 each!
+      %label how many do you want?
+      %input{:value => 10, :type => "number", :min => 10}
+      %button#buy-tokens buy tokens
+-if user_signed_in?
+  :javascript
+    $('#buy-tokens').on('click', function() {
+      console.log(this.value);
+      var data = {
+        token_count: parseInt($(this).prev('input').val()),
+      }
+      $.post('#{buy_tokens_user_path(current_user)}',data);
+    });
