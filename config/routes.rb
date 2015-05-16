@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :listings
+  resources :listings do
+    member do
+      post 'generate_lead'
+    end
+  end
 
   resources :conversations, :only => [:create,:show,:index, :destroy] do
     resources :messages, :only => [:create]

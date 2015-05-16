@@ -68,6 +68,18 @@ class ListingsController < ApplicationController
     @listing = Listing.unscoped.find(params[:id])
   end
 
+  def generate_lead
+    @listing = Listing.find(params[:id])
+    @lead = Lead.new
+    @lead.requester = current_user
+    @lead.receiver = @listing.user
+    @lead.save
+    current_user.decrement!(:tokens)
+    @listing.user.decrement!(:tokens)
+    puts current_user
+    puts @listing.user
+  end
+
   private
 
   def listing_params

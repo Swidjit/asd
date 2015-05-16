@@ -12,10 +12,19 @@
   .large-7.columns
     .listing-body
       %p=@listing.description
+      .author{:style => "display: none;"}
+        %p
+          posted by
+          =link_to @listing.user.username, user_path(@listing.user)
+          %button message #{@listing.user.username}
       %p
         $#{@listing.price}
-
+      -#-unless current_user == @listing.user
+      =link_to generate_lead_listing_path(@listing), :method => "post", :remote => "true" do
+        %button get lead
+        %span.token_count (#{current_user.tokens} tokens available)
       -#=render :partial => 'tags', :locals => {listing:@listing}
+
 
 
 #token-form.reveal-modal{"data-reveal" => ""}

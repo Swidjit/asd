@@ -15,11 +15,18 @@
               %span=listing.city
             .listing-description
               =listing.description
+            .author{:style => "display: none;"}
+              %p
+                posted by
+                =link_to listing.user.username, user_path(listing.user)
+                %button message #{listing.user.username}
             %h4
               $#{listing.price}
             -if user_signed_in?
               .listing-buttons
-                %button get lead
+                =link_to generate_lead_listing_path(listing), :method => "post", :remote => "true" do
+                  %button get lead
+                  %span.token_count (#{current_user.tokens} tokens available)
       .row
         .large-12.columns
           .feed-listing-number

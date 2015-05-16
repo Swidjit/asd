@@ -104,6 +104,8 @@ class UsersController < ApplicationController
     current_user.update_attribute(:avatar, URI.parse(URI.unescape(params['url'])))
     @user = User.find(params[:id])
   end
+
+
   private
 
   def set_user
