@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20150517005837) do
     t.string   "county"
     t.string   "property_type"
     t.string   "deal_size"
-    t.integer  "tokens"
+    t.integer  "tokens",                 default: 0
     t.string   "name"
   end
 
