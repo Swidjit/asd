@@ -22,12 +22,41 @@
       %label how many do you want?
       %input{:value => 10, :type => "number", :min => 10}
       %button#buy-tokens buy tokens
+    #checkout-form
+      = form_tag charges_path, id: 'chargeForm' do
+        %script{:src => "https://checkout.stripe.com/checkout.js"}
+        = hidden_field_tag 'stripeToken'
+        = hidden_field_tag 'stripeEmail'
+        = hidden_field_tag 'stripeCharge'
+        = hidden_field_tag 'tokenCount'
+        = hidden_field_tag 'stripeSession'
 -if user_signed_in?
   :javascript
-    $('#buy-tokens').on('click', function() {
-      console.log(this.value);
-      var data = {
-        token_count: parseInt($(this).prev('input').val()),
-      }
-      $.post('#{buy_tokens_user_path(current_user)}',data);
+
+    var total_cost = 0;
+    var cost = 0;
+    var key = '#{j Rails.configuration.stripe[:publishable_key]}';
+    var handler = StripeCheckout.configure({
+    key: key,
+    token: function(token, args) {
+          document.getElementById("stripeToken").value = token.id;
+          document.getElementById("stripeEmail").value = token.email;
+          document.getElementById("stripeCharge").value = cost;
+          document.getElementById("chargeForm").submit();
+        }
     });
+    $('#buy-tokens').on('click', function(e) {
+
+      total_cost = parseInt($(this).prev('input').val());
+      cost = total_cost*100;
+      document.getElementById("tokenCount").value = total_cost;
+      handler.open({
+        name: 'Any Size Deal',
+        description: 'Tokens',
+        amount: cost,
+        shippingAddress: false
+      });
+
+      e.preventDefault();
+    });
+

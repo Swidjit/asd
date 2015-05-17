@@ -6,6 +6,8 @@ namespace :init do
 
     @user.save
   end
-
+  task :reset_tokens => :environment do
+    User.update_all('tokens = 0')
+  end
 
 end

@@ -1,9 +1,10 @@
-.listing-buttons
-  -if current_user.tokens > 0
-    =link_to generate_lead_listing_path(listing), :method => "post", :remote => "true" do
-      %button get lead
-      %span.token_count (#{current_user.tokens} tokens available)
-  -else
-    =link_to "#", :"data-reveal-id"=>"buy-token-form" do
-      %button{:value => listing.id} get lead
-      %span.token_count (no tokens available)
+-if user_signed_in?
+  .listing-buttons
+    -if current_user.tokens > 0
+      =link_to generate_lead_listing_path(listing), :method => "post", :remote => "true" do
+        %button get lead
+        %span.token_count (#{current_user.tokens} tokens available)
+    -else
+      =link_to "#", :"data-reveal-id"=>"buy-token-form" do
+        %button{:value => listing.id} get lead
+        %span.token_count (no tokens available)

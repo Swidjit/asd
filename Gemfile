@@ -22,6 +22,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'has_scope'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 

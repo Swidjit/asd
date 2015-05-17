@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :messages, :only => [:create]
   end
 
+  resources :charges
+
   resources :users, :only => [:edit, :update, :index, :show] do
     resources :conversations, :only => :index
     collection do
