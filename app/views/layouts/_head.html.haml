@@ -21,6 +21,11 @@
         %button.large.left
           %i.fi-add
           view connections
+      =link_to user_conversations_path(current_user) do
+        %button.large.left
+          %i.fi-add
+          view conversations
+
     -else
       =link_to new_user_session_path, :id=>"new-meal-button" do
         %button.large.right
