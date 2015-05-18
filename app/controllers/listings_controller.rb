@@ -42,12 +42,7 @@ class ListingsController < ApplicationController
   def index
 
     @listings = apply_scopes(Listing).all
-    if params.has_key?(:property_type)
-      @listings = @listings.where(:property_type => params[:property_type])
-    end
-    if params.has_key?(:status)
-      @listings = @listings.where(:status => params[:status])
-    end
+
   end
 
   def custom
@@ -66,6 +61,16 @@ class ListingsController < ApplicationController
   def show_rsvp
     #change to show rsvp for future events only
     @listing = Listing.unscoped.find(params[:id])
+  end
+
+  def filter
+    @listings = Listing.all
+    if params.has_key?(:property_type) && params[:property_type].length > 0
+      @listings = @listings.where(:property_type => params[:property_type])
+    end
+    if params.has_key?(:status)  && params[:status].length > 0
+      @listings = @listings.where(:status => params[:status].downcase)
+    end
   end
 
   def generate_lead

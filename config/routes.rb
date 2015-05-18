@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     member do
       post 'generate_lead'
     end
+    collection do
+      get 'filter'
+    end
   end
 
   resources :conversations, :only => [:create,:show,:index, :destroy] do

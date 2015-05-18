@@ -1,30 +1,21 @@
 .row
-  .large-8.columns
+  #listings.large-8.columns
     -if @listings.size > 0
       =render @listings
     -else
       %p no matches
   .large-4.columns
     %h4 Filter By
-    %label property type
-    %select#property-type
-      %option
-      %option{:value => '1-4 units'} 1-4 units
-      %option{:value => '5-10 units'} 5-10 units
-    %label property status
-    %select#status
-      %option
-      %option{:value => "distressed"} Distressed
-      %option{:value => "under construction"} Under Construction
+    =form_tag(filter_listings_path, remote: true, id: 'filter-form', method: 'get') do
+      =select_tag :property_type, options_for_select(["property type","1-4 units", "5 – 10 units", "20 units plus", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), id: 'filter'
+      =select_tag :status, options_for_select(["property status","Distressed", "Under Construction", "REO", "In-Foreclosure", "Auction", "Existing","FSBO"]), class: 'filter'
+
 #rsvps
 :javascript
   $(".rsvp-button").on("click", function() {
     $.get("/listings/" + $(this).attr("value") + "/show_rsvp");
   });
 
-  $("#property-type").change(function() {
-    window.location.href = "/listings?property_type=" + this.value;
-  });
-  $("#status").change(function() {
-    window.location.href = "/listings?status=" + this.value;
+  $(".filter").change(function() {
+    $('#filter-form').submit();
   });
