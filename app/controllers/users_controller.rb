@@ -136,7 +136,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :address, :latlng, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end
 
 end
