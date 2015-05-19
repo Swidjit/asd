@@ -6,23 +6,33 @@
         %button edit
       =link_to listing_path(@listing), :method=>:delete do
         %button delete
-    #map-canvas{:style => "height: 200px; width: 200px;"}
-    =render :partial => 'map_js'
+
 
 .row
   .large-7.columns
     .listing-body
-      %p=@listing.description
-      .author{:style => "display: none;"}
+      .hidden.author{:style => "display: none;"}
         %p
           posted by
           =link_to @listing.user.username, user_path(@listing.user)
           %button message #{@listing.user.username}
+      #map-canvas.hidden{:style => "height: 200px; width: 200px;"}
+      =render :partial => 'map_js'
       %p
         $#{@listing.price}
       -#-unless current_user == @listing.user
       =render :partial => 'lead_button', :locals => {listing:@listing}
-
+      .hidden
+        %label property description
+        =@listing.description
+        %label address
+        =@listing.address
+        %label property type
+        =@listing.property_type
+        %label # units
+        =@listing.units
+        %label status
+        =@listing.status
 
 
 #token-form.reveal-modal{"data-reveal" => ""}
