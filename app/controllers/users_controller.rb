@@ -40,6 +40,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def filter
+    @users = User.all
+    if params.has_key?(:dealmaker) && params[:dealmaker].length > 0
+    end
+    if params.has_key?(:dealmaker_match)  && params[:dealmaker_match].length > 0
+    end
+    if params.has_key?(:status)  && params[:status].length > 0
+      @users = @users.where(:property_type => params[:status].downcase)
+    end
+    if params.has_key?(:deal_size)  && params[:deal_size].length > 0
+      @users = @users.where(:deal_size => params[:deal_size].downcase)
+    end
+    if params.has_key?(:expertise)  && params[:expertise].length > 0
+
+    end
+  end
+
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     @dealmaker_tags = User.dealmaker_counts

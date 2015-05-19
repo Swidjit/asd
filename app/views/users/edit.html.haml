@@ -15,24 +15,16 @@
       =f.text_field :city
       =f.label :country
       =f.text_field :county
+      =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name, @user.dealmaker_list), {}, { :class => 'my_style_class' })
+      =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name, @user.dealmaker_match_list), {}, { :class => 'my_style_class' })
+
       =f.label :market
       =f.text_field :market_list, :data => {:pre => @user.market_list.collect{|tag| {:id => tag, :name => tag}}}
       .large-12.columns
         -@market_tags.each do |t|
           .tag-suggestion{:value => "market"}
             %a= t
-      =f.label :dealmaker
-      =f.text_field :dealmaker_list, :data => {:pre => @user.dealmaker_list.collect{|tag| {:id => tag, :name => tag}}}
-      .large-12.columns
-        -@dealmaker_tags.each do |t|
-          .tag-suggestion{:value => "dealmaker"}
-            %a= t
-      =f.label :dealmaker_match
-      =f.text_field :dealmaker_match_list, :data => {:pre => @user.dealmaker_match_list.collect{|tag| {:id => tag, :name => tag}}}
-      .large-12.columns
-        - @dealmaker_match_tags.each do |t|
-          .tag-suggestion{:value => "dealmaker_match"}
-            %a= t
+
       =f.label :expertise
       =f.text_field :expertise_list, :data => {:pre => @user.expertise_list.collect{|tag| {:id => tag, :name => tag}}}
       .large-12.columns
@@ -61,30 +53,6 @@
           minChars: 2,
           theme: "facebook",
           prePopulate: $("#user_expertise_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
-      $("#user_dealmaker_list").tokenInput(
-        "#{autocomplete_dealmaker_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
-      $("#user_dealmaker_match_list").tokenInput(
-        "#{autocomplete_dealmaker_match_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_match_list").data("pre"),
           allowFreeTagging: true,
           onAdd: function(item) {
             item.name = item.name.replace("'","");

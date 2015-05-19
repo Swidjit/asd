@@ -71,6 +71,9 @@ class ListingsController < ApplicationController
     if params.has_key?(:status)  && params[:status].length > 0
       @listings = @listings.where(:status => params[:status].downcase)
     end
+    if params.has_key?(:status)  && params[:status].length > 0
+      @listings = @listings.where(:status => params[:status].downcase)
+    end
   end
 
   def generate_lead

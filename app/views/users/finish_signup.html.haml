@@ -8,47 +8,17 @@
           %br
     .form-group
       %label what kind(s) of dealmaker are you?
-      =f.text_field :dealmaker_list, :data => {:pre => @user.dealmaker_list.collect{|tag| {:id => tag, :name => tag}}}
-      .large-12.columns
-        -@dealmaker_tags.each do |t|
-          .tag-suggestion{:value => "dealmaker"}
-            %a= t
-      %label what kind(s) of dealmakers do you want to connect with?
-      =f.text_field :dealmaker_match_list, :data => {:pre => @user.dealmaker_match_list.collect{|tag| {:id => tag, :name => tag}}}
-      .large-12.columns
-        - @dealmaker_match_tags.each do |t|
-          .tag-suggestion{:value => "dealmaker_match"}
-            %a= t
+      =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name), {}, { :class => 'my_style_class' })
+      =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name), {}, { :class => 'my_style_class' })
+
     .actions
       = f.submit 'Continue', :class => 'btn btn-primary'
 
 
 :javascript
   $(document).on('ready page:load', function(){
-      $("#user_dealmaker_list").tokenInput(
-        "#{autocomplete_dealmaker_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
-      $("#user_dealmaker_match_list").tokenInput(
-        "#{autocomplete_dealmaker_match_search_users_path}", {
-          preventDuplicates:"true",
-          minChars: 2,
-          theme: "facebook",
-          prePopulate: $("#user_dealmaker_match_list").data("pre"),
-          allowFreeTagging: true,
-          onAdd: function(item) {
-            item.name = item.name.replace("'","");
-          }
-        }
-      );
+
+
 
     $(".tag-suggestion a").click(function() {
       var tag_list_selector = "#user_"+$(this).parent().attr("value")+"_list";

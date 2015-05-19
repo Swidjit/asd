@@ -1,5 +1,17 @@
 .row
-  .large-12.columns
+  .large-8.columns
     %h3 your connections
+    #users
+      =render @users
 
-    =render @users
+  .large-4.columns
+    =form_tag(filter_users_path, remote: true, id: 'filter-form', method: 'get') do
+      =select_tag :property_type, options_for_select(["property type","1-4 units", "5 – 10 units", "20 units plus", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), id: 'filter'
+      =select_tag :status, options_for_select(["property status","Distressed", "Under Construction", "REO", "In-Foreclosure", "Auction", "Existing","FSBO"]), class: 'filter'
+      =select_tag :deal_size, options_for_select(["price range","$0-$100K", "$100K - $500K", "$500 - $1MM", "$1MM - $3MM", "$3MM - $10MM", "$10MM plus"]), class: 'filter'
+
+:javascript
+
+  $(".filter").change(function() {
+    $('#filter-form').submit();
+  });

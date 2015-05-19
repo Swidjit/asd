@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :conversations, :only => :index
     collection do
       post 'autocomplete'
-
+      get 'filter'
       get 'autocomplete_market_search'
       get 'autocomplete_expertise_search'
       get 'autocomplete_dealmaker_search'
