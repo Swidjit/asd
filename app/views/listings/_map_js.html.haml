@@ -1,0 +1,17 @@
+:javascript
+  $(document).on('ready page:load', function(){
+    coord = "#{@listing.latlng}";
+    coords = coord.split(",");
+    latlng = new google.maps.LatLng(coords[0],coords[1]);
+    options = {
+      language: 'en-GB',
+      center: latlng,
+      zoom: 14
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), options);
+    marker = new google.maps.Marker({
+      position:latlng,
+      map: map,
+      title: "#{@listing.title}"
+    });
+  });
