@@ -41,8 +41,7 @@ class ListingsController < ApplicationController
 
   def index
 
-    @listings = apply_scopes(Listing).all
-
+    @listings = Listing.paid
   end
 
   def upload_file

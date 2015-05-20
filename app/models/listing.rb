@@ -4,6 +4,7 @@ class Listing < ActiveRecord::Base
 
   belongs_to :user
   has_many :images, :dependent => :delete_all
+  scope :paid, -> { joins(:user).where("users.tokens > 0") }
 
 
   #has_attached_file :pic, :styles => { :medium => "450x450>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

@@ -33,15 +33,12 @@
         =@listing.description
         %label address
         =@listing.address
-
-
-
-#token-form.reveal-modal{"data-reveal" => ""}
-  %h3 looks like you don't have any tokens.
-  %p you'll need to buy some in case someone asks for your lead
-  %button buy tokens
 -if user_signed_in? && @listing.user == current_user
-  -puts current_user.tokens
-  -if current_user.tokens == 0 || current_user.tokens.nil?
+  -if current_user.tokens <= 0 || current_user.tokens.nil?
+    -puts 'sddsfqq'
     :javascript
-       $('#token-form').foundation('reveal', 'open');
+      $(document).on('ready page:load', function(){
+         console.log("fdfd");
+         $('#buy-token-form').foundation('reveal', 'open');
+         $('#buy-token-form .message').html("you will need to have tokens in case someone asks for your lead");
+       });
