@@ -20,7 +20,6 @@
           =f.label :city
           =f.text_field :address, :class => 'address'
           =f.hidden_field :latlng
-
         %div
           -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
           =f.label :purpose
@@ -54,12 +53,12 @@
     map = new google.maps.Map(document.getElementById('map-canvas'), options);
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var place = autocomplete.getPlace();
-      console.log(place.geometry.location);
+      geocoder = new google.maps.Geocoder();
+      console.log(place);
       $('#user_latlng').attr("value",place.geometry.location.k+","+place.geometry.location.B);
-
-    })
 
     return google.maps.event.addListener(map, 'bounds_changed', function() {
       autocomplete.bindTo('bounds', map);
     });
   };
+
