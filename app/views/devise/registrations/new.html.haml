@@ -20,6 +20,11 @@
           =f.label :city
           =f.text_field :address, :class => 'address'
           =f.hidden_field :latlng
+
+        %div
+          -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
+          =f.label :purpose
+          =f.select :purpose, @purpose_list.map { |value| [ value, value ] }
         %div
           = f.label :password
           = f.password_field :password, autocomplete: "off"

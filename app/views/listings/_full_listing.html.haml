@@ -6,7 +6,7 @@
         %button edit
       =link_to listing_path(@listing), :method=>:delete do
         %button delete
-
+      %button{:onclick=>"$('#manage-photos').show()"} manage photos
 
 .row
   .large-7.columns
