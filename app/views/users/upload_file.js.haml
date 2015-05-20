@@ -1,1 +1,1 @@
-$('#user-photo').html("#{j render :partial => 'users/photo'}");
+$('#user-photo').html("#{j render :partial => 'users/photo', :locals => {user:@user}}");

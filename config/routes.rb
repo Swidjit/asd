@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
     member do
       post 'buy_tokens'
+      post 'upload_file'
     end
   end
 

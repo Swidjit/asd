@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   :uniqueness => {
     :case_sensitive => false
   }
-
+  has_attached_file :pic, :styles => { :medium => "250x250>", :thumb => "60x60>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :pic, :content_type => /\Aimage\/.*\Z/
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 

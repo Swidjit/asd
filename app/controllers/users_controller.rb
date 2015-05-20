@@ -118,7 +118,7 @@ class UsersController < ApplicationController
 
   def upload_file
 
-    current_user.update_attribute(:avatar, URI.parse(URI.unescape(params['url'])))
+    current_user.update_attribute(:pic, URI.parse(URI.unescape(params['url'])))
     @user = User.find(params[:id])
   end
 
