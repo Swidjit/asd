@@ -22,17 +22,18 @@
         $#{@listing.price}
       -#-unless current_user == @listing.user
       =render :partial => 'lead_button', :locals => {listing:@listing}
+      %label property type
+      =@listing.property_type
+      %label # units
+      =@listing.units
+      %label status
+      =@listing.status
       .hidden
         %label property description
         =@listing.description
         %label address
         =@listing.address
-        %label property type
-        =@listing.property_type
-        %label # units
-        =@listing.units
-        %label status
-        =@listing.status
+
 
 
 #token-form.reveal-modal{"data-reveal" => ""}
