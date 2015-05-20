@@ -1,7 +1,8 @@
 -if listing.images.present?
   -listing.images.each do |i|
     %div{:id => "image-#{i.id}"}
-      =image_tag i.pic.url(:medium)
+      =image_tag i.pic.url(:medium), :u => "image"
+      =image_tag i.pic.url(:thumb), :u => "thumb"
       -if listing.user == current_user
         .delete
           =link_to listing_image_path(listing, i), :method => "delete", :remote => :true do
