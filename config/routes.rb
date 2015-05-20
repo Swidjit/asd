@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :listings do
+    resources :images, :only => [:destroy]
     member do
       post 'generate_lead'
+      post 'upload_file'
     end
     collection do
       get 'filter'

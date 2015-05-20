@@ -45,22 +45,10 @@ class ListingsController < ApplicationController
 
   end
 
-  def custom
-    dietary_tags = current_user.dietary_list.split(',')
-    @listings = Listing.tagged_with([dietary_tags],:on => :dietary, :any => true)
-    render :index
-  end
-
-  def autocomplete_dietary_search
-    @tags = Listing.dietary_counts.where("name LIKE (?)","%#{params[:q]}%")
-    respond_to do |format|
-      format.json { render :json => @tags.collect{|tag| {:id => tag.name, :name => tag.name}} }
-    end
-  end
-
-  def show_rsvp
-    #change to show rsvp for future events only
+  def upload_file
     @listing = Listing.unscoped.find(params[:id])
+    @listing.images << Image.create(:pic => URI.parse(URI.unescape(params['url'])))
+
   end
 
   def filter
