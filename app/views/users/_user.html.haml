@@ -1,5 +1,21 @@
 .user[user]
   =link_to user_path(user) do
-    %img{:src => "http://placehold.it/100x100&text=[avatar]"}/
-    =user.username
+    %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
+  .heading
+    =link_to user_path(user) do
+      .name=user.username
+    .dealmaker-type=user.dealmaker_list
+  .user-property
+    %label Looking for
+    %span=user.dealmaker_match_list
+  .user-property
+    %label Purpose
+    %span=user.purpose
+  .user-property
+    %label Property Type
+    %span=user.property_type
+  .user-property
+    %label Deal Size
+    %span=user.deal_size
+
 
