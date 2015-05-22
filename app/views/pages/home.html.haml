@@ -2,7 +2,8 @@
   .large-12.columns
     %span Real Estate Investors use AnySizeDeals to Find the RIGHTS CONTACTS FOR their transaction.
 .row{:style => "background-color: #ddd; height: 50px;"}
-  =form_tag '#{listings_path}', :id => 'dealmaker-form' do
+  =form_tag '/users', :id => 'dealmaker-form', :method => :get do
+    =hidden_field_tag :home_form, 'true'
     .large-5.columns
       %label I am
       =select_tag :dealmaker, options_from_collection_for_select(@dealmaker_tags, :name, :name)

@@ -20,6 +20,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
+    if params.has_key?(:home_form)
+      @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
+      @users = @users.tagged_with(params[:dealmaker_match],:on => :dealmaker, :any => true)
+    end
     if params.has_key?(:market)
       tags = params[:market].split(',')
       @users = @users.tagged_with([tags],:on => :market, :any => true)
