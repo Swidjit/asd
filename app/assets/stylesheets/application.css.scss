@@ -58,8 +58,42 @@
 .listing-meta {
   margin-left: 12px;
 }
+.full-listing-meta {
+  margin: 2px 15px;
+}
+.stats-box {
+  border: 1px solid black;
+  padding: 7px 13px;
+  margin-top: -70px;
+  background-color: #eee;
+  display:inline-block;
+  width: 100%;
+  label {
+    float: left;
+    clear:both;
+    display:inline-block;
+    font-size: 20px;
+    color: #aaa;
+  }
+  span {
+    float: right;
+    display:inline-block;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .listing-buttons {
+    clear: both;
+    margin: 0 auto;
+    width: 100px;
 
+  }
 
+}
+.price {
+  font-weight: 600;
+  font-size: 25px;
+}
 .listing-header {
   h3, button, div {
     display:inline;
@@ -72,9 +106,8 @@
     padding-bottom: 0px;
     padding-top: 5px;
   }
-  background-color: #F5F1E3;
-  padding: 6px 10px;
-  height: 60px;
+  padding: 6px 10px 0px;
+  height: 50px;
 }
 .listing-meta {
   div {
@@ -279,9 +312,7 @@
     font-size: 14px;
   }
 }
-.listing {
-  border: 1px solid gray;
-}
+
 .feed-listing-number {
   width: 23%;
   padding: 1%;

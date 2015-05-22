@@ -1,6 +1,6 @@
 -if @listing.images.size > 0
-  #item-photo{:style=>"margin: 0 auto; position: relative; top: 0px; left: 0px; width: 800px;height: 400px; background: #191919; overflow: hidden;"}
-    %div{:style => "cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 300px; overflow: hidden;", :u => "slides"}
+  #item-photo{:style=>"margin: 0 auto; position: relative; top: 0px; left: 0px; width: 800px;height: 400px; background: #ddd; overflow: hidden;"}
+    %div{:style => "cursor: move; position: absolute; left: 0px; top: 10px; width: 800px; height: 300px; overflow: hidden;", :u => "slides"}
       =render :partial => 'listings/photo', :locals=>{listing:@listing}
     .jssort01{:style => "left: 0px; bottom: 0px;", :u => "thumbnavigator"}
       / Thumbnail Item Skin Begin

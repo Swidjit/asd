@@ -7,21 +7,23 @@
       =link_to listing_path(@listing), :method=>:delete do
         %button delete
       %button{:onclick=>"$('#manage-photos').show()"} manage photos
-
+    .full-listing-meta
+      %span dummy location
 .row
-  .large-7.columns
+  .large-9.columns
     .listing-body
       .hidden.author{:style => "display: none;"}
         %p
           posted by
           =link_to @listing.user.username, user_path(@listing.user)
           %button message #{@listing.user.username}
+        .hidden
+          =@listing.description
       #map-canvas.hidden{:style => "height: 200px; width: 200px;"}
       =render :partial => 'map_js'
-      %p
-        $#{@listing.price}
+
       -#-unless current_user == @listing.user
-      =render :partial => 'lead_button', :locals => {listing:@listing}
+      %h4 property info
       %label property type
       =@listing.property_type
       %label # units
@@ -29,16 +31,29 @@
       %label status
       =@listing.status
       .hidden
-        %label property description
-        =@listing.description
         %label address
         =@listing.address
+  .large-3.columns
+    .stats-box
+      %p.price
+        $#{@listing.price}
+      %label NOI
+      %span
+        $#{@listing.noi}/m
+      %label Size
+      %span ???
+      %label Cap Rate
+      %span
+        #{@listing.cap_rate}%
+      %label ARV
+      %span
+        $#{@listing.arv}
+      -if user_signed_in?
+        =render :partial => 'lead_button', :locals => {listing:@listing}
 -if user_signed_in? && @listing.user == current_user
   -if current_user.tokens <= 0 || current_user.tokens.nil?
-    -puts 'sddsfqq'
     :javascript
       $(document).on('ready page:load', function(){
-         console.log("fdfd");
          $('#buy-token-form').foundation('reveal', 'open');
          $('#buy-token-form .message').html("you will need to have tokens in case someone asks for your lead");
        });
