@@ -17,7 +17,9 @@
  */
 
 @import 'foundation-icons';
-
+.row {
+  background-color: #ddd;
+}
 .reveal-modal {
    position: fixed; /* <- */
 }
@@ -143,10 +145,12 @@
 #new-listing-button {
   position: absolute;
   right: 20px;
-  top: 7px;
+  top: 0px;
+  color: white;
   button {
-    background-color: #922A1E;
+    background-color: yellow;
     opacity: .9;
+    margin: 0px;
   }
   button:hover {
     opacity: 1;
@@ -157,7 +161,6 @@
   top:60px;
   z-index: 2;
   right: 10px;
-  padding: 12px 10px;
 }
 #full-content {
   left: 0px;
@@ -337,4 +340,93 @@
 
 .hidden {
   display: none;
+}
+
+/* home pahge  */
+
+
+#home-image {
+  background: url('fotolia_nyc.jpg');
+  background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  height: 400px;
+  line-height: 400px;
+  text-align: center;
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    width: 470px;
+    font-size: 21px;
+    padding: 5px 8px;
+    background-color: rgba(74, 144, 226, 0.46);
+    border: 1px solid black;
+    color: white;
+
+  }
+}
+
+.header-menu {
+  float: right;
+  margin-left: 15px;
+  line-height: 40px;
+  button {
+    font-size: 14px;
+    background-color: #fcb134;
+    color: #fff;
+    margin: 7px;
+    padding: 4px 8px;
+  }
+  a {
+    color: white;
+  }
+}
+
+
+#dealmaker-form {
+  padding: 6px 8px;
+  label, select {
+    display: inline;
+  }
+  select {
+    width: 180px;
+    margin-left: 18px;
+  }
+
+}
+
+.circle {
+   img {
+    display: block;
+    margin: auto;
+    padding: 45px;
+   }
+}
+
+.circle {
+  width: 140px;
+  height: 140px;
+  background-color: #ddd;
+  border: 6px solid #FFF;
+  border-radius: 70px;
+  box-shadow: 0 0 2px #888;
+  margin: 0 auto;
+}
+
+.value-proposition {
+  margin: 3px auto 15px;
+  width: 460px;
+  text-align: center;
+  color: #eee;
+  font-size: 25px;
+}
+.value {
+  max-width: 160px;
+  font-size: 14px;
+  color: #eee;
+  margin: 0 auto;
+  line-height: 17px;
+  margin-top: 7px;
+  text-align: center;
 }

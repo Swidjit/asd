@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
   def home
-
+    @dealmaker_tags = User.dealmaker_counts
+    @dealmaker_match_tags = User.dealmaker_match_counts
   end
 
   def index

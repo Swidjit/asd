@@ -1,29 +1,35 @@
-.row
+#home-image.row
   .large-12.columns
-    %h3 Luck.  Some claim theirs is good.  Others say theirs is bad.  Many say it does not or cannot exist.  It's time to find out the truth.
-    %hr/
-.row
+    %span Real Estate Investors use AnySizeDeals to Find the RIGHTS CONTACTS FOR their transaction.
+.row{:style => "background-color: #ddd; height: 50px;"}
+  =form_tag '#{listings_path}', :id => 'dealmaker-form' do
+    .large-5.columns
+      %label I am
+      =select_tag :dealmaker, options_from_collection_for_select(@dealmaker_tags, :name, :name)
+    .large-5.columns
+      %label Looking for
+      =select_tag :dealmaker_match, options_from_collection_for_select(@dealmaker_match_tags, :name, :name)
+    .large-2.columns
+      =submit_tag "find dealmakers", :class => "button"
+.row{:style => "background-color:#4a90e2; padding: 15px;"}
+  %h4.value-proposition this is test
   .large-4.columns
-    %img{:src => "http://placehold.it/400x300&text=[img]"}/
-    %h4 This is a content section.
-    %p Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.
-    %button.hint--bottom.selected-filter{"data-hint" => "Seguidos", :type => "submit"}
-      %i.button-icon.fi-play
-      .button-text play today's game
+    .circle
+      =image_tag('clover.png')
+    .value
+      %span Grow your network, increase referrals and close deals faster.
   .large-4.columns
-    %img{:src => "http://placehold.it/400x300&text=[img]"}/
-    %h4 This is a content section.
-    %p Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.
+    .circle
+      =image_tag('clover.png')
+    .value
+      %span Find off-market properties
   .large-4.columns
-    %img{:src => "http://placehold.it/400x300&text=[img]"}/
-    %h4 This is a content section.
-    %p Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.
-.row
+    .circle
+      =image_tag('clover.png')
+    .value
+      %span Manage your leads.
+
+.row{:style => "background-color:#fff; padding: 15px;"}
   .large-12.columns
-    .panel
-      %h4 Get in touch!
-      .row
-        .large-9.columns
-          %p We'd love to hear from you, you attractive person you.
-        .large-3.columns
-          %a.radius.button.right{:href => "#"} Contact Us
+    %h3 Deamaking Events
+    %p Attend our AnySizeDeals matchup events, meet new contacts, and follow up on our platform.

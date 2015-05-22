@@ -1,30 +1,30 @@
-.row{:style => "background-color: #ccc;"}
-  .large-6.columns
-    %h4 A Sucky Deal
+.row
+  .large-1.columns{:style => "background-color:#4a90e2; height: 42px;"}
+    %h4 ASD
 
-  .large-6.columns
+  .large-11.columns{:style => "background-color:#d0021b; float: right; height: 42px;"}
 
     -if user_signed_in?
-      =link_to destroy_session_path(:user), :id=>"new-meal-button", :method => :delete do
-        %button.large.right
+      .header-menu
+        =link_to user_path(current_user) do
+          %i.button-icon.fi-user
+          profile
+      .header-menu
+        =link_to new_listing_path do
+          %button.large.right
+            %i.fi-add
+            add deal
+      .header-menu
+        =link_to listings_path do
+
           %i.fi-add
-          logout
-      =link_to new_listing_path, :id=>"new-meal-button" do
-        %button.large.right
+          dealflow
+      .header-menu
+        =link_to users_path do
+
           %i.fi-add
-          new listing
-      =link_to listings_path do
-        %button.large.left
-          %i.fi-add
-          view listings
-      =link_to users_path do
-        %button.large.left
-          %i.fi-add
-          view connections
-      =link_to user_conversations_path(current_user) do
-        %button.large.left
-          %i.fi-add
-          view conversations
+          connections
+
 
     -else
       =link_to new_user_session_path, :id=>"new-meal-button" do
