@@ -5,10 +5,13 @@
       =render @users
 
   .large-4.columns
+    %h4 filter users
     =form_tag(filter_users_path, remote: true, id: 'filter-form', method: 'get') do
-      =select_tag :property_type, options_for_select(["","1-4 units", "5 – 10 units", "20 units plus", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), class: 'filter'
-      =select_tag :status, options_for_select(["","Distressed", "Under Construction", "REO", "In-Foreclosure", "Auction", "Existing","FSBO"]), class: 'filter'
-      =select_tag :deal_size, options_for_select(["price range","$0-$100K", "$100K - $500K", "$500 - $1MM", "$1MM - $3MM", "$3MM - $10MM", "$10MM plus"]), class: 'filter'
+      %label property type
+      =select_tag :property_type, options_for_select(["","1-4 units", "5 – 10 units", "20+ units", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), class: 'filter'
+      %label deal size
+      =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM plus"=>"6"}), class: 'filter'
+      %label expertise
       =select_tag :expertise, options_from_collection_for_select(@expertise_tags, :name, :name), class: 'filter'
 
 

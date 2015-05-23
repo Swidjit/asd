@@ -47,18 +47,28 @@ class UsersController < ApplicationController
 
   def filter
     @users = User.all
-    if params.has_key?(:dealmaker) && params[:dealmaker].length > 0
-    end
-    if params.has_key?(:dealmaker_match)  && params[:dealmaker_match].length > 0
-    end
-    if params.has_key?(:status)  && params[:status].length > 0
-      @users = @users.where(:property_type => params[:status].downcase)
+
+    if params.has_key?(:property_type)  && params[:property_type].length > 0
+      @users = @users.where(:property_type => params[:property_type].downcase)
     end
     if params.has_key?(:deal_size)  && params[:deal_size].length > 0
-      @users = @users.where(:deal_size => params[:deal_size].downcase)
+      case params[:deal_size].to_i
+        when 1
+          @users = @users.where('min_deal = 0')
+        when 2
+          @users = @users.where('min_deal = 100000')
+        when 3
+          @users = @users.where('min_deal = 500000')
+        when 4
+          @users = @users.where('min_deal = 1000000')
+        when 5
+          @users = @users.where('min_deal = 3000000')
+        when 6
+          @users = @users.where('min_deal = 10000000')
+      end
     end
     if params.has_key?(:expertise)  && params[:expertise].length > 0
-
+      @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
   end
 
