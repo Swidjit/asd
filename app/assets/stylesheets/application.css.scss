@@ -343,9 +343,9 @@
 
 .user {
   background-color: #ccc;
-  margin: 8px;
-  display: inline-block;
-  padding: 10px;
+  margin: 1%;
+  float: left;
+  width: 48%;
   .name {
     font-size: 16px;
   }
@@ -365,6 +365,9 @@
     span {
       display:inline;
     }
+  }
+  .city {
+    font-size: 12px;
   }
 }
 

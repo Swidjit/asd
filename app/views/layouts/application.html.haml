@@ -33,6 +33,17 @@
 
     =render :partial => 'layouts/footer'
 -if user_signed_in?
+  #message-user.reveal-modal{"data-reveal" => ""}
+    .modal
+      .modal-heading
+        =link_to "x", "#close", :class => "close"
+        %h3 message user
+      .modal-body
+        =form_for :offer, :url => conversations_path, :html => {:id => "message-form"} do |f|
+          = f.text_area :text, :id => 'text', :name => 'text', :class => 'message-form',:placeholder => "say something PRIVATELY to this user"
+          =hidden_field_tag :user_id
+          .modal_button
+          = f.submit 'Send Message', :class => "button"
   :javascript
 
     var total_cost = 0;

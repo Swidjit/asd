@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-
+    @expertise_tags = User.expertise_counts
     if params.has_key?(:home_form)
       @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
       @users = @users.tagged_with(params[:dealmaker_match],:on => :dealmaker, :any => true)
@@ -141,7 +141,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :address, :latlng, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :address, :latlng, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end
 
 end

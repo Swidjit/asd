@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
       if conversation.blank?
         conversation = Conversation.where(:user_id => params[:user_id], :recipient_id => current_user.id).first
         if conversation.blank?
-          conversation = Conversation.create(:user => current_user, :recipient_id => params[:user_id])
+          conversation = Conversation.create(:user_id => current_user.id, :recipient_id => params[:user_id])
         end
       end
 

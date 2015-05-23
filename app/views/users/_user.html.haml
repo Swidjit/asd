@@ -1,36 +1,37 @@
 .user[user]
-  =link_to user_path(user) do
-    -if user.pic.present?
-      =image_tag user.pic.url(:thumb)
-    -else
-      %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
-  .heading
+  %div{:style => "padding: 8px 10px;"}
     =link_to user_path(user) do
-      .name=user.username
-    .dealmaker-type=user.dealmaker_list
-    .city
-      -if user.address.present?
-        =user.address
-    :javascript
-      $.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?#{user.latlng}&sensor=true',
-         success: function(data){
-             console.log(data);
-             alert(data.results[0].formatted_address);
-             /*or you could iterate the components for only the city and state*/
-         }
-      });
-  .user-property
-    %label Looking for
-    %span=user.dealmaker_match_list
-  .user-property
-    %label Purpose
-    %span=user.purpose
-  .user-property
-    %label Property Type
-    %span=user.property_type
-  .user-property
-    %label Deal Size
-    %span
-      $#{user.min_deal}-$#{user.max_deal}
+      -if user.pic.present?
+        =image_tag user.pic.url(:thumb)
+      -else
+        %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
+    .heading
+      =link_to user_path(user) do
+        .name=user.username
+      .dealmaker-type=user.dealmaker_list
+      .city
+        -if user.address.present?
+          =user.address
+      :javascript
+        $.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?#{user.latlng}&sensor=true',
+           success: function(data){
+               console.log(data);
+               alert(data.results[0].formatted_address);
+               /*or you could iterate the components for only the city and state*/
+           }
+        });
+    .user-property
+      %label Looking for
+      %span=user.dealmaker_match_list
+    .user-property
+      %label Purpose
+      %span=user.purpose
+    .user-property
+      %label Property Type
+      %span=user.property_type
+    .user-property
+      %label Deal Size
+      %span
+        $#{user.min_deal}-$#{user.max_deal}
 
-
+    %button.tiny.right.message{:value => user.id} message

@@ -25,6 +25,8 @@
         -@market_tags.each do |t|
           .tag-suggestion{:value => "market"}
             %a= t
+      =f.label :property_type
+      =f.select(:property_type, ['','1-4 units','5-10 units', '20 units+','Commercial','Office','Retail','Shopping Center','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
 
       =f.label :expertise
       =f.text_field :expertise_list, :data => {:pre => @user.expertise_list.collect{|tag| {:id => tag, :name => tag}}}
