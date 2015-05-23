@@ -10,7 +10,10 @@
       %label what kind(s) of dealmaker are you?
       =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name), {}, { :class => 'my_style_class' })
       =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name), {}, { :class => 'my_style_class' })
-
+    .form-group
+      %label what size deal are you looking for?
+      =f.number_field :min_deal
+      =f.number_field :max_deal
     .actions
       = f.submit 'Continue', :class => 'btn btn-primary'
 

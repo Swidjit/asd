@@ -58,8 +58,21 @@ class ListingsController < ApplicationController
     if params.has_key?(:status)  && params[:status].length > 0
       @listings = @listings.where(:status => params[:status].downcase)
     end
-    if params.has_key?(:status)  && params[:status].length > 0
-      @listings = @listings.where(:status => params[:status].downcase)
+    if params.has_key?(:deal_size)  && params[:deal_size].length > 0
+      case params[:deal_size].to_i
+        when 1
+          @listings = @listings.where('price > 0 and price < 100000')
+        when 2
+          @listings = @listings.where('price > 100000 and price < 500000')
+        when 3
+          @listings = @listings.where('price > 500000 and price < 1000000')
+        when 4
+          @listings = @listings.where('price > 1000000 and price < 3000000')
+        when 5
+          @listings = @listings.where('price > 3000000 and price < 10000000')
+        when 6
+          @listings = @listings.where('price > 10000000')
+      end
     end
   end
 

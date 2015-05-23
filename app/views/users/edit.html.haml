@@ -17,7 +17,8 @@
       =f.text_field :county
       =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name, @user.dealmaker_list), {}, { :class => 'my_style_class' })
       =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name, @user.dealmaker_match_list), {}, { :class => 'my_style_class' })
-
+      =f.number_field :min_deal
+      =f.number_field :max_deal
       =f.label :market
       =f.text_field :market_list, :data => {:pre => @user.market_list.collect{|tag| {:id => tag, :name => tag}}}
       .large-12.columns
