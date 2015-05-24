@@ -1,39 +1,49 @@
 = javascript_include_tag "https://maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=places"
+.row
+  .large-12.columns
+    #map-canvas
+    #form{:style=>"position:relative; margin-top:0px;"}
 
-#map-canvas
-#form{:style=>"position:relative; margin-top:0px;"}
+      =form_for @listing do |f|
+        =f.hidden_field :user_id, :value => current_user.id
+        .meal-section
+          %h5 new listing
+          .row
+            .large-6.columns
+              %label title
+              =f.text_field :title
+              %label description
+              =f.text_field :description
+              %label address
+              =f.text_field :address, :class => 'address'
+              =f.hidden_field :latitude
+              =f.hidden_field :longitude
 
-  =form_for @listing do |f|
-    =f.hidden_field :user_id, :value => current_user.id
-    .meal-section
-      %h5 new listing
-      .row
-        .large-6.columns
-          %label title
-          =f.text_field :title
-          %label description
-          =f.text_field :description
-          %label price
-          =f.number_field :price
-          %label ROI
-          =f.number_field :noi, :step => 'any'
-          %label cap rate
-          =f.number_field :cap_rate, :step => 'any'
-          %label ARV
-          =f.number_field :arv, :step => 'any'
-          %label # units
-          =f.number_field :units, :step => 1
-          %label property type
-          =f.select(:property_type, ['1-4 units','5-10 units'], {}, { :class => 'my_style_class' })
-          %label status
-          =f.select(:status, ['distressed','under construction'], {}, { :class => 'my_style_class' })
+            .large-6.columns
+              %label property type
+              =f.select(:property_type, ['1-4 units','5-10 units'], {}, { :class => 'my_style_class' })
+              %label status
+              =f.select(:status, ['distressed','under construction'], {}, { :class => 'my_style_class' })
 
-        .large-6.columns
-          %label address
-          =f.text_field :address, :class => 'address'
-          =f.hidden_field :latlng
+              .small-form
 
-    =f.submit "post listing", :class => "button"
+                %label price
+                =f.number_field :price
+              .small-form
+                %label ROI
+                =f.number_field :noi, :step => 'any'
+              .small-form
+                %label cap rate
+                =f.number_field :cap_rate, :step => 'any'
+              .small-form
+                %label ARV
+                =f.number_field :arv, :step => 'any'
+              .small-form
+                %label # units
+                =f.number_field :units, :step => 1
+
+
+        =f.submit "post listing", :class => "button"
 :javascript
   $(document).on('ready page:load', function(){
 
@@ -56,7 +66,8 @@
 
       var place = autocomplete.getPlace();
       console.log(place.geometry.location);
-      $('#listing_latlng').attr("value",place.geometry.location.k+","+place.geometry.location.B);
+      $('#listing_latitude').attr("value",place.geometry.location.k);
+      $('#listing_longitude').attr("value",place.geometry.location.D);
 
     })
 

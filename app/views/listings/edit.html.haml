@@ -25,7 +25,8 @@
     .large-6.columns
       %label address
       =f.text_field :address, :class => 'address'
-      =f.hidden_field :latlng
+      =f.hidden_field :latitude
+      =f.hidden_field :longitude
       =f.submit "save listing"
 
 :javascript
@@ -53,7 +54,8 @@
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var place = autocomplete.getPlace();
       console.log(place.geometry.location);
-      $('#listing_latlng').attr("value",place.geometry.location.k+","+place.geometry.location.B);
+      $('#listing_latitude').attr("value",place.geometry.location.k);
+      $('#listing_longitude').attr("value",place.geometry.location.D);
 
     })
 

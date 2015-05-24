@@ -23,7 +23,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'has_scope'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-
+gem 'geocoder'
 gem 'acts-as-taggable-on', '~> 3.4'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

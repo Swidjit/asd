@@ -12,14 +12,7 @@
       .city
         -if user.address.present?
           =user.address
-      :javascript
-        $.ajax({ url:'http://maps.googleapis.com/maps/api/geocode/json?#{user.latlng}&sensor=true',
-           success: function(data){
-               console.log(data);
-               alert(data.results[0].formatted_address);
-               /*or you could iterate the components for only the city and state*/
-           }
-        });
+
     .user-property
       %label Looking for
       %span=user.dealmaker_match_list

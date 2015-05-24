@@ -1,3 +1,5 @@
+= javascript_include_tag "https://maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=places"
+#map-canvas
 .row
   .large-8.columns
     =form_for @user, :url => user_path(@user), :method => :patch do |f|
@@ -10,7 +12,9 @@
       =f.label :about
       =f.text_area :about
       =f.label :address
-      =f.text_field :address
+      =f.text_field :address, :class => 'address'
+      =f.hidden_field :latitude
+      =f.hidden_field :longitude
       =f.label :dealmaker_type
       =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name, @user.dealmaker_list), {}, { :class => 'my_style_class' })
       =f.label :dealmaker_match
@@ -85,3 +89,34 @@
       return false
     });
   });
+
+:javascript
+  $(document).on('ready page:load', function(){
+
+    initialize();
+
+  });
+
+  var initialize;
+  initialize = function() {
+    var autocomplete, input, map, options;
+    input = $('.address');
+    options = {
+      language: 'en-GB',
+      center: new google.maps.LatLng(42.446877, -76.505407),
+      zoom: 11
+    };
+    autocomplete = new google.maps.places.Autocomplete(input[0], options);
+    map = new google.maps.Map(document.getElementById('map-canvas'), options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      console.log(place.geometry.location);
+      $('#user_latitude').attr("value",place.geometry.location.k);
+      $('#user_longitude').attr("value",place.geometry.location.D);
+
+    });
+
+    return google.maps.event.addListener(map, 'bounds_changed', function() {
+      autocomplete.bindTo('bounds', map);
+    });
+  };

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522190059) do
+ActiveRecord::Schema.define(version: 20150524113958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,8 @@ ActiveRecord::Schema.define(version: 20150522190059) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "latlng"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "messages", force: true do |t|
@@ -119,7 +120,6 @@ ActiveRecord::Schema.define(version: 20150522190059) do
     t.string   "property_type"
     t.integer  "tokens",                 default: 0
     t.string   "name"
-    t.string   "latlng"
     t.string   "purpose"
     t.string   "pic_file_name"
     t.string   "pic_content_type"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20150522190059) do
     t.string   "deal_size"
     t.integer  "min_deal"
     t.integer  "max_deal"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

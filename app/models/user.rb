@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :listings
-
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode
   acts_as_taggable_on :market, :dealmaker, :expertise, :dealmaker_match
 
   validates :username,

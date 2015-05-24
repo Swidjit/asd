@@ -74,6 +74,9 @@ class ListingsController < ApplicationController
           @listings = @listings.where('price > 10000000')
       end
     end
+    if params.has_key?(:location)
+      @listings = Listing.near(params[:location],25)
+    end
   end
 
   def generate_lead
@@ -91,6 +94,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:user_id, :title, :description, :pic, :address, :latlng, :price, :noi, :arv, :property_type, :cap_rate, :units, :status)
+    params.require(:listing).permit(:user_id, :title, :description, :pic, :address, :latitude,:longitude,  :price, :noi, :arv, :property_type, :cap_rate, :units, :status)
   end
 end

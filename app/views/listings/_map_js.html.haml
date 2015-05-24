@@ -1,8 +1,6 @@
 :javascript
   $(document).on('ready page:load', function(){
-    coord = "#{@listing.latlng}";
-    coords = coord.split(",");
-    latlng = new google.maps.LatLng(coords[0],coords[1]);
+    latlng = new google.maps.LatLng("#{@listing.latitude}","#{@listing.longitude}");
     options = {
       language: 'en-GB',
       center: latlng,

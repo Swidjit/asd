@@ -29,6 +29,8 @@ class UsersController < ApplicationController
       tags = params[:market].split(',')
       @users = @users.tagged_with([tags],:on => :market, :any => true)
     end
+
+
   end
 
   def update
@@ -93,6 +95,9 @@ class UsersController < ApplicationController
     end
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
+    end
+    if params.has_key?(:location)
+      @users = User.near(params[:location],10)
     end
   end
 
@@ -175,7 +180,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :deal_size,:address, :latlng, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :deal_size,:address, :latitude,:longitude, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end
 
 end

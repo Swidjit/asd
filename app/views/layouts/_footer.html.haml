@@ -10,12 +10,12 @@
             =link_to "about", pages_path("about")
           %li
             =link_to "how it works", pages_path("how_it_works")
+          -if user_signed_in?
+            %li
+              =link_to destroy_session_path(:user), :method => :delete do
+                logout
+            %li
+              =link_to user_conversations_path(current_user) do
 
-          %li
-            =link_to destroy_session_path(:user), :method => :delete do
-              logout
-          %li
-            =link_to user_conversations_path(current_user) do
-
-              view conversations
+                view conversations
 

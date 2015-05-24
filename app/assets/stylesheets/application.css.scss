@@ -464,3 +464,10 @@
   margin-top: 7px;
   text-align: center;
 }
+.small-form {
+  display: inline-block;
+  margin-right: 12px;
+  input[type=number] {
+    width: 100px !important;
+  }
+}
