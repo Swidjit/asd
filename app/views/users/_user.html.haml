@@ -31,7 +31,6 @@
       %span=user.property_type
     .user-property
       %label Deal Size
-      %span
-        $#{user.min_deal}-$#{user.max_deal}
+      %span=user.deal_size
 
     %button.tiny.right.message{:value => user.id} message

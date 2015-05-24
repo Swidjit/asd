@@ -35,6 +35,29 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
+        if params.has_key?(:deal_size)  && params[:deal_size].length > 0
+          case params[:deal_size]
+            when '$0-$100K'
+              @user.max_deal = 100000
+              @user.min_deal = 0
+            when '$100k-$500K'
+              @user.max_deal = 500000
+              @user.min_deal = 100000
+            when '$500K-$1MM'
+              @user.max_deal = 1000000
+              @user.min_deal = 500000
+            when "$1MM-$3MM"
+              @user.max_deal = 3000000
+              @user.min_deal = 1000000
+            when "$3MM-$10MM"
+              @user.max_deal = 10000000
+              @user.min_deal = 3000000
+            when "$10MM+"
+              @user.max_deal = 999999999999
+              @user.min_deal = 10000000
+          end
+          @user.save
+        end
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
         format.html { redirect_to user_path(@user), notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
@@ -44,6 +67,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   def filter
     @users = User.all
@@ -151,7 +175,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :address, :latlng, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
+    params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :deal_size,:address, :latlng, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end
 
 end

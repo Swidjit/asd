@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20150522190059) do
     t.string   "pic_content_type"
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
+    t.string   "deal_size"
     t.integer  "min_deal"
     t.integer  "max_deal"
   end
