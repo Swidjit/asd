@@ -25,7 +25,7 @@
   :javascript
     $('#manage-photos').foundation('reveal','open');
 
--if current_user.has_lead(@listing.id) || @listing.user == current_user
+-if user_signed_in? && current_user.has_lead(@listing.id) || @listing.user == current_user
 
   :javascript
       $('.hidden').show();

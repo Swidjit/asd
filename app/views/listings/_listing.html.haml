@@ -28,7 +28,7 @@
             %h4
               $#{listing.price}
             =link_to listing_path(listing) do
-              -if current_user.has_lead(listing.id)
+              -if user_signed_in? && current_user.has_lead(listing.id)
                 %button.small.lead-button{:style => "margin-top: 8px;"} view lead
               -else
                 %button.small.lead-button{:style => "margin-top: 8px;"} get lead
