@@ -21,6 +21,9 @@
           -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
           %label what is your primary purpose here?
           =f.select :purpose, @purpose_list.map { |value| [ value, value ] }, :include_blank => :true
+          %label what kind of property are you interested in?
+          =f.select(:property_type, ['','1-4 units','5-10 units', '20 units+','Commercial','Office','Retail','Shopping Center','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
+
         .actions
           = f.submit 'Get started', :class => 'button'
 
