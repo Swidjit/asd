@@ -24,7 +24,7 @@
               %label property type
               =f.select(:property_type, ['','1-4 units','5-10 units', '20 units+','Commercial','Office','Retail','Shopping Center','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
               %label status
-              =f.select(:status, ['distressed','under construction'], {}, { :class => 'my_style_class' })
+              =f.select(:status, ['Distressed','Under Construction', 'REO', 'In-Foreclosure', 'Auction', 'Existing','FSBO')], {}, { :class => 'my_style_class' })
 
               .small-form
 
