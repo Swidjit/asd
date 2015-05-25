@@ -10,7 +10,7 @@
           %button.tiny delete
         %button.tiny{:"data-reveal-id"=>"manage-photos"} manage photos
     .full-listing-meta
-      .city dummy location
+      .city=@listing.city
       .timestamp=time_ago_in_words(@listing.created_at)
       .timestamp.hidden
         posted by
@@ -20,13 +20,6 @@
 .row
   .large-9.columns
     .listing-body
-
-      .hidden.author{:style => "display: none;"}
-        %p
-          posted by
-          =link_to @listing.user.username, user_path(@listing.user)
-
-
       #map-canvas.hidden{:style => "height: 200px; width: 600px;"}
       =render :partial => 'map_js'
 
