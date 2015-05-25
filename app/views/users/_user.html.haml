@@ -6,7 +6,7 @@
           -if user.pic.present?
             =image_tag user.pic.url(:thumb)
           -else
-            %img{:src => "http://placehold.it/50x50&text=[avatar]"}/
+            %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
       .heading
         =link_to user_path(user) do
           .name=user.username

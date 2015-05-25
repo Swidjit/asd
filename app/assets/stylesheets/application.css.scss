@@ -209,9 +209,11 @@ button {
 }
 
 #content, #full-content {
-  top:60px;
+  top:40px;
   z-index: 2;
   right: 10px;
+  position: relative;
+  padding: 0px 15px;
 }
 #full-content {
   left: 0px;
@@ -372,14 +374,14 @@ button {
     font-size: 14px;
   }
   .heading {
-    margin-left: 62px;
+    margin-left: 68px;
     a {
       color: black;
     }
   }
   .avatar {
     float: left;
-    width: 62px;
+    width: 68px;
   }
 
   .user-property {
@@ -530,7 +532,7 @@ margin-right: 17px;
 }
 
 .city{
-background:url("pin.svg") no-repeat 0px 3px;
+background:image-url("pin.svg") no-repeat 0px 3px;
 text-indent:15px;
 
 background-size: 13px auto;
@@ -538,7 +540,7 @@ float: left;
 }
 
 .timestamp {
- background:url("pin.svg") no-repeat 0px 3px;
+ background:image-url("pin.svg") no-repeat 0px 3px;
 text-indent:15px;
 display:block;
 background-size: 13px auto;
