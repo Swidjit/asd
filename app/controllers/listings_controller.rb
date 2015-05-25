@@ -23,8 +23,8 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id]) unless @listing.present?
 
+    @listing = Listing.find(params[:id]) unless @listing.present?
 
   end
 

@@ -8,7 +8,9 @@
       =render :partial => 'full_listing'
 
     -if @listing.user == current_user
-      #manage-photos{:style =>"display:none;"}
+      #manage-photos.reveal-modal{"data-reveal" => ""}
+        %h3 Add Some Photos
+        %p Adding photos will help you get better deals
         =s3_uploader_form callback_url: upload_file_listing_path(@listing), remote: :true, callback_param: "listing[image_url]", id: "s3-uploader" do
           %div#test
             .wrapper
@@ -19,6 +21,10 @@
             {%=o.name%}
             .progress
               .bar{:style => "width: 0%"}
+-if @listing.created_at > (Time.now - 5.seconds)
+  :javascript
+    $('#manage-photos').foundation('reveal','open');
+
 -if current_user.has_lead(@listing.id) || @listing.user == current_user
 
   :javascript
