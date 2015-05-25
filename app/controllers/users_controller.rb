@@ -36,30 +36,31 @@ class UsersController < ApplicationController
   def update
     # authorize! :update, @user
     respond_to do |format|
+
       if @user.update(user_params)
-        if params.has_key?(:deal_size)  && params[:deal_size].length > 0
-          case params[:deal_size]
-            when '$0-$100K'
-              @user.max_deal = 100000
-              @user.min_deal = 0
-            when '$100k-$500K'
-              @user.max_deal = 500000
-              @user.min_deal = 100000
-            when '$500K-$1MM'
-              @user.max_deal = 1000000
-              @user.min_deal = 500000
-            when "$1MM-$3MM"
-              @user.max_deal = 3000000
-              @user.min_deal = 1000000
-            when "$3MM-$10MM"
-              @user.max_deal = 10000000
-              @user.min_deal = 3000000
-            when "$10MM+"
-              @user.max_deal = 999999999999
-              @user.min_deal = 10000000
-          end
-          @user.save
+        case params[:user][:deal_size]
+          when '$0-$100K'
+            @user.max_deal = 100000
+            @user.min_deal = 0
+          when '$100K-$500K'
+            @user.max_deal = 500000
+            @user.min_deal = 100000
+          when '$500K-$1MM'
+            @user.max_deal = 1000000
+            @user.min_deal = 500000
+          when "$1MM-$3MM"
+            puts 'blah'
+            @user.max_deal = 3000000
+            @user.min_deal = 1000000
+          when "$3MM-$10MM"
+            @user.max_deal = 10000000
+            @user.min_deal = 3000000
+          when "$10MM+"
+            @user.max_deal = 999999999999
+            @user.min_deal = 10000000
         end
+        @user.save
+
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
         format.html { redirect_to user_path(@user), notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
@@ -73,9 +74,14 @@ class UsersController < ApplicationController
 
   def filter
     @users = User.all
-
+    if params.has_key?(:location)  && params[:location].length > 0
+      @users = User.near(params[:location],10)
+    end
     if params.has_key?(:property_type)  && params[:property_type].length > 0
-      @users = @users.where(:property_type => params[:property_type].downcase)
+      @users = @users.where(:property_type => params[:property_type])
+    end
+    if params.has_key?(:purpose)  && params[:purpose].length > 0
+      @users = @users.where(:purpose => params[:purpose])
     end
     if params.has_key?(:deal_size)  && params[:deal_size].length > 0
       case params[:deal_size].to_i
@@ -96,9 +102,7 @@ class UsersController < ApplicationController
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
-    if params.has_key?(:location)
-      @users = User.near(params[:location],10)
-    end
+
   end
 
   # GET/PATCH /users/:id/finish_signup
