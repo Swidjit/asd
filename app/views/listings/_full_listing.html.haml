@@ -54,7 +54,8 @@
       %span
         $#{@listing.arv}
       -if user_signed_in?
-        =render :partial => 'lead_button', :locals => {listing:@listing}
+        -if !@listing.user == current_user
+          =render :partial => 'lead_button', :locals => {listing:@listing}
       -else
         .listing-buttons
           =link_to new_user_session_path do

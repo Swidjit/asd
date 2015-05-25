@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:edit, :update, :index, :show] do
     resources :conversations, :only => :index
+    resources :leads, :only => :index
     collection do
       post 'autocomplete'
       get 'filter'

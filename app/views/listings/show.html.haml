@@ -19,7 +19,7 @@
             {%=o.name%}
             .progress
               .bar{:style => "width: 0%"}
--if current_user.has_lead(@listing.id)
+-if current_user.has_lead(@listing.id) || @listing.user == current_user
 
   :javascript
       $('.hidden').show();
