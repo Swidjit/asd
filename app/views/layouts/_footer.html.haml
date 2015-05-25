@@ -1,21 +1,18 @@
-%footer.row
-  .large-12.columns
-    %hr/
-    .row{:style => "background-color:#4a90e2; padding: 6px 5px;"}
-      .large-6.columns
-        %p © Copyright ASD
-      .large-6.columns
-        %ul.inline-list.left
-          %li
-            =link_to "about", pages_path("about")
-          %li
-            =link_to "how it works", pages_path("how_it_works")
-          -if user_signed_in?
-            %li
-              =link_to destroy_session_path(:user), :method => :delete do
-                logout
-            %li
-              =link_to user_conversations_path(current_user) do
+%footer.row{:style => "background-color:#4a90e2; padding: 6px 5px;clear:both;"}
+  .large-6.columns
+    %p © Copyright ASD
+  .large-6.columns
+    %ul.inline-list.left
+      %li
+        =link_to "about", pages_path("about")
+      %li
+        =link_to "how it works", pages_path("how_it_works")
+      -if user_signed_in?
+        %li
+          =link_to destroy_session_path(:user), :method => :delete do
+            logout
+        %li
+          =link_to user_conversations_path(current_user) do
 
-                view conversations
+            view conversations
 

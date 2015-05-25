@@ -32,6 +32,8 @@ h4.logo {
 button {
   font-weight: 200;
   letter-spacing: 2px;
+  border-radius: 4px;
+  font-weight: 500;
 }
 .reveal-modal {
    position: fixed; /* <- */
@@ -57,11 +59,10 @@ button {
 
 
 /* listing partial */
-
-.listing {
-  margin-bottom: 8px;
-  padding: 4px 8px;
+.listing hr {
+  margin: 5px 0px 0px;
 }
+
 .listing-title {
   font-size: 18px;
   text-transform: uppercase;
@@ -338,11 +339,22 @@ button {
 
 .feed-listing-number {
   width: 23%;
-  padding: 1%;
-  span, label {
+  padding: 0 1%;
+  margin: 5px 4px;
+  span{
     display: inline;
+    font-size: 16px;
+    color: #000;
+  }
+  label {
+    display: inline;
+    font-size: 18px;
+    color: #aaa;
+    margin-right: 8px;
+    text-transform: uppercase;
   }
   float: left;
+  border-right: 1px solid gray;
 }
 .feed-listing-meta {
   font-size: 13px;
@@ -354,14 +366,28 @@ button {
 }
 
 .feed-listing-image, .feed-listing-body {
-  padding: 10px;
+  padding: 6px;
   h4 {
     margin:0px;
     padding: 0px;
   }
 }
 
+.feed-listing-body {
+  padding: 6px 6px 6px 0px;
+}
 
+.feed-listing-image {
+  position: relative;
+  .token-count {
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    top: 20px;
+    padding: 2px 4px;
+    color: #fcb134;
+  }
+}
 //users
 
 .user {

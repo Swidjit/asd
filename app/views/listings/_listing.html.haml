@@ -1,14 +1,15 @@
-.row
-  .large-12.columns
+.row{:style => "border: 1px solid gray; margin-bottom: 10px;"}
+  .large-12.columns{:style => "padding: 0px;"}
     .listing[listing]
       .row
         .large-5.columns
           .feed-listing-image
-          -if listing.images.size > 0
-            =image_tag listing.images[0].pic.url(:medium)
-          -else
-            %img{:src => "http://placehold.it/400x300&text=[img]"}/
-
+            -if listing.images.size > 0
+              =image_tag listing.images[0].pic.url(:medium)
+            -else
+              %img{:src => "http://placehold.it/400x300&text=[img]"}/
+            .token-count
+              2 tokens
         .large-7.columns
 
           .feed-listing-body
@@ -28,17 +29,22 @@
               $#{listing.price}
             =link_to listing_path(listing) do
               %button.small.lead-button{:style => "margin-top: 8px;"} get lead
+      %hr
       .row
         .large-12.columns
           .feed-listing-number
-            %label noi
-            %span=listing.noi
+            %label NOI
+            %span
+              $#{listing.noi}/m
           .feed-listing-number
-            %label size
-            %span=listing.units
+            %label Size (SF)
+            %span
+              #{listing.units}
           .feed-listing-number
-            %label cap rate
-            %span=listing.cap_rate
+            %label Cap Rate
+            %span
+              #{listing.cap_rate}%
           .feed-listing-number
-            %label arv
-            %span=listing.arv
+            %label ARV
+            %span
+              $#{listing.arv}
