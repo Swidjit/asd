@@ -17,8 +17,18 @@
  */
 
 @import 'foundation-icons';
-.row {
-  background-color: #ddd;
+
+h4 {
+  font-size: 17px;
+  color: #aaa;
+}
+h4.logo {
+  font-size: 21px;
+}
+
+button {
+  font-weight: 200;
+  letter-spacing: 2px;
 }
 .reveal-modal {
    position: fixed; /* <- */
@@ -342,10 +352,11 @@
 //users
 
 .user {
-  background-color: #ccc;
-  margin: 1%;
+  border: 1px solid black;
+  margin-right: 1%;
   float: left;
-  width: 48%;
+  width: 49%;
+  margin-bottom: 12px;
   .name {
     font-size: 16px;
   }
@@ -353,21 +364,37 @@
     font-size: 14px;
   }
   .heading {
-    display:inline-block;
-    margin-left: 10px;
+    margin-left: 62px;
+    a {
+      color: black;
+    }
   }
+  .avatar {
+    float: left;
+    width: 62px;
+  }
+
   .user-property {
-    margin-left: 10px;
+    clear:both;
     label {
-      display:inline;
-      margin-right: 20px;
+      float: left;
+      width: 50%;
+      font-size: 14px;
     }
     span {
-      display:inline;
+      float: left;
+      font-size: 14px;
+      width: 50%;
+      white-space: nowrap;
+      overflow: hidden;
+
     }
   }
   .city {
     font-size: 12px;
+  }
+  .dealmaker-type {
+    color: green;
   }
 }
 
@@ -391,7 +418,6 @@
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
-    width: 470px;
     font-size: 21px;
     padding: 5px 8px;
     background-color: rgba(74, 144, 226, 0.46);
@@ -470,4 +496,27 @@
   input[type=number] {
     width: 100px !important;
   }
+}
+
+.row {
+  max-width: 100%;
+}
+
+.dealflow{
+background:url("dealflow.png") no-repeat 0px 11px;
+text-indent:30px;
+display:block;
+background-size: 24px auto;
+margin-right: 17px;
+}
+
+.connections{
+background:url("connections.png") no-repeat 0px 13px;
+text-indent:40px;
+display:block;
+background-size: 35px auto;
+margin-right: 17px;
+}
+.connections:hover, .dealflow:hover {
+  border-bottom: 3px solid red;
 }

@@ -1,18 +1,20 @@
 .user[user]
-  %div{:style => "padding: 8px 10px;"}
-    =link_to user_path(user) do
-      -if user.pic.present?
-        =image_tag user.pic.url(:thumb)
-      -else
-        %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
-    .heading
-      =link_to user_path(user) do
-        .name=user.username
-      .dealmaker-type=user.dealmaker_list
-      .city
-        -if user.address.present?
-          =user.address
-
+  %div{:style => "padding: 9px 14px;"}
+    %div{:style => "margin-bottom: 12px;"}
+      .avatar
+        =link_to user_path(user) do
+          -if user.pic.present?
+            =image_tag user.pic.url(:thumb)
+          -else
+            %img{:src => "http://placehold.it/50x50&text=[avatar]"}/
+      .heading
+        =link_to user_path(user) do
+          .name=user.username
+        .dealmaker-type=user.dealmaker_list
+        .city
+          -if user.address.present?
+            =user.address
+    %div{:style => "margin-bottom: 12px"}
     .user-property
       %label Looking for
       %span=user.dealmaker_match_list
@@ -25,5 +27,5 @@
     .user-property
       %label Deal Size
       %span=user.deal_size
-
+    .user-property{:style => "margin-bottom: 10px;"}
     %button.tiny.right.message{:value => user.id} message
