@@ -84,11 +84,11 @@ class ListingsController < ApplicationController
     @lead = Lead.new
     @lead.requester = current_user
     @lead.receiver = @listing.user
+    @lead.listing_id = @listing.id
     @lead.save
     current_user.decrement!(:tokens)
     @listing.user.decrement!(:tokens)
-    puts current_user
-    puts @listing.user
+
   end
 
   private

@@ -19,8 +19,10 @@
             {%=o.name%}
             .progress
               .bar{:style => "width: 0%"}
+-if current_user.has_lead(@listing.id)
 
-
+  :javascript
+      $('.hidden').show();
 :css
   /* jssor slider arrow navigator skin 05 css */
   /*

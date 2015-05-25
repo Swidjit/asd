@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :listings
+  has_many :leads
   geocoded_by :address   # can also be an IP address
   after_validation :geocode
 
@@ -64,10 +65,11 @@ class User < ActiveRecord::Base
     user
   end
 
+  def has_lead(listing)
+    return true if Lead.where(:listing_id=>listing, :requester_id=>self.id).exists?
+  end
+
   def dealmaker_set?
-    puts "ppppsdkljf"
-    puts self.dealmaker_counts.size
-    puts self
     return true unless self.dealmaker_counts.size == 0
   end
 
