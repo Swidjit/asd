@@ -8,14 +8,17 @@
     -else
       %p no matches
   .large-4.columns
-    %h4 Filter By
+    %h4{:style=>"margin: 10px 0 12px;"} Filter By
     =form_tag(filter_listings_path, remote: true, id: 'filter-form', method: 'get') do
+      %label property type
       =select_tag :property_type, options_for_select(["","1-4 units", "5–10 units", "20 units plus", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), class: 'filter'
+      %label status
       =select_tag :status, options_for_select(["","Distressed", "Under Construction", "REO", "In-Foreclosure", "Auction", "Existing","FSBO"]), class: 'filter'
+
       %label deal size
       =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM plus"=>"6"}), class: 'filter'
       %label location
-      =text_field_tag :location, "", :id => "user-location"
+      =text_field_tag :location, "", :id => "user-location", :placeholder => "enter a city or street"
 #rsvps
 :javascript
 

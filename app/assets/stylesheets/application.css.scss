@@ -70,12 +70,13 @@ button {
 }
 .full-listing-meta {
   margin: 2px 15px;
+  font-size: 13px;
 }
 .stats-box {
-  border: 1px solid black;
-  padding: 7px 13px;
-  margin-top: -70px;
-  background-color: #eee;
+  border: 1px solid gray;
+  padding: 7px 13px 12px;
+  margin-top: -50px;
+  background-color: #fff;
   display:inline-block;
   width: 100%;
   label {
@@ -94,9 +95,13 @@ button {
   }
   .listing-buttons {
     clear: both;
-    margin: 0 auto;
-    width: 100px;
-
+    text-align: center;
+    button {
+      font-weight: 500;
+    }
+    button:hover {
+      background-color:#d0021b;
+    }
   }
 
 }
@@ -162,6 +167,9 @@ button {
     margin-top: 10px;
     margin-bottom: 0px;
     font-size: 17px;
+  }
+  label {
+    color: #aaa;
   }
 }
 
@@ -407,7 +415,7 @@ button {
 
 
 #home-image {
-  background: url('fotolia_nyc.jpg');
+  background: image-url('fotolia_nyc.jpg');
   background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -503,7 +511,7 @@ button {
 }
 
 .dealflow{
-background:url("dealflow.png") no-repeat 0px 11px;
+background:image-url("dealflow.png") no-repeat 0px 11px;
 text-indent:30px;
 display:block;
 background-size: 24px auto;
@@ -511,7 +519,7 @@ margin-right: 17px;
 }
 
 .connections{
-background:url("connections.png") no-repeat 0px 13px;
+background:image-url("connections.png") no-repeat 0px 13px;
 text-indent:40px;
 display:block;
 background-size: 35px auto;
@@ -524,7 +532,20 @@ margin-right: 17px;
 .city{
 background:url("pin.svg") no-repeat 0px 3px;
 text-indent:15px;
+
+background-size: 13px auto;
+float: left;
+}
+
+.timestamp {
+ background:url("pin.svg") no-repeat 0px 3px;
+text-indent:15px;
 display:block;
 background-size: 13px auto;
+margin-left: 14px;
+float: left;
+}
 
+.lead-button {
+  text-transform: uppercase;
 }

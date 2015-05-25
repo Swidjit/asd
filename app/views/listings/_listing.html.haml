@@ -4,6 +4,9 @@
       .row
         .large-5.columns
           .feed-listing-image
+          -if listing.images.size > 0
+            =image_tag listing.images[0].pic.url(:medium)
+          -else
             %img{:src => "http://placehold.it/400x300&text=[img]"}/
 
         .large-7.columns
@@ -23,8 +26,8 @@
                 %button message #{listing.user.username}
             %h4
               $#{listing.price}
-            -if user_signed_in?
-              =render :partial => 'lead_button', :locals => {listing:listing}
+            =link_to listing_path(listing) do
+              %button.small.lead-button{:style => "margin-top: 8px;"} get lead
       .row
         .large-12.columns
           .feed-listing-number

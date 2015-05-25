@@ -74,7 +74,7 @@ class ListingsController < ApplicationController
           @listings = @listings.where('price > 10000000')
       end
     end
-    if params.has_key?(:location)
+    if params.has_key?(:location) && params[:location].length > 0
       @listings = Listing.near(params[:location],25)
     end
   end

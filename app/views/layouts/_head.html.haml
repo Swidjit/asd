@@ -14,25 +14,27 @@
           %button.large.right
             %i.fi-add
             + add deal
-      .header-menu
-        =link_to users_path do
 
-          .connections
-            connections
-      .header-menu
-        =link_to listings_path do
-
-          .dealflow
-            dealflow
 
 
 
     -else
-      =link_to new_user_session_path, :id=>"new-meal-button" do
-        %button.large.right
-          %i.fi-add
-          login
-      =link_to new_user_registration_path, :id=>"new-meal-button" do
-        %button.large.right
-          %i.fi-add
-          register
+      .header-menu{:style=>"margin-left:0px;"}
+        =link_to new_user_session_path do
+          %button.tiny.right
+            login
+      .header-menu
+        =link_to new_user_registration_path do
+          %button.tiny.right
+            register
+
+    .header-menu
+      =link_to users_path do
+
+        .connections
+          connections
+    .header-menu
+      =link_to listings_path do
+
+        .dealflow
+          dealflow
