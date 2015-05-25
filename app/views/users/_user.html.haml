@@ -1,6 +1,6 @@
 .user[user]
   %div{:style => "padding: 9px 14px;"}
-    %div{:style => "margin-bottom: 12px;"}
+    %div
       .avatar
         =link_to user_path(user) do
           -if user.pic.present?
@@ -14,7 +14,8 @@
         .city
           -if user.address.present?
             =user.address
-    %div{:style => "margin-bottom: 12px"}
+    %div{:style => "margin: 12px 0"}
+      %hr
     .user-property
       %label Looking for
       %span=user.dealmaker_match_list

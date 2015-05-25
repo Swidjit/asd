@@ -17,7 +17,10 @@
  */
 
 @import 'foundation-icons';
-
+.reveal-modal {
+   position: fixed; /* <- */
+  top: 100px !important;
+}
 h4 {
   font-size: 17px;
   color: #aaa;
@@ -209,7 +212,7 @@ button {
 }
 
 #content, #full-content {
-  top:40px;
+  top:50px;
   z-index: 2;
   right: 10px;
   position: relative;
@@ -315,7 +318,7 @@ button {
 /* login & reg */
 
 .login-form {
-  background-color: #FCB43F;
+  background-color: #eee;
   padding: 9px 15px;
   label {
     margin-bottom: 3px;
@@ -367,6 +370,9 @@ button {
   float: left;
   width: 49%;
   margin-bottom: 12px;
+  button {
+    margin-bottom: 8px;
+  }
   .name {
     font-size: 16px;
   }
@@ -374,7 +380,7 @@ button {
     font-size: 14px;
   }
   .heading {
-    margin-left: 68px;
+    margin-left: 72px;
     a {
       color: black;
     }
@@ -404,7 +410,7 @@ button {
     font-size: 12px;
   }
   .dealmaker-type {
-    color: green;
+    color: #4a90e2;
   }
 }
 
@@ -442,11 +448,13 @@ button {
   margin-left: 15px;
   line-height: 40px;
   button {
-    font-size: 14px;
+    font-size: 15px;
     background-color: #fcb134;
     color: #fff;
     margin: 7px;
     padding: 4px 8px;
+    font-weight: 500;
+    letter-spacing: 0px;
   }
   a {
     color: white;

@@ -1,32 +1,26 @@
-#add-email.container
-  %h4 Make some matches
-  = form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f|
-    - if @show_errors && current_user.errors.any?
-      #error_explanation
-        - current_user.errors.full_messages.each do |msg|
-          = msg
-          %br
-    .form-group
-      %label what kind(s) of dealmaker are you?
-      =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name), {}, { :class => 'my_style_class' })
-      =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name), {}, { :class => 'my_style_class' })
-    .form-group
-      %label what size deal are you looking for?
-      =f.label :deal_size
-      =f.select :deal_size, options_for_select(["","$0-$100K", "$100K-$500K", "$500K-$1MM", "$1MM-$3MM", "$3MM-$10MM", "$10MM+"], @user.deal_size)
-    .actions
-      = f.submit 'Continue', :class => 'btn btn-primary'
+.row
+  .large-12.columns
+    #add-email.container
+      %h3 Complete your registration
+      %h4 We just need a few more things from you to help you find better deals.
+      = form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f|
+        - if @show_errors && current_user.errors.any?
+          #error_explanation
+            - current_user.errors.full_messages.each do |msg|
+              = msg
+              %br
+        .form-group
+          %label who are you?
+          =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name),{} , { :class => 'my_style_class' })
+          %label who are you looking to connect with?
+          =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name), {}, { :class => 'my_style_class' })
+        .form-group
+          %label what size deal are you looking for?
+          =f.select :deal_size, options_for_select(["","$0-$100K", "$100K-$500K", "$500K-$1MM", "$1MM-$3MM", "$3MM-$10MM", "$10MM+"], @user.deal_size)
+        .form-group
+          -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
+          %label what is your primary purpose here?
+          =f.select :purpose, @purpose_list.map { |value| [ value, value ] }, :include_blank => :true
+        .actions
+          = f.submit 'Get started', :class => 'button'
 
-
-:javascript
-  $(document).on('ready page:load', function(){
-
-
-
-    $(".tag-suggestion a").click(function() {
-      var tag_list_selector = "#user_"+$(this).parent().attr("value")+"_list";
-      $(tag_list_selector).tokenInput('add', {id: $(this).text(), name: $(this).text()});
-      $(this).parent().remove();
-      return false
-    });
-  });
