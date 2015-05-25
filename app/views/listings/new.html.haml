@@ -27,18 +27,20 @@
 
               .small-form
 
-                %label price
+                %label Price ($)
                 =f.number_field :price
               .small-form
-                %label NOI
+                %label NOI ($/m)
                 =f.number_field :noi, :step => 'any'
               .small-form
-                %label ARV
+                %label ARV ($)
                 =f.number_field :arv, :step => 'any'
               .small-form
-                %label # units
+                %label # Units
                 =f.number_field :units, :step => 1
-
+              .small-form
+                %label Size (SF)
+                =f.number_field :square_footage, :step => 100
 
         =f.submit "post listing", :class => "button"
 :javascript

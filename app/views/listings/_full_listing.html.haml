@@ -12,6 +12,9 @@
     .full-listing-meta
       .city dummy location
       .timestamp=time_ago_in_words(@listing.created_at)
+      .timestamp.hidden
+        posted by
+        =link_to @listing.user.username, user_path(@listing.user)
       .hidden{:style => "clear:both;padding-top: 11px;"}
         =@listing.description
 .row
@@ -46,7 +49,8 @@
       %span
         $#{@listing.noi}/m
       %label Size
-      %span ???
+      %span
+        #{@listing.square_footage}SF
       %label Cap Rate
       %span
         #{@listing.cap_rate}%

@@ -7,15 +7,18 @@
       =f.text_field :title
       %label description
       =f.text_field :description
-      %label price
+      %label Price ($)
       =f.number_field :price
-      %label ROI
+      %label NOI ($/m)
       =f.number_field :noi, :step => 'any'
 
-      %label ARV
+      %label ARV ($)
       =f.number_field :arv, :step => 'any'
-      %label # units
+      %label # Units
       =f.number_field :units, :step => 1
+      %label Size (SF)
+      =f.number_field :square_footage, :step => 100
+
       %label property type
       =f.select(:property_type, ['','1-4 units','5-10 units', '20+ units','Commercial','Office','Retail','Shopping Center','Hotel','Mixed-Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
       %label status
