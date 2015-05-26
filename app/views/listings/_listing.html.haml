@@ -15,18 +15,16 @@
           .feed-listing-body
 
             =link_to listing_path(listing) do
-              %h4=listing.title
+              .feed-listing-title
+                =listing.title
             .feed-listing-meta
-              %span=listing.city
-            .listing-description
-              =listing.description
-            .author{:style => "display: none;"}
-              %p
-                posted by
-                =link_to listing.user.username, user_path(listing.user)
-                %button message #{listing.user.username}
-            %h4
-              $#{listing.price}
+              .city=listing.city
+              .timestamp
+                =time_ago_in_words(listing.created_at)
+                ago
+
+            .feed-listing-price
+              #{number_to_currency(listing.price, :precision => 0)}
             =link_to listing_path(listing) do
               -if user_signed_in? && current_user.has_lead(listing.id)
                 %button.small.lead-button{:style => "margin-top: 8px;"} view lead
@@ -38,11 +36,11 @@
           .feed-listing-number
             %label NOI
             %span
-              $#{listing.noi}/m
+              #{number_to_currency(listing.noi, :precision => 0)}/m
           .feed-listing-number
             %label Size (SF)
             %span
-              #{listing.units}
+              #{listing.square_footage
           .feed-listing-number
             %label Cap Rate
             %span
@@ -50,4 +48,4 @@
           .feed-listing-number
             %label ARV
             %span
-              $#{listing.arv}
+              #{number_to_currency(listing.arv, :precision => 0)}

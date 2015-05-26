@@ -1,20 +1,11 @@
-%br
--if @user.market_list.length > 0
-  market:
-  -@user.market_list.each do |t|
-    =link_to t, users_path(:market=>t)
-  %br
--if @user.dealmaker_list.length > 0
-  dealmaker:
-  -@user.dealmaker_list.each do |t|
-    =link_to t, users_path(:dealmaker=>t)
-%br
--if @user.dealmaker_match_list.length > 0
-  dealmaker match:
-  -@user.dealmaker_match_list.each do |t|
-    =link_to t, users_path(:dealmaker_match=>t)
-%br
+%h5 Areas of Expertise
+
 -if @user.expertise_list.length > 0
-  expertise:
   -@user.expertise_list.each do |t|
-    =link_to t, users_path(:expertise=>t)
+    =link_to t, users_path(:expertise=>t), :class => 'tag'
+%hr
+%h5 Markets
+
+-if @user.market_list.length > 0
+  -@user.market_list.each do |t|
+    =link_to t, users_path(:market=>t), :class => 'tag'

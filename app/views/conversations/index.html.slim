@@ -15,8 +15,6 @@ h3 Your Messages
 					= render :partial => 'message_thread', :locals => {conversation:@loaded_conversation}
 		div.large-4.columns
 			-unless @conversations.empty?
-				input#search-messages type='text' placeholder=('search your messages') 
-				#search-results
 				#message-list
 				= render :partial => 'message_list',:locals => {conversations:@conversations}
 

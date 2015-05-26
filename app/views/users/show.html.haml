@@ -1,27 +1,57 @@
-#user
-  .row
-    .large-3.columns
-      -if @user.pic.present?
-        =image_tag @user.pic.url(:medium)
-    .large-9.columns
-      .profile-name
-        =@user.username
-        (#{@user.first_name} #{@user.last_name})
-      .user-actions
-        -if current_user == @user
-          =link_to edit_user_path(@user) do
-            %button.small edit
-        -unless current_user == @user && user_signed_in?
-          %a.button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
-          #message-user.reveal-modal{"data-reveal" => ""}
-            =render :partial => 'conversations/message_user', :locals => {user:@user}
-          :javascript
-            function showMessageWindow() {
-                $('body').append("#{escape_javascript( render :partial => 'conversations/message_user', :locals => {:user => @user})}");
-            }
-  .row
-    .large-12.columns
-      %h5 about
-      =@user.about
-      =render :partial => 'tags'
+.row
+  .large-8.columns{:style => "border-right: 1px solid gray;"}
+    .full-user[@user]
+      %div
+        %div
+          .avatar{:style => "margin-bottom: 10px;"}
+            =link_to user_path(@user) do
+              -if @user.pic.present?
+                =image_tag @user.pic.url(:medium)
+              -else
+                %img{:src => "http://placehold.it/100x100&text=[avatar]"}/
+          .heading
+            =link_to user_path(@user) do
+              .name=@user.username
+            .dealmaker-type=@user.dealmaker_list
+            .city
+              -if @user.address.present?
+                =@user.address
+            .full-user-actions
+              -if current_user == @user
+                =link_to edit_user_path(@user) do
+                  %button.small edit
+              -unless current_user == @user && user_signed_in?
+                %a.button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
+                #message-user.reveal-modal{"data-reveal" => ""}
+                  =render :partial => 'conversations/message_user', :locals => {user:@user}
+                :javascript
+                  function showMessageWindow() {
+                      $('body').append("#{escape_javascript( render :partial => 'conversations/message_user', :locals => {:user => @user})}");
+                  }
+        %div{:style=> "clear:both;"}
+          %h5 About Me
+
+          .about=@user.about
+          %hr
+          %h5 What I'm looking for:
+          .user-property
+            %label Property Type
+            %span=@user.property_type
+          .user-property
+            %label Type of dealmaker
+            %span=@user.dealmaker_match_list
+          .user-property
+            %label Purpose
+            %span=@user.purpose
+          .user-property
+            %label Budget
+            %span=@user.deal_size
+          %div{:style => "height: 10px;"}
+          %hr
+
+          =render :partial => 'tags'
+  .large-4.columns
+    %h4 find connections
+
+
 

@@ -37,10 +37,10 @@
   .large-3.columns
     .stats-box
       %p.price
-        $#{@listing.price}
+        #{number_to_currency(@listing.price, :precision => 0)}
       %label NOI
       %span
-        $#{@listing.noi}/m
+        #{number_to_currency(@listing.noi, :precision => 0)}/m
       %label Size
       %span
         #{@listing.square_footage}SF
@@ -49,7 +49,7 @@
         #{@listing.cap_rate}%
       %label ARV
       %span
-        $#{@listing.arv}
+        #{number_to_currency(@listing.arv, :precision => 0)}
       -if user_signed_in?
         -unless @listing.user == current_user
           =render :partial => 'lead_button', :locals => {listing:@listing}

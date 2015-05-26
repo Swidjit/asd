@@ -217,7 +217,7 @@ button {
   z-index: 2;
   right: 10px;
   position: relative;
-  padding: 0px 15px;
+  padding: 0px 25px;
 }
 #full-content {
   left: 0px;
@@ -341,20 +341,37 @@ button {
   width: 23%;
   padding: 0 1%;
   margin: 5px 4px;
+  text-align:center;
   span{
     display: inline;
-    font-size: 16px;
+    font-size: 15px;
     color: #000;
   }
   label {
     display: inline;
-    font-size: 18px;
+    font-size: 17px;
     color: #aaa;
-    margin-right: 8px;
-    text-transform: uppercase;
+    margin-right: 12px;
   }
   float: left;
   border-right: 1px solid gray;
+}
+
+.feed-listing-title {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.feed-listing-price {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 8px;
+  clear:both;
+  padding-top: 7px;
+}
+
+.feed-listing-number:last-child {
+  border-right: none;
 }
 .feed-listing-meta {
   font-size: 13px;
@@ -584,4 +601,75 @@ float: left;
 
 .lead-button {
   text-transform: uppercase;
+}
+
+.full-user {
+  border: 0px;
+  width: 100%;
+  float: left;
+  margin-bottom: 12px;
+  button {
+    margin-bottom: 12px;
+  }
+  .name {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .dealmaker-type {
+    font-size: 14px;
+  }
+  .heading {
+    margin-left: 112px;
+    a {
+      color: black;
+    }
+  }
+  .avatar {
+    float: left;
+    width: 102px;
+  }
+  .about {
+    font-size: 14px;
+  }
+
+  .user-property {
+    clear:both;
+    label {
+      float: left;
+      width: 50%;
+      font-size: 14px;
+    }
+    span {
+      float: left;
+      font-size: 14px;
+      width: 50%;
+      white-space: nowrap;
+      overflow: hidden;
+
+    }
+  }
+  .city {
+    font-size: 15px;
+  }
+  .dealmaker-type {
+    color: #000;
+    font-size: 16px;
+  }
+}
+.full-user-actions {
+  position: absolute;
+top: 0px;
+right: 15px;
+}
+
+.tag {
+  padding:5px 8px;
+  background-color: #ccc;
+  color: #000;
+  border-radius: 5px;
+  margin-right: 6px;
+  opacity: .9;
+}
+.tag:hover {
+  opacity: 1;
 }
