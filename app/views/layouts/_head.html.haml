@@ -7,13 +7,14 @@
 
     -if user_signed_in?
       .header-menu
-        =link_to user_path(current_user) do
-          =image_tag("profile.png", :size=>"26x26")
+
+        = render :partial => 'users/personal_menu'
       .header-menu
         =link_to new_listing_path do
           %button.large.right
             %i.fi-add
             + add deal
+
     -else
       .header-menu{:style=>"margin-left:0px;"}
         =link_to new_user_session_path do

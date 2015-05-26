@@ -21,7 +21,16 @@
 $(document).on('ready page:load', function(){
 
 	$("#s3-uploader").S3Uploader();
+    $("#profile_section").hover(
+    	function() {
+	    	$("#expanded_user_menu").stop().toggle('fast');
 
+		},
+		function() {
+	    	$("#expanded_user_menu").stop().toggle('fast');
+		}
+
+	);
 });
 
 $(function(){ $(document).foundation(); });

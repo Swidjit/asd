@@ -673,3 +673,81 @@ right: 15px;
 .tag:hover {
   opacity: 1;
 }
+
+#profile_section {
+  float:right;
+  display: inline;
+  position: relative;
+  height: 35px;
+  width: 35px;
+  margin-top: 0px;
+  cursor:pointer;
+}
+#personal_menu {
+    padding: 0px 7px;
+    position: absolute;
+    right: 25px;
+    top: 5px;
+    font-weight: 400;
+  }
+//user drop down menu
+#expanded_user_menu{
+    padding: 0px 7px 20px 7px;
+
+    position: absolute;
+    display: none;
+    top: 0px;
+    right: -25px;
+}
+#user-menu {
+  background: #333545;
+  margin-top: 35px;
+  margin-bottom: 30px;
+}
+#expanded_user_menu ul{
+    background:#4a90e2;;
+    width: 205px;
+    clear:right;
+    color: #fff;
+    margin:0;
+    padding:8px 0;
+    list-style:none;
+    float:right;
+    border-bottom:1px solid #B1A5BF;
+    a:hover {
+      text-decoration: none;
+    }
+}
+#expanded_user_menu ul li{
+    clear:both;
+    margin:0 0 0 0px;
+    padding:0 5px;
+    list-style:none;
+    line-height: 20px;
+    opacity: .9;
+    text-align:right;
+    text-indent: 20px;
+    line-height:22px;
+    height: 25px;
+    color:#fff;
+    img{
+      float:right;
+      margin: 0 3px 0 10px;
+    }
+}
+#expanded_user_menu ul li:hover{
+    opacity: 1;
+    text-decoration:none;
+}
+#expanded_user_menu ul li a{
+
+    text-decoration:none;
+    color: #fff;
+    float: right;
+}
+#expanded_user_menu ul li a:hover{
+    text-decoration:none;
+}
+#expanded_user_menu span{
+    float:right;
+}
