@@ -8,7 +8,7 @@ namespace :init do
   end
   task :seed_expertise_tags  => :environment do
     @user = User.first
-    @user.expertise_list.add("", parse: true)
+    @user.expertise_list.add("Cashbuyer, Wholesaler, Rehabber/Flipper, JV Partner, Buy and Hold Investor, Contractor, Title Agent, Attorney, Broker, Hard Money Lender, Owner/Developer, Capital Provider, Motivated Seller, Intermediary, Service Provider, Contractor, Architect, Lender, Investor, Property Manager, Asset Manager", parse: true)
 
     @user.save
   end
