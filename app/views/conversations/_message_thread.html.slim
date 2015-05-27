@@ -15,6 +15,6 @@ h4.padless
     = form_for :conversation_message, :remote => true, :url => conversation_messages_path(conversation) do |f|
       = f.hidden_field :conversation_id, :value => conversation.id
       = f.text_area :body, :autofocus => true, :id=>"message-body", :placeholder => 'type your new message here'
-      = f.submit 'reply', :id => "send-message-button", :class => "button"
+      = f.submit 'reply',  :class => "button"
 .message-conversation
   = render conversation.messages
