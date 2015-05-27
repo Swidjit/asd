@@ -16,7 +16,7 @@
       =select_tag :status, options_for_select(["","Distressed", "Under Construction", "REO", "In-Foreclosure", "Auction", "Existing","FSBO"]), class: 'filter'
 
       %label Deal Size
-      =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM plus"=>"6"}), class: 'filter'
+      =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM +"=>"6"}), class: 'filter'
       %label Location
       =text_field_tag :location, "", :id => "user-location", :placeholder => "enter a city or street"
 #rsvps

@@ -15,7 +15,7 @@
       %label Property Type
       =select_tag :property_type, options_for_select(['','1-4 units','5-10 units','11-20 units', '20+ units','Commercial','Office','Retail','Shopping Center','Condominium', 'Townhouse','Mixed Use','Vacant Lot','Land','Other']), class: 'filter'
       %label Deal Size
-      =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM plus"=>"6"}), class: 'filter'
+      =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM +"=>"6"}), class: 'filter'
       %label Area of Expertise
       =select_tag :expertise, options_from_collection_for_select(@expertise_tags, :name, :name), :include_blank => true, class: 'filter'
       %label Purpose
