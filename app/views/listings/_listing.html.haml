@@ -36,11 +36,11 @@
           .feed-listing-number
             %label NOI
             %span
-              #{number_to_currency(listing.noi, :precision => 0)}/m
+              #{number_to_currency(listing.noi, :precision => 0)}
           .feed-listing-number
-            %label Size (SF)
+            %label Status
             %span
-              #{listing.square_footage}
+              #{listing.status}
           .feed-listing-number
             %label Cap Rate
             %span

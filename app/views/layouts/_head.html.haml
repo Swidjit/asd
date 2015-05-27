@@ -13,25 +13,29 @@
         =link_to new_listing_path do
           %button.large.right
             %i.fi-add
-            + add deal
+            + Add Deal
 
     -else
       .header-menu{:style=>"margin-left:0px;"}
         =link_to new_user_session_path do
           %button.tiny.right
-            login
+            Login
       .header-menu
         =link_to new_user_registration_path do
           %button.tiny.right
-            register
-
+            Register
+      .header-menu
+        =link_to new_user_session_path do
+          %button.large.right
+            %i.fi-add
+            + Add Deal
     .header-menu
       =link_to users_path do
 
         .connections
-          connections
+          Connections
     .header-menu
       =link_to listings_path do
 
         .dealflow
-          dealflow
+          Dealflow

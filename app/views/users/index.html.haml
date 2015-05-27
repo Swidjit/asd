@@ -3,23 +3,23 @@
 #map-canvas
 .row
   .large-8.columns
-    %h4{:style=>"margin: 10px 0 12px;"} find dealmakers
+    %h4{:style=>"margin: 10px 0 12px;"} Find Dealmakers
     #users
       =render @users
 
   .large-4.columns
     %h4{:style=>"margin: 10px 0 12px;"} filter users
     =form_tag(filter_users_path, remote: true, id: 'filter-form', method: 'get') do
-      %label location
+      %label Location
       =text_field_tag :location, "", :id => "user-location"
-      %label property type
-      =select_tag :property_type, options_for_select(["","1-4 units", "5 – 10 units", "20+ units", "Commercial", "Office", "Retail", "Shopping Center","Hotel","Mixed-Use", "Vacant Lot", "Land", "Other"]), class: 'filter'
-      %label deal size
+      %label Property Type
+      =select_tag :property_type, options_for_select(['','1-4 units','5-10 units','11-20 units', '20+ units','Commercial','Office','Retail','Shopping Center','Condominium', 'Townhouse','Mixed Use','Vacant Lot','Land','Other']), class: 'filter'
+      %label Deal Size
       =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM plus"=>"6"}), class: 'filter'
-      %label expertise
+      %label Area of Expertise
       =select_tag :expertise, options_from_collection_for_select(@expertise_tags, :name, :name), :include_blank => true, class: 'filter'
-      %label purpose
-      -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
+      %label Purpose
+      -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Set a referral","Grow my network", "Finance a deal"]
 
       =select_tag :purpose, options_for_select(@purpose_list), :include_blank => true, class: 'filter'
 

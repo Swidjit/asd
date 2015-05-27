@@ -2,11 +2,11 @@
 .login-form{:style=>"width: 400px; margin: 25px auto;"}
 	= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 		%div
-			= f.label :login
+			%label Login
 			= f.text_field :login, autofocus: true
 		%div
-			= f.label :password
+			%label Password
 			= f.password_field :password, autocomplete: "off"
 
-		%div= f.submit "sign in", :class => "button"
+		%div= f.submit "Sign in", :class => "button"
 	= render "devise/shared/links"

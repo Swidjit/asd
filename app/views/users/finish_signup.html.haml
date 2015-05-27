@@ -18,11 +18,11 @@
           %label what size deal are you looking for?
           =f.select :deal_size, options_for_select(["","$0-$100K", "$100K-$500K", "$500K-$1MM", "$1MM-$3MM", "$3MM-$10MM", "$10MM+"], @user.deal_size)
         .form-group
-          -@purpose_list = ["buy a property","JV on a deal","fund my deal","sell a property","get a referral","grow my network"]
+          -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Set a referral","Grow my network", "Finance a deal"]
           %label what is your primary purpose here?
           =f.select :purpose, @purpose_list.map { |value| [ value, value ] }, :include_blank => :true
           %label what kind of property are you interested in?
-          =f.select(:property_type, ['','1-4 units','5-10 units', '20 units+','Commercial','Office','Retail','Shopping Center','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
+          =f.select(:property_type, ['','1-4 units','5-10 units','11-20 units', '20+ units','Commercial','Office','Retail','Shopping Center','Condominium', 'Townhouse','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
 
         .actions
           = f.submit 'Get started', :class => 'button'

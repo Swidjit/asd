@@ -17,9 +17,9 @@
     #content
       = yield
     #buy-token-form.reveal-modal{"data-reveal" => ""}
-      %h4 hmm, looks like you don't have any tokens
-      %p.message you'll need some to buy a lead.  fortunately, they are only $1 each!
-      %label how many do you want?
+      %h4 Hmm, looks like you don't have any tokens
+      %p.message You'll need some to buy a lead.  Fortunately, they are only $1 each!
+      %label How many do you want?
       %input{:value => 10, :type => "number", :min => 10}
       %button#buy-tokens buy tokens
     #checkout-form
@@ -31,7 +31,7 @@
         = hidden_field_tag 'tokenCount'
         = hidden_field_tag 'stripeSession'
 
-    =render :partial => 'layouts/footer'
+
 -if user_signed_in?
   #message-user.reveal-modal{"data-reveal" => ""}
     .modal

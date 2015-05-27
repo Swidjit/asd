@@ -14,6 +14,7 @@ class Listing < ActiveRecord::Base
   scope :by_property_type, -> pt { where(:property_type => pt) }
 
   def calculate_cap_rate
-    self.cap_rate = (self.noi/self.price).round(2)
+    self.cap_rate = (self.noi.to_f/self.price).round(2)
+
   end
 end
