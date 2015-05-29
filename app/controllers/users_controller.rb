@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update, :destroy, :finish_signup,:listings]
+  before_action :set_user, only: [:edit, :update, :destroy, :finish_signup, :listings]
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
   respond_to :js
   def show
