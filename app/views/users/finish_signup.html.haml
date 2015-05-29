@@ -1,8 +1,21 @@
 .row
-  .large-12.columns
+  %h3 Complete your registration
+  %h4 We just need a few more things from you to help you find better deals.
+  .large-6.columns
+    #user-photo
+    %p Set your profile image
+    =s3_uploader_form callback_url: upload_file_user_path(@user), remote: :true, callback_param: "user[image_url]", id: "s3-uploader" do
+      =file_field_tag :file
+
+    %script#template-upload{:type => "text/x-tmpl"}
+      .upload{:id => "file-{%=o.unique_id%}"}
+        {%=o.name%}
+        .progress
+          .bar{:style => "width: 0%"}
+  .large-6.columns
     #add-email.container
-      %h3 Complete your registration
-      %h4 We just need a few more things from you to help you find better deals.
+
+
       = form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f|
         - if @show_errors && current_user.errors.any?
           #error_explanation
@@ -27,3 +40,8 @@
         .actions
           = f.submit 'Get started', :class => 'button'
 
+:javascript
+  $(document).on('ready page:load', function(){
+
+    $("#s3-uploader").S3Uploader();
+  });
