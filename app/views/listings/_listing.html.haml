@@ -33,19 +33,20 @@
       %hr
       .row
         .large-12.columns
-          .feed-listing-number
+          .feed-listing-number{:style=>"width: 22%;"}
             %label NOI
             %span
               #{number_to_currency(listing.noi, :precision => 0)}
-          .feed-listing-number
-            %label Status
-            %span
-              #{listing.status}
-          .feed-listing-number
+
+          .feed-listing-number{:style=>"width: 22%;"}
             %label Cap Rate
             %span
               #{listing.cap_rate}%
-          .feed-listing-number
+          .feed-listing-number{:style=>"width: 22%;"}
             %label ARV
             %span
               #{number_to_currency(listing.arv, :precision => 0)}
+          .feed-listing-number{:style=>"width: 25%;"}
+            %label Status
+            %span
+              #{listing.status}

@@ -30,10 +30,12 @@ h4.logo {
 }
 
 button {
-  font-weight: 200;
   letter-spacing: 2px;
   border-radius: 4px;
   font-weight: 500;
+}
+input[type="submit"] {
+  border-radius: 4px;
 }
 .reveal-modal {
    position: fixed; /* <- */
@@ -215,7 +217,7 @@ button {
 #content, #full-content {
   top:14px;
   z-index: 2;
-  right: 10px;
+
   position: relative;
   padding: 0px 25px;
 }
@@ -338,20 +340,20 @@ button {
 }
 
 .feed-listing-number {
-  width: 23%;
+
   padding: 0 1%;
-  margin: 5px 4px;
+  margin: 5px 2px;
   text-align:center;
   span{
     display: inline;
-    font-size: 15px;
+    font-size: 14px;
     color: #000;
   }
   label {
     display: inline;
-    font-size: 17px;
+    font-size: 16px;
     color: #aaa;
-    margin-right: 12px;
+    margin-right: 9px;
   }
   float: left;
   border-right: 1px solid gray;
@@ -521,7 +523,7 @@ button {
    img {
     display: block;
     margin: auto;
-    padding: 45px;
+    padding: 30px;
    }
 }
 
@@ -751,4 +753,35 @@ right: 15px;
 }
 #expanded_user_menu span{
     float:right;
+}
+
+.dealmaking-events {
+  height: 600px;
+  padding: 15px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  h3 {
+    color: #fff;
+    position: relative;
+    z-index: 10;
+  }
+  p {
+    color: #fff;
+    position: relative;
+    z-index: 11;
+  }
+  a {
+    color: #fff;
+    position: relative;
+    z-index: 12;
+  }
+}
+.dealmaking-events img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
 }

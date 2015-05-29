@@ -13,26 +13,27 @@
     .large-2.columns
       =submit_tag "find dealmakers", :class => "button"
 .row{:style => "background-color:#4a90e2; padding: 15px;"}
-  %h4.value-proposition this is test
+  %h4.value-proposition the time has come to propose your value!
   .large-4.columns
     .circle
-      =image_tag('clover.png')
+      =image_tag('connections-gray.png', :style => "padding: 25px;")
     .value
       %span Grow your network, increase referrals and close deals faster.
   .large-4.columns
     .circle
-      =image_tag('clover.png')
+      =image_tag('dealflow-gray.png')
     .value
       %span Find off-market properties
   .large-4.columns
     .circle
-      =image_tag('clover.png')
+      =image_tag('dealflow-gray.png')
     .value
       %span Manage your leads.
 
 .row
-  .large-12.columns{:style => "background:image-url('events.png') 0px 0px no-repeat; height: 600px;padding: 15px;"}
+  .dealmaking-events.large-12.columns
     %h3 Dealmaking Events
+    =image_tag('events.png')
     %p Attend our AnySizeDeals matchup events, meet new contacts, and follow up on our platform.
     %a.mu-rsvp-btn{"data-event" => "222455918", :href => "http://www.meetup.com/Real-Estate-Matchmaking-Meetup/events/222455918/"} RSVP
 
