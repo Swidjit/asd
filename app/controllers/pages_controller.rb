@@ -12,4 +12,10 @@ class PagesController < ApplicationController
     @title = params[:page_name].titleize
     render params[:page_name]
   end
+
+  def landing
+    @dealmaker_tags = User.dealmaker_counts
+    @dealmaker_match_tags = User.dealmaker_match_counts
+    render 'home'
+  end
 end
