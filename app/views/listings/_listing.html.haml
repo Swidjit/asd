@@ -25,11 +25,15 @@
 
             .feed-listing-price
               #{number_to_currency(listing.price, :precision => 0)}
-            =link_to listing_path(listing) do
-              -if user_signed_in? && current_user.has_lead(listing.id)
-                %button.small.lead-button{:style => "margin-top: 8px;"} view lead
-              -else
-                %button.small.lead-button{:style => "margin-top: 8px;"} get lead
+            -if user_signed_in? && current_user == listing.user
+              =link_to edit_listing_path(listing) do
+                %button edit
+            -else
+              =link_to listing_path(listing) do
+                -if user_signed_in? && current_user.has_lead(listing.id)
+                  %button.small.lead-button{:style => "margin-top: 8px;"} view lead
+                -else
+                  %button.small.lead-button{:style => "margin-top: 8px;"} get lead
       %hr
       .row
         .large-12.columns

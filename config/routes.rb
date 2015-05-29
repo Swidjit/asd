@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     member do
       post 'buy_tokens'
       post 'upload_file'
+      get 'listings'
     end
   end
 

@@ -22,7 +22,9 @@
         =link_to user_conversations_path(current_user) do
           %li
             your inbox
-
+        =link_to listings_user_path(current_user) do
+          %li
+            your listings
 
       %ul
         = link_to edit_user_path(current_user) do

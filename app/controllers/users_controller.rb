@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update, :destroy, :finish_signup]
+  before_action :set_user, only: [:edit, :update, :destroy, :finish_signup,:listings]
   before_filter :ensure_signup_complete, only: [:new, :create, :update, :destroy]
   respond_to :js
   def show
@@ -175,6 +175,10 @@ class UsersController < ApplicationController
     if params.has_key?(:listing_id)
       @listing = Listing.find(params[:listing_id])
     end
+  end
+
+  def listings
+    @listings = @user.listings
   end
 
   private
