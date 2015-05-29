@@ -30,7 +30,11 @@
     .value
       %span Manage your leads.
 
-.row{:style => "background-color:#fff; padding: 15px;"}
-  .large-12.columns
+.row
+  .large-12.columns{:style => "background:image-url('events.png') 0px 0px no-repeat; height: 600px;padding: 15px;"}
     %h3 Dealmaking Events
     %p Attend our AnySizeDeals matchup events, meet new contacts, and follow up on our platform.
+    %a.mu-rsvp-btn{"data-event" => "222455918", :href => "http://www.meetup.com/Real-Estate-Matchmaking-Meetup/events/222455918/"} RSVP
+
+:javascript
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s); js.id=id;js.async=true;js.src="https://a248.e.akamai.net/secure.meetupstatic.com/s/script/541522619002077648/api/mu.btns.js?id=mrhlamc4hpm0cmbi9fspv2020b";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","mu-bootjs");

@@ -21,6 +21,10 @@
 $(document).on('ready page:load', function(){
 
 	$("#s3-uploader").S3Uploader();
+	$('#s3-uploader').bind("ajax:success", function(e, data) {
+  		//alert("server was notified of new file on S3; responded with '#{data}");
+	});
+
     $("#profile_section").hover(
     	function() {
 	    	$("#expanded_user_menu").stop().toggle('fast');
