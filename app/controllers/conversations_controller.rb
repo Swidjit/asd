@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   #authorize_resource :only => :destroy
 
   def create
-    if params[:item_id]
+    if params[:listing_id]
       #recipient_id = Item.find(item_id_from_slug(params[:item_id])).user.id
       #conversation = Conversation.create(:item_id => item_id_from_slug(params[:item_id]), :user => current_user, :recipient_id => recipient_id)
       #Message.create(:conversation_id => conversation.id, :user => current_user, :body => params[:text])
@@ -20,6 +20,15 @@ class ConversationsController < ApplicationController
 
 
       message = Message.create(:conversation_id => conversation.id, :user => current_user, :body => params[:text])
+      if conversation.user_id == current_user.id
+        @recipient = User.find(conversation.recipient_id)
+      else
+        @recipient = User.find(c.user_id)
+      end
+      puts "sending"
+      puts @recipient
+      MessageMailer.notify_of_message(@recipient, params[:text], current_user).deliver
+
     end
 
 
