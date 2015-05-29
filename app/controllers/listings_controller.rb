@@ -18,7 +18,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     if @listing.destroy
-      redirect_to root_path
+      redirect_to listings_path
     end
   end
 
