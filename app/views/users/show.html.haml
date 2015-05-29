@@ -21,7 +21,7 @@
                 =link_to edit_user_path(@user) do
                   %button.small edit
               -unless current_user == @user && user_signed_in?
-                %a.button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
+                %button.small{:"data-reveal-id"=>"message-user", :href=>"#"} message
                 #message-user.reveal-modal{"data-reveal" => ""}
                   =render :partial => 'conversations/message_user', :locals => {user:@user}
                 :javascript

@@ -15,28 +15,21 @@
       %ul
         =link_to user_path(current_user) do
           %li
-            =image_tag('profile-light-blue.svg',:size=>'22x22')
             your profile
-      %ul
         =link_to user_leads_path(current_user) do
           %li
-            =image_tag('profile-light-blue.svg',:size=>'22x22')
             your leads
-      %ul
         =link_to user_conversations_path(current_user) do
           %li
-            =image_tag('profile-light-blue.svg',:size=>'22x22')
             your inbox
 
 
       %ul
         = link_to edit_user_path(current_user) do
           %li
-            =image_tag('settings-light-blue.svg',:size=>'22x22')
             settings
         = link_to destroy_user_session_path, :method => 'delete' do
           %li
-            =image_tag('logout-light-blue.svg',:size=>'22x22')
             logout
 
 

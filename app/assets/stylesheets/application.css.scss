@@ -213,7 +213,7 @@ button {
 }
 
 #content, #full-content {
-  top:50px;
+  top:14px;
   z-index: 2;
   right: 10px;
   position: relative;
@@ -676,7 +676,6 @@ right: 15px;
 
 #profile_section {
   float:right;
-  display: inline;
   position: relative;
   height: 35px;
   width: 35px;
@@ -686,7 +685,7 @@ right: 15px;
 #personal_menu {
     padding: 0px 7px;
     position: absolute;
-    right: 25px;
+    right: 22px;
     top: 5px;
     font-weight: 400;
   }
@@ -697,7 +696,9 @@ right: 15px;
     position: absolute;
     display: none;
     top: 0px;
-    right: -25px;
+    right: -22px;
+    z-index: 901;
+    cursor:pointer;
 }
 #user-menu {
   background: #333545;
