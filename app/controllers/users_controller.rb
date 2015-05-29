@@ -56,7 +56,7 @@ class UsersController < ApplicationController
             @user.max_deal = 10000000
             @user.min_deal = 3000000
           when "$10MM +"
-            @user.max_deal = 999999999999
+            @user.max_deal = 999999999
             @user.min_deal = 10000000
         end
         @user.save
