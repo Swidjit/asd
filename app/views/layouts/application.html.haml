@@ -22,6 +22,8 @@
       %label How many do you want?
       %input{:value => 10, :type => "number", :min => 10}
       %button#buy-tokens buy tokens
+      %a.close-reveal-modal ×
+
     #checkout-form
       = form_tag charges_path, id: 'chargeForm' do
         %script{:src => "https://checkout.stripe.com/checkout.js"}
@@ -43,6 +45,7 @@
           =hidden_field_tag :user_id
           .modal_button
           = f.submit 'Send Message', :class => "button"
+    %a.close-reveal-modal ×
   :javascript
 
     var total_cost = 0;

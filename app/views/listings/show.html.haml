@@ -15,7 +15,7 @@
           %div#test
             .wrapper
               =file_field_tag :file
-
+        %a.close-reveal-modal ×
         %script#template-upload{:type => "text/x-tmpl"}
           .upload{:id => "file-{%=o.unique_id%}"}
             {%=o.name%}
