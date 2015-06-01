@@ -1,7 +1,7 @@
 -if user_signed_in?
   .listing-buttons
     -if current_user.tokens > 0
-      =link_to generate_lead_listing_path(listing), :method => "post", :remote => "true" do
+      =link_to "#", :"data-reveal-id"=>"approve-purchase" do
         %button.large.lead-button get lead
     -else
       =link_to "#", :"data-reveal-id"=>"buy-token-form" do

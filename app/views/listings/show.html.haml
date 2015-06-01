@@ -21,9 +21,15 @@
             {%=o.name%}
             .progress
               .bar{:style => "width: 0%"}
-#message-user.reveal-modal{"data-reveal" => ""}
-  =render :partial => 'conversations/message_user', :locals => {user:@listing.user}
-
+-if user_signed_in?
+  #message-user.reveal-modal{"data-reveal" => ""}
+    =render :partial => 'conversations/message_user', :locals => {user:@listing.user}
+  #approve-purchase.reveal-modal{"data-reveal" => ""}
+    %h3 Purhcase Lead
+    %p.message This lead costs $1.
+    =link_to generate_lead_listing_path(@listing), :method => "post", :remote => "true" do
+      %button.lead-button purchase lead
+    %a.close-reveal-modal x
 -if @listing.created_at > (Time.now - 5.seconds)
   :javascript
     $('#manage-photos').foundation('reveal','open');
