@@ -6,6 +6,7 @@ class Listing < ActiveRecord::Base
   has_many :images, :dependent => :delete_all
   scope :paid, -> { joins(:user).where("users.tokens > 0") }
 
+  has_many :leads, :dependent => :delete_all
   geocoded_by :address   # can also be an IP address
   after_validation :geocode
   before_save :calculate_cap_rate

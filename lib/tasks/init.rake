@@ -16,4 +16,8 @@ namespace :init do
     User.update_all('tokens = 0')
   end
 
+  task :reset_leads => :environment do
+    Lead.delete_all
+  end
+
 end
