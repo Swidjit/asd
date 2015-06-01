@@ -41,14 +41,12 @@ class ListingsController < ApplicationController
 
   def index
 
-    @listings = Listing.paid
+    @listings = Listing.all
   end
 
   def upload_file
     @listing = Listing.unscoped.find(params[:id])
-    puts "hye"
     @listing.images << Image.create(:pic => URI.parse(URI.unescape(params['url'])))
-    puts "asdasasa"
   end
 
   def filter
