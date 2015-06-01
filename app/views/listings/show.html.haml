@@ -21,6 +21,9 @@
             {%=o.name%}
             .progress
               .bar{:style => "width: 0%"}
+#message-user.reveal-modal{"data-reveal" => ""}
+  =render :partial => 'conversations/message_user', :locals => {user:@listing.user}
+
 -if @listing.created_at > (Time.now - 5.seconds)
   :javascript
     $('#manage-photos').foundation('reveal','open');
@@ -30,6 +33,8 @@
 
     :javascript
         $('.hidden').show();
+        $('.without-lead').hide();
+
 
 :css
   /* jssor slider arrow navigator skin 05 css */

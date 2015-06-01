@@ -17,6 +17,7 @@
           posted by
           =link_to @listing.user.username, user_path(@listing.user)
       .hidden{:style => "clear:both;padding-top: 11px;"}
+        %label Property type
         =@listing.description
 .row
   .large-9.columns
@@ -53,11 +54,15 @@
         #{number_to_currency(@listing.arv, :precision => 0)}
       -if user_signed_in?
         -unless @listing.user == current_user
-          =render :partial => 'lead_button', :locals => {listing:@listing}
+          .without-lead
+            =render :partial => 'lead_button', :locals => {listing:@listing}
+          .hidden.listing-buttons
+            %button.large{:"data-reveal-id"=>"message-user", :href=>"#"} message #{@listing.user.first_name}
       -else
         .listing-buttons
           =link_to new_user_session_path do
             %button.large.lead-button get lead
+
 -if user_signed_in? && @listing.user == current_user
   -if current_user.tokens <= 0 || current_user.tokens.nil?
     :javascript

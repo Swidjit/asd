@@ -1,6 +1,6 @@
 .modal
   .modal-heading
-    h3 messsage #{@user.username}
+    h3 messsage #{user.username}
   .modal-body
     =form_for :offer, :url => conversations_path, :html => {:id => "message-form"} do |f|
       = f.text_area :text, :id => 'text', :name => 'text', :class => 'message-form',:placeholder => "say something PRIVATELY to @#{user.username}"
