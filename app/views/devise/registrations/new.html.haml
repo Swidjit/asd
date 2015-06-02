@@ -30,19 +30,41 @@
           =f.text_field :address, :class => 'address'
           =f.hidden_field :latitude
           =f.hidden_field :longitude
-
+        %div
+          =check_box_tag 'terms'
+          %label
+            I have read and agree to the
+            =link_to "terms of service", "#tos"
       %div{:style => "clear:both;text-align:center;padding-top: 10px;"}
 
 
-        %div= f.submit "Sign up", :class => "button"
+        %div= f.submit "Sign up", :class => "button hidden"
         = render "devise/shared/links"
+
+  %a{:name => "tos"}
+  =render :partial => 'layouts/tos'
+
 :javascript
   $(document).on('ready page:load', function(){
 
     initialize();
-
+    $('#terms').change(function(){
+        if(this.checked) {
+          $('.hidden').show();
+        }
+        else {
+          $('.hidden').hide();
+        }
+    });
   });
+  $(document).ready(function() {
+      $('.reveal-modal').css('max-height', $('html').height() - 110 + 'px'); // 100 +10px to keep modal effect visible
+  }
 
+  // Reset max-height after window resize
+  $(window).resize(function() {
+      $('.reveal-modal').css('max-height', $('html').height() - 110 + 'px');
+  });
   var initialize;
   initialize = function() {
     var autocomplete, input, map, options;

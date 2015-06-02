@@ -20,6 +20,7 @@
 .reveal-modal {
    position: fixed; /* <- */
   top: 100px !important;
+  overflow-y: auto;
 }
 h4 {
   font-size: 17px;
