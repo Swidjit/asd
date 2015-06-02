@@ -472,7 +472,7 @@ input[type="submit"] {
   background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-  height: 400px;
+  height: 500px;
   line-height: 400px;
   text-align: center;
   span {
@@ -482,8 +482,9 @@ input[type="submit"] {
     font-size: 21px;
     padding: 5px 8px;
     background-color: rgba(74, 144, 226, 0.46);
-    border: 1px solid black;
+    border: 1px solid gray;
     color: white;
+    max-width: 480px;
 
   }
 }
@@ -539,14 +540,14 @@ input[type="submit"] {
 
 .value-proposition {
   margin: 3px auto 15px;
-  width: 460px;
   text-align: center;
   color: #eee;
-  font-size: 25px;
+  font-size: 27px;
+  line-height: 75px;
 }
 .value {
   max-width: 160px;
-  font-size: 14px;
+  font-size: 15px;
   color: #eee;
   margin: 0 auto;
   line-height: 17px;
@@ -756,32 +757,25 @@ right: 15px;
 }
 
 .dealmaking-events {
-  height: 600px;
+  height: 400px;
   padding: 15px;
-  color: #fff;
+  color: #000;
   position: relative;
   overflow: hidden;
   h3 {
-    color: #fff;
+    color: #000;
     position: relative;
     z-index: 10;
   }
   p {
-    color: #fff;
+    color: #000;
     position: relative;
     z-index: 11;
   }
   a {
-    color: #fff;
+    color: #000;
     position: relative;
     z-index: 12;
   }
 }
-.dealmaking-events img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-}
+
