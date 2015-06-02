@@ -10,7 +10,8 @@
           logged in as
           =current_user.username
           %br
-          #{current_user.tokens} tokens
+          .user-tokens
+            #{current_user.tokens} tokens
           %button.tiny{:"data-reveal-id"=>"buy-token-form"} buy
       %ul
         =link_to user_path(current_user) do

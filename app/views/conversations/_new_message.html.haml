@@ -1,6 +1,5 @@
 #new-message.reveal-modal{"data-reveal" => ""}
   .modal_heading
-    %a.close_window{:onclick => "closeModalWindow()"} X
     %h2 new message
   .modal_body
     #select-recipient
@@ -12,7 +11,7 @@
         = f.text_area :text, :id => 'text', :name => 'text', :class => 'message-form',:placeholder => 'say something PRIVATELY to this user'
         %input{:type => 'hidden', :name => 'user_id', :id => 'user-id'}
         .modal_button
-        = f.submit 'Send Message'
+        = f.submit 'Send Message', :class => "button"
   %a.close-reveal-modal ×
 
 :javascript

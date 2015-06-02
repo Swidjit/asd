@@ -140,7 +140,7 @@ top: 5px;
 }
 .message-reply {
   display:block;
-  height: 65px;
+
 }
 .message-reply label {
   display: block;
@@ -154,7 +154,7 @@ top: 5px;
   resize: none;
   height: 45px;
 }
-.message-reply input[type="submit"] {
-  position: relative;
-  top: 25px;
+
+.message-conversation {
+  clear:both;
 }

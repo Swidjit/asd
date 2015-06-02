@@ -23,7 +23,7 @@ class ConversationsController < ApplicationController
       if conversation.user_id == current_user.id
         @recipient = User.find(conversation.recipient_id)
       else
-        @recipient = User.find(c.user_id)
+        @recipient = User.find(conversation.user_id)
       end
 
       #MessageMailer.notify_of_message(@recipient, params[:text], current_user).deliver
