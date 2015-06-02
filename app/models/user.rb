@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :leads
   geocoded_by :address   # can also be an IP address
   after_validation :geocode
+  extend Geocoder::Model::ActiveRecord
+
+  scope :with_distance_to, ->(point) { select("#{table_name}.*").select("(#{distance_from_sql(point)}) as distance") }
 
   acts_as_taggable_on :market, :dealmaker, :expertise, :dealmaker_match
 

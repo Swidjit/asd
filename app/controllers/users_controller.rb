@@ -19,7 +19,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if user_signed_in?
+      @users = User.with_distance_to(current_user.address).order("distance")
+    else
+      @users = User.all
+    end
     @dealmaker_tags = User.dealmaker_counts
     if params.has_key?(:home_form)
       @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
@@ -73,7 +77,11 @@ class UsersController < ApplicationController
 
 
   def filter
-    @users = User.all
+    if user_signed_in?
+      @users = User.with_distance_to(current_user.address).order("distance")
+    else
+      @users = User.all
+    end
     if params.has_key?(:location)  && params[:location].length > 0
       @users = User.near(params[:location],10)
     end
@@ -100,6 +108,7 @@ class UsersController < ApplicationController
       end
     end
     if params.has_key?(:expertise)  && params[:expertise].length > 0
+      puts "filter"
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
 
