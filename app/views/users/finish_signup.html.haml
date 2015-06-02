@@ -68,4 +68,8 @@
       $(this).parent().remove();
       return false
     });
+
+    $("#user_dealmaker_list").on('change', function(e) {
+      $('#user_expertise_list').tokenInput('add', {id: this.value, name: this.value});
+    });
   });
