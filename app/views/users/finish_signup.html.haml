@@ -34,8 +34,14 @@
           -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Set a referral","Grow my network", "Finance a deal"]
           %label What is your primary purpose here?
           =f.select :purpose, @purpose_list.map { |value| [ value, value ] }, :include_blank => :true
-          %label what kind of property are you interested in?
+          %label What kind of property are you interested in?
           =f.select(:property_type, ['','1-4 units','5-10 units','11-20 units', '20+ units','Commercial','Office','Retail','Shopping Center','Condominium', 'Townhouse','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
+          %label What are your areas of expertise?
+          =f.text_field :expertise_list
+          .large-12.columns
+            -@dealmaker_tags.each do |t|
+              .tag-suggestion{:value => "expertise"}
+                %a= t
 
         .actions
           = f.submit 'Get started', :class => 'button'
@@ -44,4 +50,22 @@
   $(document).on('ready page:load', function(){
 
     $("#s3-uploader").S3Uploader();
+      $("#user_expertise_list").tokenInput(
+        "#{autocomplete_expertise_search_users_path}", {
+          preventDuplicates:"true",
+          minChars: 2,
+          theme: "facebook",
+          prePopulate: $("#user_expertise_list").data("pre"),
+          allowFreeTagging: false,
+          onAdd: function(item) {
+            item.name = item.name.replace("'","");
+          }
+        }
+      );
+    $(".tag-suggestion a").click(function() {
+      var tag_list_selector = "#user_"+$(this).parent().attr("value")+"_list";
+      $(tag_list_selector).tokenInput('add', {id: $(this).text(), name: $(this).text()});
+      $(this).parent().remove();
+      return false
+    });
   });

@@ -1,1 +1,9 @@
 $('#users').html('#{escape_javascript render @users}');
+var maxHeight = -1;
+$('.user').each(function() {
+maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+});
+
+$('.user').each(function() {
+$(this).height(maxHeight);
+});

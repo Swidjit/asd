@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @expertise_tags = User.expertise_counts
+    @dealmaker_tags = User.dealmaker_counts
     if params.has_key?(:home_form)
       @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
       @users = @users.tagged_with(params[:dealmaker_match],:on => :dealmaker, :any => true)

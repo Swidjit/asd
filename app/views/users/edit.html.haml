@@ -37,7 +37,7 @@
       %label Area of Expertise
       =f.text_field :expertise_list, :data => {:pre => @user.expertise_list.collect{|tag| {:id => tag, :name => tag}}}
       .large-12.columns
-        -@expertise_tags.each do |t|
+        -@dealmaker_tags.each do |t|
           .tag-suggestion{:value => "expertise"}
             %a= t
       =f.submit "save"
@@ -78,7 +78,7 @@
           minChars: 2,
           theme: "facebook",
           prePopulate: $("#user_expertise_list").data("pre"),
-          allowFreeTagging: true,
+          allowFreeTagging: false,
           onAdd: function(item) {
             item.name = item.name.replace("'","");
           }

@@ -10,8 +10,8 @@
       .heading
         =link_to user_path(user) do
           .name
-            #{user.first_name} #{user.last_name} (#{user.username})
-        .dealmaker-type=user.dealmaker_list
+            #{user.first_name} #{user.last_name}
+        .dealmaker-type=user.dealmaker_list[0]
         .city
           -if user.address.present?
             =user.address
