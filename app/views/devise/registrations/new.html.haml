@@ -34,15 +34,13 @@
           =check_box_tag 'terms'
           %label
             I have read and agree to the
-            =link_to "terms of service", "#tos"
+            =link_to "terms of service", pages_path("tos")
       %div{:style => "clear:both;text-align:center;padding-top: 10px;"}
 
 
         %div= f.submit "Sign up", :class => "button hidden"
         = render "devise/shared/links"
 
-  %a{:name => "tos"}
-  =render :partial => 'layouts/tos'
 
 :javascript
   $(document).on('ready page:load', function(){

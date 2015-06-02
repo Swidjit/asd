@@ -25,7 +25,7 @@
   #message-user.reveal-modal{"data-reveal" => ""}
     =render :partial => 'conversations/message_user', :locals => {user:@listing.user}
   #approve-purchase.reveal-modal{"data-reveal" => ""}
-    %h3 Purhcase Lead
+    %h3 Purchase Lead
     %p.message This lead costs $1.
     =link_to generate_lead_listing_path(@listing), :method => "post", :remote => "true" do
       %button.lead-button purchase lead
