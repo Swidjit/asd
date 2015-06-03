@@ -4,15 +4,23 @@
     %ul.inline-list.left
       %li © Copyright ASD
       %li
-        =link_to "about", pages_path("about")
+        =link_to "About", pages_path("about")
       %li
-        =link_to "how it works", pages_path("how_it_works")
+        =link_to "How it works", pages_path("how_it_works")
       %li
-        =link_to "faq", pages_path("faq")
+        =link_to "FAQ", pages_path("faq")
       %li
-        =link_to "terms of service", pages_path("terms")
+        =link_to "Terms of service", pages_path("terms")
       %li
-        =link_to "privacy policy", pages_path("privacy")
+        =link_to "Privacy policy", pages_path("privacy")
+      %li
+        =link_to "LinkedIn", "https://www.linkedin.com/company/anysizedeals"
+      %li
+        =link_to "Facebook", "https://www.facebook.com/anysizedeals?ref=hl"
+      %li
+        =link_to "Twitter","https://twitter.com/anysizedeals"
+      %li
+        =link_to "instagram", "https://instagram.com/anysizedeals/"
       -if user_signed_in?
         %li
           =link_to destroy_session_path(:user), :method => :delete do
