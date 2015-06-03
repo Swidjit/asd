@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\Achange@me/
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  after_create :announce_account
+
+  def announce_account
+    UserMailer.announce_account(self).deliver
+  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

@@ -7,8 +7,6 @@ class MessagesController < ApplicationController
     else
       @recipient = User.find(c.user_id)
     end
-    puts "sending"
-    puts @recipient
     MessageMailer.notify_of_message(@recipient, params[:conversation_message][:body], current_user).deliver
     respond_to do |format|
       format.html { redirect_to :back }
