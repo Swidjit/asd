@@ -17,7 +17,7 @@
       %label Deal Size
       =select_tag :deal_size, options_for_select({""=>"0","$0-$100K"=>"1", "$100K - $500K"=>"2", "$500 - $1MM"=>"3", "$1MM - $3MM"=>"4", "$3MM - $10MM"=>"5", "$10MM +"=>"6"}), class: 'filter'
       %label Area of Expertise
-      =select_tag :expertise, options_from_collection_for_select(@dealmaker_tags, :name, :name), :include_blank => true, class: 'filter'
+      =select_tag :expertise, options_for_select(dealmaker_options), :include_blank => true, class: 'filter'
       %label Purpose
       -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Set a referral","Grow my network", "Finance a deal"]
 

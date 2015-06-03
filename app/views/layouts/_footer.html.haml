@@ -1,12 +1,18 @@
 %footer.row{:style => "background-color:#ccc; padding: 6px 5px;clear:both;margin-top: 50px;"}
-  .large-6.columns
-    %p © Copyright ASD
-  .large-6.columns
+  .large-12.columns
+
     %ul.inline-list.left
+      %li © Copyright ASD
       %li
         =link_to "about", pages_path("about")
       %li
         =link_to "how it works", pages_path("how_it_works")
+      %li
+        =link_to "faq", pages_path("faq")
+      %li
+        =link_to "terms of service", pages_path("terms")
+      %li
+        =link_to "privacy policy", pages_path("privacy")
       -if user_signed_in?
         %li
           =link_to destroy_session_path(:user), :method => :delete do

@@ -24,9 +24,9 @@
               %br
         .form-group
           %label Who are you?
-          =f.select(:dealmaker_list, options_from_collection_for_select(@dealmaker_tags, :name, :name),{} , { :class => 'my_style_class' })
+          =f.select(:dealmaker_list, options_for_select(dealmaker_options),{} , { :class => 'my_style_class' })
           %label Who are you looking to connect with?
-          =f.select(:dealmaker_match_list, options_from_collection_for_select(@dealmaker_match_tags, :name, :name), {}, { :class => 'my_style_class' })
+          =f.select(:dealmaker_match_list, options_for_select(dealmaker_options), {}, { :class => 'my_style_class' })
         .form-group
           %label What size deal are you looking for?
           =f.select :deal_size, options_for_select(["","$0-$100K", "$100K-$500K", "$500K-$1MM", "$1MM-$3MM", "$3MM-$10MM", "$10MM +"], @user.deal_size)
@@ -39,7 +39,7 @@
           %label What are your areas of expertise?
           =f.text_field :expertise_list
           .large-12.columns
-            -@dealmaker_tags.each do |t|
+            -dealmaker_options.each do |t|
               .tag-suggestion{:value => "expertise"}
                 %a= t
 
