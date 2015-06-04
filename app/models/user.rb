@@ -29,7 +29,12 @@ class User < ActiveRecord::Base
   after_create :announce_account
 
   def announce_account
-    UserMailer.announce_account(self).deliver
+    if self.confirm_code.nil?
+      UserMailer.announce_account(self).deliver
+    else
+      UserMailer.announce_account_transfer(self).deliver
+    end
+
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)

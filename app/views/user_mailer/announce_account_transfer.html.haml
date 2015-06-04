@@ -1,0 +1,3 @@
+%p= @message
+%p=link_to 'reset password', confirm_user_path(:email=>@user.email, :confirm_code=>@user.confrim_code), :method => 'post'
+%p=link_to "AnySizeDeals.com", "http://anysizedeals.com/"

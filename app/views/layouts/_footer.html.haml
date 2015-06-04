@@ -23,10 +23,5 @@
         =link_to "instagram", "https://instagram.com/anysizedeals/"
       -if user_signed_in?
         %li
-          =link_to destroy_session_path(:user), :method => :delete do
-            logout
-        %li
-          =link_to user_conversations_path(current_user) do
-
-            view conversations
+          =link_to "confrro", "#{confirm_users_path}?email=alex@playwithyourmind.com&confirm_code=BnReTVlJrL", :method => :post
 

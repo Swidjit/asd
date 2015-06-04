@@ -75,6 +75,33 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+    puts params[:email]
+    puts params[:confirm_code]
+    @user = User.where(:email=>params[:email], :confirm_code=>params[:confirm_code]).first
+    if @user.nil?
+      redirect_to :back
+    else
+      redirect_to edit_password_user_path(current_user)
+    end
+    puts params[:confirm_code]
+
+  end
+
+  def edit_password
+    @user = current_user
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update(user_password_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      render "edit"
+    end
+  end
 
   def filter
     if user_signed_in?
@@ -195,7 +222,10 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
+  def user_password_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:password, :password_confirmation)
+  end
   def user_params
     params.require(:user).permit([:username, :first_name, :last_name, :email, :max_deal, :min_deal, :deal_size,:address,:purpose, :latitude,:longitude, :property_type, :about, :avatar, :market_list,:dealmaker_list, :expertise_list, :dealmaker_match_list,:password, :password_confirmation])
   end

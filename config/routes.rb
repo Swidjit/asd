@@ -29,11 +29,19 @@ Rails.application.routes.draw do
       get 'autocomplete_expertise_search'
       get 'autocomplete_dealmaker_search'
       get 'autocomplete_dealmaker_match_search'
+      post 'confirm'
     end
     member do
       post 'buy_tokens'
       post 'upload_file'
       get 'listings'
+      get 'edit_password'
+
+    end
+  end
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
     end
   end
 
