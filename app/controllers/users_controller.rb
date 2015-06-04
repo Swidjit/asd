@@ -82,7 +82,8 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to :back
     else
-      redirect_to edit_password_user_path(current_user)
+      sign_in @user, :bypass => true
+      redirect_to edit_password_user_path(@user)
     end
     puts params[:confirm_code]
 

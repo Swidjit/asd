@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
   end
   def announce_account_transfer(user)
     @user = user
-    @message = "Your account has been transfered to new ASD.  For seciurity purposes, you will need to reset your password:"
+    @message = "Your account has been transfered to new ASD.  For security purposes, you will need to reset your password. Until you do so, your profile will not be visible among the dealmakers on the site."
     puts @message
     mail(:subject => "Welcome to AnySizeDeals.com", :to => user.email)
   end

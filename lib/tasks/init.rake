@@ -26,25 +26,25 @@ namespace :init do
 
   desc "import data from CSV to database"
   task :import => :environment do
-    file = File.open("users-2015-06-04.csv")
+    file = File.open("asd-users.csv")
     file.each do |line|
       attrs = line.split(":")
 
       vars = attrs[0].split(',')
-
       u = User.new
-      u.email = vars[3]
-      u.username = vars[2]
+      puts vars
+      u.email = vars[0]
+      u.username = vars[1]
       u.password = "temptemp"
-      u.first_name = "Alex"
-      u.last_name = "Colket"
+      u.first_name = vars[3]
+      u.last_name = vars[4]
       unless u.email.nil?
         if u.email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-          o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-          string = (0...10).map { o[rand(o.length)] }.join
-          u.confirm_code = string
-          if u.email == "playwithyourmind@gmail.com"
-            puts "hey"
+
+          if u.email == "playwithyourmind@gmail.com" || u.email == "scnson@gmail.com"
+            o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+            string = (0...10).map { o[rand(o.length)] }.join
+            u.confirm_code = string
             u.save!
           end
         end

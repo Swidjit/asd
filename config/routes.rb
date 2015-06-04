@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get 'autocomplete_expertise_search'
       get 'autocomplete_dealmaker_search'
       get 'autocomplete_dealmaker_match_search'
-      post 'confirm'
+      get 'confirm'
     end
     member do
       post 'buy_tokens'
