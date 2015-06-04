@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @users = @users.where(:confirm_code => nil)
     @dealmaker_tags = User.dealmaker_counts
     if params.has_key?(:home_form)
       @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
@@ -82,6 +83,8 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to :back
     else
+      @user.confirm_code = nil
+      @user.save
       sign_in @user, :bypass => true
       redirect_to edit_password_user_path(@user)
     end
@@ -110,6 +113,7 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @users = @users.where(:confirm_code => nil)
     if params.has_key?(:location)  && params[:location].length > 0
       @users = User.near(params[:location],10)
     end
@@ -136,9 +140,9 @@ class UsersController < ApplicationController
       end
     end
     if params.has_key?(:expertise)  && params[:expertise].length > 0
-      puts "filter"
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
+
 
   end
 
