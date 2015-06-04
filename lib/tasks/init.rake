@@ -16,6 +16,29 @@ namespace :init do
     User.update_all('tokens = 0')
   end
 
+  task :import_users => :environment do
+    CSV.foreach("typing.csv") do |row|
+      puts row
+      puts row.user_nicename
+    end
+  end
+
+
+  desc "import data from CSV to database"
+  task :import => :environment do
+    file = File.open("users-2015-06-04.csv")
+    file.each do |line|
+      attrs = line.split(":")
+
+      vars = attrs[0].split(',')
+
+      u = User.new
+      u.email = vars[3]
+      puts u
+    end
+  end
+
+
   task :reset_leads => :environment do
     Lead.delete_all
   end

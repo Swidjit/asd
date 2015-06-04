@@ -1,3 +1,6 @@
+= javascript_include_tag "https://maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=places"
+#map-canvas
+
 .row
   %h3 Complete your registration
   %h4 We just need a few more things from you to help you find better deals.
@@ -22,6 +25,12 @@
             - current_user.errors.full_messages.each do |msg|
               = msg
               %br
+
+        %div
+          =f.label :city
+          =f.text_field :address, :class => 'address'
+          =f.hidden_field :latitude
+          =f.hidden_field :longitude
         .form-group
           %label Who are you?
           =f.select(:dealmaker_list, options_for_select(dealmaker_options),{} , { :class => 'my_style_class' })
@@ -48,7 +57,7 @@
 
 :javascript
   $(document).on('ready page:load', function(){
-
+    initialize();
     $("#s3-uploader").S3Uploader();
       $("#user_expertise_list").tokenInput(
         "#{autocomplete_expertise_search_users_path}", {
@@ -73,3 +82,29 @@
       $('#user_expertise_list').tokenInput('add', {id: this.value, name: this.value});
     });
   });
+
+
+  var initialize;
+  initialize = function() {
+    var autocomplete, input, map, options;
+    input = $('.address');
+    options = {
+      language: 'en-GB',
+      center: new google.maps.LatLng(42.446877, -76.505407),
+      zoom: 11
+    };
+    autocomplete = new google.maps.places.Autocomplete(input[0], options);
+    map = new google.maps.Map(document.getElementById('map-canvas'), options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      console.log(place.geometry.location);
+      $('#user_latitude').attr("value",place.geometry.location.k);
+      $('#user_longitude').attr("value",place.geometry.location.D);
+
+    });
+
+    return google.maps.event.addListener(map, 'bounds_changed', function() {
+      autocomplete.bindTo('bounds', map);
+    });
+  };
+

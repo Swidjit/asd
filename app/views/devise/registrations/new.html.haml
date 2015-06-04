@@ -25,11 +25,7 @@
           = f.text_field :first_name
           = f.label :last_name
           = f.text_field :last_name
-        %div
-          =f.label :city
-          =f.text_field :address, :class => 'address'
-          =f.hidden_field :latitude
-          =f.hidden_field :longitude
+
         %div
           =check_box_tag 'terms'
           %label
@@ -56,27 +52,4 @@
     });
   });
 
-  var initialize;
-  initialize = function() {
-    var autocomplete, input, map, options;
-    input = $('.address');
-    options = {
-      language: 'en-GB',
-      center: new google.maps.LatLng(42.446877, -76.505407),
-      zoom: 11
-    };
-    autocomplete = new google.maps.places.Autocomplete(input[0], options);
-    map = new google.maps.Map(document.getElementById('map-canvas'), options);
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      var place = autocomplete.getPlace();
-      console.log(place.geometry.location);
-      $('#user_latitude').attr("value",place.geometry.location.k);
-      $('#user_longitude').attr("value",place.geometry.location.D);
-
-    });
-
-    return google.maps.event.addListener(map, 'bounds_changed', function() {
-      autocomplete.bindTo('bounds', map);
-    });
-  };
 

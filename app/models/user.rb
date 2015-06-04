@@ -77,8 +77,8 @@ class User < ActiveRecord::Base
     return true if Lead.where(:listing_id=>listing, :requester_id=>self.id).exists?
   end
 
-  def dealmaker_set?
-    return true unless self.dealmaker_counts.size == 0
+  def required_info_set?
+    return true unless self.address.nil?
   end
 
   def email_verified?
