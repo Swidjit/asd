@@ -1,41 +1,62 @@
 .row{:style=>"z-index:900;top: 0px;"}
-  .large-1.columns{:style => "background-color:#d0021b; height: 42px;"}
+  .large-1.medium-2.small-3.columns{:style => "background-color:#d0021b; height: 42px;"}
     =link_to landing_path do
       %h4.logo{:style=>"color:white;font-weight: 500;text-align:center;"} ASD
 
-  .large-11.columns{:style => "background-color:#4a90e2; float: right; height: 42px;font-weight:500;"}
+  .large-11.medium-10.small-9.columns{:style => "background-color:#4a90e2; float: right; height: 42px;font-weight:500;"}
+    #header-menu.show-for-small
+      -if user_signed_in?
+        .header-menu
 
-    -if user_signed_in?
+          = render :partial => 'users/personal_menu'
+        .header-menu
+          =link_to new_listing_path do
+            =image_tag('dealflow.png', :size=>'33x33')
+
+      -else
+        .header-menu{:style=>"margin-left:0px;"}
+          =link_to new_user_session_path do
+            %button.tiny.right
+              Login
+      .header-menu{:style=>"margin-right:20px;"}
+        =link_to listings_path do
+          =image_tag('dealflow.png', :size=>'33x33')
       .header-menu
+        =link_to users_path do
+          =image_tag('connections.png', :size=>'50x50')
 
-        = render :partial => 'users/personal_menu'
+    #header-menu.show-for-medium-up
+      -if user_signed_in?
+        .header-menu
+
+          = render :partial => 'users/personal_menu'
+        .header-menu
+          =link_to new_listing_path do
+            %button.large.right
+              %i.fi-add
+              + Add Deal
+
+      -else
+        .header-menu
+          =link_to new_user_session_path do
+            %button.tiny.right
+              Login
+        .header-menu
+          =link_to new_user_registration_path do
+            %button.tiny.right
+              Register
+        .header-menu
+          =link_to new_user_session_path do
+            %button.large.right
+              %i.fi-add
+              + Add Deal
       .header-menu
-        =link_to new_listing_path do
-          %button.large.right
-            %i.fi-add
-            + Add Deal
+        =link_to users_path do
 
-    -else
-      .header-menu{:style=>"margin-left:0px;"}
-        =link_to new_user_session_path do
-          %button.tiny.right
-            Login
+          .connections
+            .hide-for-mobile Dealmakers
       .header-menu
-        =link_to new_user_registration_path do
-          %button.tiny.right
-            Register
-      .header-menu
-        =link_to new_user_session_path do
-          %button.large.right
-            %i.fi-add
-            + Add Deal
-    .header-menu
-      =link_to users_path do
+        =link_to listings_path do
 
-        .connections
-          Dealmakers
-    .header-menu
-      =link_to listings_path do
-
-        .dealflow
-          Dealflow
+          .dealflow
+            Dealflow

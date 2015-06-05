@@ -783,4 +783,55 @@ right: 15px;
     z-index: 12;
   }
 }
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  .user {
+    width: 100%;
+    margin-right: 0%;
+  }
 
+} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+@media only screen and (max-width: 40em) {
+  #home-image {
+    background-position: top;
+    height: auto;
+    line-height: 300px;
+    span {
+      color: #000;
+      vertical-align:top;
+      padding-top: 25px;
+    }
+  }
+  .home-message {
+    max-width: 90%;
+
+  }
+  .value-proposition {
+    line-height: 30px;
+  }
+  .value {
+    margin-bottom: 15px;
+  }
+  .user {
+    width: 100%;
+    margin-right: 0%;
+  }
+  .row {
+    max-width: 100%;
+  }
+  #content {
+    padding: 0px;
+  }
+  .feed-listing-body {
+    padding: 0 15px;
+  }
+  .feed-listing-number span {
+    display:block;
+  }
+  .stats-box {
+    margin-top: 10px;
+  }
+  .reveal-modal {
+    top: 0px !important;
+  }
+}

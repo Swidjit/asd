@@ -2,12 +2,14 @@
 
 #map-canvas
 .row
-  .large-8.columns
+  .small-12{:style => "display:none;"}
+
+
+  .large-8.medium-7.small-12.columns
     %h4{:style=>"margin: 0px 0 12px;"} Find Dealmakers
     #users
       =render @users
-
-  .large-4.columns
+  #filters.large-4.medium-5.small-12.columns
     %h4{:style=>"margin: 0px 0 12px;"} filter users
     =form_tag(filter_users_path, remote: true, id: 'filter-form', method: 'get') do
       %label Location
@@ -29,6 +31,7 @@
   $(".filter").change(function() {
     $('#filter-form').submit();
   });
+
   var maxHeight = -1;
   $('.user').each(function() {
      maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();

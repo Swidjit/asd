@@ -2,15 +2,15 @@
   .large-12.columns{:style => "padding: 0px;"}
     .listing[listing]
       .row
-        .large-5.columns
+        .large-5.medium-6.small-12.columns
           .feed-listing-image
             -if listing.images.size > 0
               =image_tag listing.images[0].pic.url(:medium)
             -else
-              %img{:src => "http://placehold.it/400x300&text=[img]"}/
+              %img{:src => "http://placehold.it/400x300&text=[avatar]"}/
             .token-count
               1 token
-        .large-7.columns
+        .large-7.medium-6.small-12.columns
 
           .feed-listing-body
 

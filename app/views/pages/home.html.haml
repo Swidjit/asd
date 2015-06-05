@@ -3,16 +3,16 @@
     %span.home-message
       Real estate matchmaking made easy
 
-.row{:style => "background-color: #ddd; height: 50px;"}
+.row{:style => "background-color: #ddd;text-align:center;"}
   =form_tag '/users', :id => 'dealmaker-form', :method => :get do
     =hidden_field_tag :home_form, 'true'
-    .large-5.columns
+    .large-5.small-12.columns
       %label I am
       =select_tag :dealmaker, options_for_select(dealmaker_options)
-    .large-5.columns
+    .large-5.small-12.columns
       %label Looking for
       =select_tag :dealmaker_match, options_for_select(dealmaker_options)
-    .large-2.columns
+    .large-2.small-12.columns
       =submit_tag "find dealmakers", :class => "button"
 .row{:style => "background-color:#4a90e2; padding: 15px 15px 40px;"}
   %h3.value-proposition Real estate matchmaking made easy
