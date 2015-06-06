@@ -29,4 +29,8 @@
       %label Deal Size
       %span=user.deal_size
     .user-property{:style => "margin-bottom: 10px;"}
-    %button.tiny.right.message{:value => user.id} message
+    -if user_signed_in?
+      %button.tiny.right.message{:value => user.id} message
+    -else
+      =link_to new_user_session_path do
+        %button.tiny.right.message message
