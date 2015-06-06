@@ -60,7 +60,9 @@ input[type="submit"] {
    max-width: initial;
 }
 
-
+#map-canvas {
+  width: 100%;
+}
 /* listing partial */
 .listing hr {
   margin: 5px 0px 0px;
@@ -783,6 +785,10 @@ right: 15px;
     z-index: 12;
   }
 }
+
+.screen-size {
+  width: 2px;
+}
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
   .user {
     width: 100%;
@@ -800,6 +806,8 @@ right: 15px;
       color: #000;
       vertical-align:top;
       padding-top: 25px;
+      font-size: 30px;
+      width: 100%;
     }
   }
   .home-message {
@@ -833,5 +841,12 @@ right: 15px;
   }
   .reveal-modal {
     top: 0px !important;
+  }
+  .screen-size {
+    width: 1px;
+  }
+  .new-message {
+    font-size: 13px;
+    right: 10px;
   }
 }

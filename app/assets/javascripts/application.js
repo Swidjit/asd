@@ -25,6 +25,9 @@ $(document).on('ready page:load', function(){
   		//alert("server was notified of new file on S3; responded with '#{data}");
 	});
 
+
+    // run test on initial page load
+    checkSize();
     $("#profile_section").hover(
     	function() {
 	    	$("#expanded_user_menu").stop().toggle('fast');
@@ -35,6 +38,20 @@ $(document).on('ready page:load', function(){
 		}
 
 	);
+    // run test on resize of the window
+    $(window).resize(checkSize);
+
 });
 
+
+
+//Function to the css rule
+function checkSize(){
+    if ($(".screen-size").css("width") == "1px" ){
+        $('.show-for-medium-up').remove();
+    }
+    if ($(".screen-size").css("width") == "2px" ){
+        $('.show-for-small').remove();
+    }
+}
 $(function(){ $(document).foundation(); });
