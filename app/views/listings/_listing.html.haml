@@ -7,7 +7,7 @@
             -if listing.images.size > 0
               =image_tag listing.images[0].pic.url(:medium)
             -else
-              %img{:src => "http://placehold.it/400x300&text=[avatar]"}/
+              =image_tag("listing.png")
             .token-count
               1 token
         .large-7.medium-6.small-12.columns

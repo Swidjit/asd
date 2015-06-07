@@ -10,7 +10,7 @@
     -if @listing.user == current_user
       #manage-photos.reveal-modal{"data-reveal" => ""}
         %h3 Add Some Photos
-        %p Adding photos will help you get better deals
+        %p Adding photos will help you get better leads
         =s3_uploader_form callback_url: upload_file_listing_path(@listing), remote: :true, callback_param: "listing[image_url]", id: "s3-uploader" do
           %div#test
             .wrapper
