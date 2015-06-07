@@ -2,7 +2,13 @@
   .large-12.columns
     %span.home-message
       Real estate matchmaking made easy
-
+      #home-buttons
+        =link_to new_user_registration_path do
+          %button
+            Register
+        =link_to new_user_session_path do
+          %button
+            Login
 .row{:style => "background-color: #ddd;text-align:center;"}
   =form_tag '/users', :id => 'dealmaker-form', :method => :get do
     =hidden_field_tag :home_form, 'true'

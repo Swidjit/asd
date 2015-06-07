@@ -68,10 +68,10 @@
 
 
                  if(data.length > 0){
-                   $("#search_result").html("people maching '"+ $("input#search_people").val() + "'")
+                   $("#search_result").html("people matching '"+ $("input#search_people").val() + "'")
                    $(data).each(function(idx, d){
                      if(d.profile_pic_id == null){
-                       d.profile_pic_id = "/assets/profile-green.svg" //place you default img
+                       d.profile_pic_id = "/assets/profile.svg" //place you default img
                      }
 
                      d.full_name = "(" + d.first_name + ")"
