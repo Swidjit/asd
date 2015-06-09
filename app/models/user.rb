@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\Achange@me/
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  after_create :announce_account
+  #after_create :announce_account
 
   def announce_account
     if self.confirm_code.nil?

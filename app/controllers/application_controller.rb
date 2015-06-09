@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_signup_complete
+    puts "ensuring"
+    puts current_user
     # Ensure we don't go into an infinite loop
     return if action_name == 'finish_signup'
 
