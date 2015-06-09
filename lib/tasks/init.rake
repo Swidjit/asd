@@ -41,12 +41,12 @@ namespace :init do
       unless u.email.nil?
         if u.email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-          if u.email == "playwithyourmind@gmail.com" || u.email == "scnson@gmail.com"
-            o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-            string = (0...10).map { o[rand(o.length)] }.join
-            u.confirm_code = string
-            u.save!
-          end
+        #if u.email == "playwithyourmind@gmail.com" || u.email == "scnson@gmail.com"
+          o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+          string = (0...10).map { o[rand(o.length)] }.join
+          u.confirm_code = string
+          u.save!
+        #end
         end
       end
 
