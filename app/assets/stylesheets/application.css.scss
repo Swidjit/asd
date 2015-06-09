@@ -26,7 +26,7 @@ h4 {
   font-size: 17px;
   color: #aaa;
 }
-div.logo {
+h4.logo {
   font-size: 21px;
 }
 
@@ -490,25 +490,26 @@ input[type="submit"] {
 
 
 #home-image {
-  background: image-url('fotolia_nyc.jpg');
+  background: image-url('fotolia_nyc.jpg') 0px -240px;
   background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 190%;
+
+    background-size: 150%;
   height: 500px;
   line-height: 400px;
   text-align: center;
   span {
+    font-family: 'Droid Sans';
     display: inline-block;
     vertical-align: middle;
-  letter-spacing: 10px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  line-height: 50px;
+  line-height:45px;
   color: #4a90e2;
   margin: 0px auto;
-  font-size: 35px;
+  font-size: 45px;
   -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  outline-color: #00ff00;
   padding-top: 0px;
     max-width: 400px;
 
@@ -689,8 +690,8 @@ float: left;
 }
 .full-user-actions {
   position: absolute;
-top: 0px;
-right: 15px;
+  top: 0px;
+  right: 15px;
 }
 
 .tag {
@@ -835,6 +836,13 @@ right: 15px;
     width: 100%;
     margin-right: 0%;
   }
+  #home-image {
+    height:300px;
+    line-height: 300px;
+    span {
+      color: #4a90e2;
+    }
+  }
 
 } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
 
@@ -844,10 +852,11 @@ right: 15px;
     height: auto;
     line-height: 300px;
     span {
-      color: #000;
+      color: #fff;
       vertical-align:top;
       padding-top: 25px;
-      font-size: 28px;
+      font-size:28px;
+      line-height: 35px;
       width: 100%;
     }
   }
