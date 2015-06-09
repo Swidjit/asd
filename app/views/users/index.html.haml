@@ -32,15 +32,6 @@
     $('#filter-form').submit();
   });
 
-  var maxHeight = -1;
-  $('.user').each(function() {
-     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
-   });
-
-   $('.user').each(function() {
-     $(this).height(maxHeight);
-   });
-
   $('.message').on("click", function() {
     $('#user_id').val(this.value);
     $('#message-user').foundation("reveal","open");
@@ -74,3 +65,4 @@
       autocomplete.bindTo('bounds', map);
     });
   };
+

@@ -5,10 +5,10 @@
       %h3=@listing.title
       -if user_signed_in? && @listing.user == current_user
         =link_to edit_listing_path(@listing) do
-          %button.tiny edit
+          %button.tiny Edit
         =link_to listing_path(@listing), :method=>:delete do
-          %button.tiny delete
-        %button.tiny{:"data-reveal-id"=>"manage-photos"} manage photos
+          %button.tiny Delete
+        %button.tiny{:"data-reveal-id"=>"manage-photos"} Manage Photos
     .full-listing-meta
       .city=@listing.city
       .timestamp=time_ago_in_words(@listing.created_at)
@@ -29,7 +29,7 @@
       %div{:style=>"margin-top: 15px;"}
       %label Property type
       =@listing.property_type
-      %label Square footage
+      %label # of Units
       =@listing.units
       %label Status
       =@listing.status
@@ -57,11 +57,11 @@
           .without-lead
             =render :partial => 'lead_button', :locals => {listing:@listing}
           .hidden.listing-buttons
-            %button.large{:"data-reveal-id"=>"message-user", :href=>"#"} message #{@listing.user.first_name}
+            %button.large{:"data-reveal-id"=>"message-user", :href=>"#"} Message #{@listing.user.first_name}
       -else
         .listing-buttons
           =link_to new_user_session_path do
-            %button.large.lead-button get lead
+            %button.large.lead-button Get Lead
 
 -if user_signed_in? && @listing.user == current_user
   -if current_user.tokens <= 0 || current_user.tokens.nil?

@@ -6,7 +6,7 @@
           -if user.pic.present?
             =image_tag user.pic.url(:thumb)
           -else
-            %img{:src => "http://placehold.it/60x60&text=[avatar]"}/
+            %img{:src => "http://placehold.it/80x80&text=[avatar]"}/
       .heading
         =link_to user_path(user) do
           .name
@@ -33,4 +33,4 @@
       %button.tiny.right.message{:value => user.id} message
     -else
       =link_to new_user_session_path do
-        %button.tiny.right.message message
+        %button.tiny.right.message Message

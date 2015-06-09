@@ -1,6 +1,6 @@
 .modal
   .modal-heading
-    h3 messsage #{user.username}
+    h3 Message #{user.username}
     .close-reveal-modal x
   .modal-body
     =form_for :offer, :url => conversations_path, :html => {:id => "message-form"} do |f|

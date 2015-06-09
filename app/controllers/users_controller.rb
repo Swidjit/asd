@@ -41,7 +41,6 @@ class UsersController < ApplicationController
   def update
     # authorize! :update, @user
     respond_to do |format|
-
       if @user.update(user_params)
         case params[:user][:deal_size]
           when '$0-$100K'
@@ -77,8 +76,7 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    puts params[:email]
-    puts params[:confirm_code]
+
     @user = User.where(:email=>params[:email], :confirm_code=>params[:confirm_code]).first
     if @user.nil?
       redirect_to :back
@@ -88,7 +86,7 @@ class UsersController < ApplicationController
       sign_in @user, :bypass => true
       redirect_to edit_password_user_path(@user)
     end
-    puts params[:confirm_code]
+
 
   end
 
@@ -124,6 +122,7 @@ class UsersController < ApplicationController
       @users = @users.where(:purpose => params[:purpose])
     end
     if params.has_key?(:deal_size)  && params[:deal_size].length > 0
+
       case params[:deal_size].to_i
         when 1
           @users = @users.where('min_deal = 0')
@@ -138,6 +137,7 @@ class UsersController < ApplicationController
         when 6
           @users = @users.where('min_deal = 10000000')
       end
+      puts @users
     end
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
@@ -153,7 +153,28 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
-
+        case params[:user][:deal_size]
+          when '$0-$100K'
+            @user.max_deal = 100000
+            @user.min_deal = 0
+          when '$100K-$500K'
+            @user.max_deal = 500000
+            @user.min_deal = 100000
+          when '$500K-$1MM'
+            @user.max_deal = 1000000
+            @user.min_deal = 500000
+          when "$1MM-$3MM"
+            puts 'blah'
+            @user.max_deal = 3000000
+            @user.min_deal = 1000000
+          when "$3MM-$10MM"
+            @user.max_deal = 10000000
+            @user.min_deal = 3000000
+          when "$10MM +"
+            @user.max_deal = 999999999
+            @user.min_deal = 10000000
+        end
+        @user.save
         sign_in(@user, :bypass => true)
         redirect_to root_path, notice: 'Your profile was successfully updated.'
       else
