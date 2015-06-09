@@ -3,12 +3,14 @@
 
     .listing-header
       %h3=@listing.title
-      -if user_signed_in? && @listing.user == current_user
-        =link_to edit_listing_path(@listing) do
-          %button.tiny Edit
-        =link_to listing_path(@listing), :method=>:delete do
-          %button.tiny Delete
-        %button.tiny{:"data-reveal-id"=>"manage-photos"} Manage Photos
+      .listing-action-buttons
+        -if user_signed_in? && @listing.user == current_user
+          =link_to edit_listing_path(@listing) do
+            %button.tiny Edit
+          =link_to listing_path(@listing), :method=>:delete do
+            %button.tiny Delete
+          =link_to "#", :'data-reveal-id'=> 'manage-photos' do
+            %button.tiny Manage Photos
     .full-listing-meta
       .city=@listing.city
       .timestamp=time_ago_in_words(@listing.created_at)
@@ -16,17 +18,18 @@
         .timestamp
           posted by
           =link_to @listing.user.username, user_path(@listing.user)
-      .hidden{:style => "clear:both;padding-top: 11px;"}
-        %label Property description
-        =@listing.description
+
 .row
-  .large-9.columns
+  .large-9.medium-8.columns
     .listing-body
       #map-canvas.hidden{:style => "height: 200px; width: 100%;"}
       =render :partial => 'map_js'
 
       -#-unless current_user == @listing.user
       %div{:style=>"margin-top: 15px;"}
+      .hidden{:style => "clear:both;padding-top: 11px;"}
+        %label Property description
+        =@listing.description
       %label Property type
       =@listing.property_type
       %label # of Units
@@ -36,7 +39,7 @@
       .hidden
         %label Address
         =@listing.address
-  .large-3.columns
+  .large-3.medium-4.columns
     .stats-box
       %p.price
         #{number_to_currency(@listing.price, :precision => 0)}

@@ -75,6 +75,7 @@ input[type="submit"] {
 
 #map-canvas {
   width: 100%;
+  margin-top: 10px;
 }
 /* listing partial */
 .listing hr {
@@ -91,7 +92,7 @@ input[type="submit"] {
   margin-left: 12px;
 }
 .full-listing-meta {
-  margin: 2px 15px;
+  margin: 5px 0px;
   font-size: 13px;
 }
 .stats-box {
@@ -876,5 +877,15 @@ right: 15px;
   .full-user-actions {
     position: relative;
     top: 0px;
+  }
+  .listing-header {
+    height: auto;
+
+  }
+  .listing-action-buttons {
+    display: block !important;
+    button {
+      margin: 0px;
+    }
   }
 }
