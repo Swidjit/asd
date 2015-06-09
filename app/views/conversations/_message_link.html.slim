@@ -5,13 +5,13 @@
     | message from system admin
   - elsif conversation.user_id == current_user.id
     | message with
-    =link_to "#{User.find(conversation.recipient_id).first_name}", user_path(User.find(conversation.recipient_id))
+    =link_to " #{User.find(conversation.recipient_id).first_name}", user_path(User.find(conversation.recipient_id))
   - else
     | message with
-    =link_to "@#{conversation.user.first_name}", user_path(conversation.user)
+    =link_to " @#{conversation.user.first_name}", user_path(conversation.user)
 .message-date
-  =time_ago_in_words(conversation.messages.first.created_at)
-  | ago
+  ="#{time_ago_in_words(conversation.messages.first.created_at)} ago"
+
 .message-text
   -if conversation.unread_message_count(current_user) > 0
     =link_to conversation_path(conversation), :remote=>:true, :class => 'message-name', :"data-count"=> conversation.unread_message_count(current_user) do

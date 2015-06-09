@@ -828,12 +828,12 @@ right: 15px;
       color: #000;
       vertical-align:top;
       padding-top: 25px;
-      font-size: 30px;
+      font-size: 28px;
       width: 100%;
     }
   }
   .home-message {
-    max-width: 90%;
+    max-width: 85%;
 
   }
   .value-proposition {
@@ -857,6 +857,7 @@ right: 15px;
   }
   .feed-listing-number span {
     display:block;
+    white-space: nowrap;
   }
 
   .stats-box {
