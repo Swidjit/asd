@@ -1,0 +1,43 @@
+.row
+  .large-12.columns
+    %h3 How it Works
+    -unless user_signed_in?
+      %button.large.right join for free
+    AnySizeDeals connects you to people you don't know but should based on their area of interest and type of deals they are working on.
+
+.row{:style => "padding: 15px 15px 40px;text-align:center;margin-bottom: 20px;"}
+  .large-4.columns
+    %h3 JOIN.
+    =link_to new_user_registration_path do
+      .circle
+        =image_tag('clover.png')
+      .value{:style=>"color:#000"}
+        %span Create your free profile, and upload your listings!
+  .large-4.columns
+    %h3 CONNECT.
+    .circle
+
+      =image_tag('connections-gray.png')
+    .value{:style=>"color:#000"}
+      %span Network with dealmakers and search properties in our "Dealflow."
+  .large-4.columns
+    %h3 DO DEALS.
+    .circle
+      =image_tag('dealflow-gray.png')
+    .value{:style=>"color:#000"}
+      %span Buy, sell or fund your deal.  Only pay $1 token per lead.
+.row.page
+  .large-5.columns
+    %h3 Why AnySizeDeals?
+    =image_tag('fotolia_nyc.jpg')
+
+  .large-7.columns
+    %p Join our community of investors and access:
+    %label Off-Market Properties
+    %p Get access to buyers and sellers internationally.
+    %label New Sources of Capital
+    %p Access professionals with equity and dept capabilities.
+    %label Increased Network
+    %p Build you investment team by connection with real estate professionals of diverse backgrounds.
+    %label More Referrals, Better Deals
+    %p With our pay per lead model, only pay $1 per token after finding the right deal.
