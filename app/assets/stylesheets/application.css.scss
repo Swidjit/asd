@@ -812,6 +812,19 @@ right: 15px;
 .screen-size {
   width: 2px;
 }
+
+.page {
+  h4 {
+    color: #000;
+    font-size: 18px;
+    margin-bottom: 3px;
+    font-weight: 600;
+  }
+  h5 {
+    color: #222;
+    font-size: 16px;
+  }
+}
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
   .user {
     width: 100%;
