@@ -41,7 +41,7 @@ class ListingsController < ApplicationController
 
   def index
 
-    @listings = Listing.all
+    @listings = Listing.paid
   end
 
   def upload_file
@@ -50,7 +50,7 @@ class ListingsController < ApplicationController
   end
 
   def filter
-    @listings = Listing.all
+    @listings = Listing.paid
     if params.has_key?(:property_type) && params[:property_type].length > 0
       @listings = @listings.where(:property_type => params[:property_type])
     end
