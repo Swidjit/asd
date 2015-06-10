@@ -34,7 +34,9 @@ class UsersController < ApplicationController
       tags = params[:market].split(',')
       @users = @users.tagged_with([tags],:on => :market, :any => true)
     end
-
+    if params.has_key?(:expertise)  && params[:expertise].length > 0
+      @users = @users.tagged_with(params[:expertise],:on => :expertise)
+    end
 
   end
 

@@ -1,13 +1,16 @@
 
 .login-form{:style=>"width: 400px; margin: 25px auto;"}
-	= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-		= devise_error_messages!
-		%div
-			%label Login
-			= f.text_field :login, autofocus: true
-		%div
-			%label Password
-			= f.password_field :password, autocomplete: "off"
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-		%div= f.submit "Sign in", :class => "button"
-	= render "devise/shared/links"
+    %div
+      %label Login
+      = f.text_field :login, autofocus: true
+    %div
+      %label Password
+      = f.password_field :password, autocomplete: "off"
+    -if flash[:alert]
+      %div{:style=>"color:red"}
+        =flash[:alert]
+        = devise_error_messages!
+    %div= f.submit "Sign in", :class => "button"
+  = render "devise/shared/links"
