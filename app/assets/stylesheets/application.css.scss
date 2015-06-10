@@ -510,7 +510,7 @@ input[type="submit"] {
   letter-spacing: 2px;
   text-transform: uppercase;
   line-height:45px;
-  color: #4a90e2;
+  color: #fff;
   margin: 0px auto;
   font-size: 45px;
   -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -920,5 +920,11 @@ float: left;
     button {
       margin: 0px;
     }
+    margin-right: 12px;
+
+
+  }
+ .join{
+    margin-left: 15px;
   }
 }

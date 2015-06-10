@@ -6,11 +6,11 @@
       .listing-action-buttons
         -if user_signed_in? && @listing.user == current_user
           =link_to edit_listing_path(@listing) do
-            %button.tiny Edit
+            %button.tiny EDIT
           =link_to listing_path(@listing), :method=>:delete do
-            %button.tiny Delete
+            %button.tiny DELETE
           =link_to "#", :'data-reveal-id'=> 'manage-photos' do
-            %button.tiny Manage Photos
+            %button.tiny MANAGE PHOTOS
     .full-listing-meta
       .city=@listing.city
       .timestamp=time_ago_in_words(@listing.created_at)
@@ -60,7 +60,7 @@
           .without-lead
             =render :partial => 'lead_button', :locals => {listing:@listing}
           .hidden.listing-buttons
-            %button.large{:"data-reveal-id"=>"message-user", :href=>"#"} Message #{@listing.user.first_name}
+            %button.large{:"data-reveal-id"=>"message-user", :href=>"#"} MESSAGE #{@listing.user.first_name.upcase}
       -else
         .listing-buttons
           =link_to new_user_session_path do

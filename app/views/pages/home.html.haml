@@ -2,13 +2,14 @@
   .large-12.columns
     %span.home-message
       AnySizeDeals is Real Estate Matchmaking Made Easy
-      #home-buttons.show-for-small
-        =link_to new_user_registration_path do
-          %button
-            Register
-        =link_to new_user_session_path do
-          %button
-            Login
+      -unless user_signed_in?
+        #home-buttons.show-for-small
+          =link_to new_user_registration_path do
+            %button
+              Register
+          =link_to new_user_session_path do
+            %button
+              Login
 .row{:style => "background-color: #ddd;text-align:center;"}
   =form_tag '/users', :id => 'dealmaker-form', :method => :get do
     =hidden_field_tag :home_form, 'true'
@@ -42,6 +43,7 @@
   .large-12.columns{:style => "padding: 10px 15px;"}
     %h3 What our Dealmakers are Saying
     %h4 Thousands of connections made
+.row
   .large-6.columns
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/VDsBzeN8VSo", :width => "100%"}
 
@@ -51,10 +53,9 @@
       %label Fabian Baez
       %span Real Estate Investor
       %p (Met his business partner through AnySizeDeals)
+.row
   .large-6.columns
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/Imu-iylHjbM", :width => "100%"}
-
-.row
   .large-6.columns
     .testimonial
       %label Ben Rutkevitz

@@ -2,8 +2,8 @@
   .listing-buttons
     -if current_user.tokens > 0
       =link_to "#", :"data-reveal-id"=>"approve-purchase" do
-        %button.large.lead-button get lead
+        %button.large.lead-button PURCHASE LEAD
     -else
       =link_to "#", :"data-reveal-id"=>"buy-token-form" do
-        %button{:value => listing.id} get lead
+        %button{:value => listing.id} PURCHASE LEAD
         %span.token_count (no tokens available)

@@ -24,11 +24,11 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
-    @users = @users.where(:confirm_code => nil)
+
     @dealmaker_tags = User.dealmaker_counts
     if params.has_key?(:home_form)
-      @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
       @users = @users.tagged_with(params[:dealmaker_match],:on => :dealmaker, :any => true)
+      @users = @users.tagged_with(params[:dealmaker],:on => :dealmaker_match, :any => true)
     end
     if params.has_key?(:market)
       tags = params[:market].split(',')
@@ -144,7 +144,9 @@ class UsersController < ApplicationController
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
-
+    if @users.size < 1
+      render 'empty_filter'
+    end
 
   end
 
