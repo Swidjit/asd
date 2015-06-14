@@ -2,17 +2,29 @@
   %div{:style => "padding: 9px 14px;"}
     %div
       .avatar{:style => "margin-bottom: 10px;"}
-        =link_to user_path(user) do
-          -if user.pic.present?
-            =image_tag user.pic.url(:thumb)
-          -else
-            %img{:src => "http://placehold.it/80x80&text=[avatar]"}/
+        -if user_signed_in?
+          =link_to user_path(user) do
+            -if user.pic.present?
+              =image_tag user.pic.url(:thumb)
+            -else
+              %img{:src => "http://placehold.it/80x80&text=[avatar]"}/
+        -else
+          =link_to new_user_session_path do
+            -if user.pic.present?
+              =image_tag user.pic.url(:thumb)
+            -else
+              %img{:src => "http://placehold.it/80x80&text=[avatar]"}/
+
       .heading
-        =link_to user_path(user) do
-          .name
-            #{user.first_name}
-            -if user_signed_in?
-              #{user.last_name}
+        -if user_signed_in?
+          =link_to user_path(user) do
+            .name
+              #{user.first_name} #{user.last_name}
+        -else
+          =link_to new_user_session_path do
+            .name
+              #{user.first_name}
+
         .dealmaker-type=user.dealmaker_list[0]
         .city
           -if user.address.present?
