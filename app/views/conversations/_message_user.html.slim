@@ -4,7 +4,7 @@
     .close-reveal-modal x
   .modal-body
     =form_for :offer, :url => conversations_path, :html => {:id => "message-form"} do |f|
-      = f.text_area :text, :id => 'text', :name => 'text', :class => 'message-form',:placeholder => "say something PRIVATELY to @#{user.username}"
+      = f.text_area :text, :id => 'text', :name => 'text', :class => 'message-form',:placeholder => "say something PRIVATELY to @#{user.first_name}"
       input type='hidden' name='user_id' value="#{user.id}" 
       .modal_button
       = f.submit 'Send Message', :class => "send button"

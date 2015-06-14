@@ -80,14 +80,20 @@ class ListingsController < ApplicationController
 
   def generate_lead
     @listing = Listing.find(params[:id])
-    @lead = Lead.new
-    @lead.requester = current_user
-    @lead.receiver = @listing.user
-    @lead.listing_id = @listing.id
-    @lead.save
-    current_user.decrement!(:tokens)
-    @listing.user.decrement!(:tokens)
-
+    if @listing.user.tokens > 0
+      @lead = Lead.new
+      @lead.requester = current_user
+      @lead.receiver = @listing.user
+      @lead.listing_id = @listing.id
+      if @lead.save
+        current_user.decrement!(:tokens)
+        @listing.user.decrement!(:tokens)
+      else
+        render 'lead_failed.js'
+      end
+    else
+      redirect_to listings_path
+    end
   end
 
   private
