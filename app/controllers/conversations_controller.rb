@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
         @recipient = User.find(conversation.user_id)
       end
 
-      #MessageMailer.notify_of_message(@recipient, params[:text], current_user).deliver
+      MessageMailer.notify_of_message(@recipient, params[:text], current_user).deliver
 
     end
 

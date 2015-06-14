@@ -21,7 +21,7 @@
       %label Area of Expertise
       =select_tag :expertise, options_for_select(dealmaker_options), :include_blank => true, class: 'filter'
       %label Purpose
-      -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Set a referral","Grow my network", "Finance a deal"]
+      -@purpose_list = ["Buy a property","JV on a deal","Fund my deal","Sell a property","Get a referral","Grow my network", "Finance a deal"]
 
       =select_tag :purpose, options_for_select(@purpose_list), :include_blank => true, class: 'filter'
 

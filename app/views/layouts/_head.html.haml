@@ -1,7 +1,8 @@
 .row{:style=>"z-index:900;top: 0px;"}
   .large-1.medium-2.small-2.columns{:style => "background-color:#d0021b; height: 42px;line-height:42px; text-align:center;"}
     =link_to landing_path do
-      .logo{:style=>"color:white;font-weight: 500;"} ASD
+      .logo{:style=>"color:white;font-weight: 500;"}
+        =image_tag('asd-logo.jpg')
 
   .large-11.medium-10.small-10.columns{:style => "background-color:#4a90e2; float: right; height: 42px;font-weight:500;"}
     #header-menu.show-for-small
@@ -16,7 +17,7 @@
 
       .header-menu
         =link_to listings_path do
-          =image_tag('dealflow.png', :size=>'33x33')
+          =image_tag('dealflow.png', :size=>'28x28')
       .header-menu
         =link_to users_path do
           =image_tag('connections.png', :size=>'50x50')
