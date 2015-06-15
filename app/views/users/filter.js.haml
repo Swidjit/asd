@@ -1,1 +1,5 @@
 $('#users').html('#{escape_javascript render @users}');
+$('.message').on("click", function() {
+$('#user_id').val(this.value);
+$('#message-user').foundation("reveal","open");
+});
