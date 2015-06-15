@@ -32,7 +32,6 @@ namespace :init do
 
       vars = attrs[0].split(',')
       u = User.new
-      puts vars
       u.email = vars[0]
       u.username = vars[1]
       u.password = "temptemp"

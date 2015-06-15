@@ -1,3 +1,40 @@
-%p= @message
-%p=link_to 'reset password', "https://quiet-refuge-7178.herokuapp.com"+confirm_users_path(:email=>@user.email, :confirm_code=>@user.confirm_code)
-%p=link_to "AnySizeDeals.com", "http://anysizedeals.com/"
+%h2 AnySizeDeals Version 2.0 is here!
+%h4 We make Real Estate Matchmaking Easy!
+
+%p Fellow Dealmakers, we have just completed the re-launch of the new AnySizeDeals platform and have added some exciting new features that are listed below.
+
+%h4 Dealflow
+Looking for Deals? Post, Search and Find Deals in your local market. This new and exciting feature will help our Dealmakers filter through the best deals in the market and stop wasting their time looking at deals they don’t want. It’s a great way for Wholesalers to broadcast their deals to Cash buyers and Rehabbers.
+
+%h4 Dealmakers
+Want to connect with other real estate investors and professionals on the platform? Go to the Dealmaker tab and connect with members based on area of expertise, geographic location, deal size and property. Search and message Dealmakers for FREE.
+
+%h3 As part of onboarding you onto the new platform we ask that you RESET your password. This link expires after the initial use.
+%p=link_to 'Reset Password', "https://anysizedeals.nyc"+confirm_users_path(:email=>@user.email, :confirm_code=>@user.confirm_code)
+
+%p Until you reset your password your profile won’t be viewable by fellow Dealmakers.
+
+%h4 Where we’ve been:
+
+%p Since launching the platform in September 2014, we have registered over 2,000 Members, have launched two successful monthly meetup groups, made thousands of connections and have facilitated numerous real estate transactions among our Dealmakers.
+
+%p On behalf of our team at AnySizeDeals, I want to thank you for being a part of an AWESOME community and let’s keep the fire going.
+
+%h4 Let’s Change the Way Deals are Done!
+%div
+  Steve Nson
+  %br
+  CEO and Founder, AnySizeDeals
+  %br
+  snson@anysizedeals.com
+  %br
+
+  Founder,
+  =link_to "Harlem Real Estate Meetup","http://www.meetup.com/Harlem-Real-Estate-Meetup/"
+  %br
+  Founder,
+  =link_to "Real Estate Matchmaking Meetup","http://www.meetup.com/Real-Estate-Matchmaking-Meetup/"
+  %p=link_to "AnySizeDeals.com", "http://anysizedeals.com/"
+
+
+
