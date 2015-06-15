@@ -33,7 +33,7 @@
     #lead-error-msg
   #lead-purchased.reveal-modal{"data-reveal" => ""}
     %h3 Lead Purchased
-    %p.message Congratulations, you can now start message this Dealmaker and find out more information about their property.
+    %p.message Congratulations, you can now start messaging this Dealmaker and find out more information about their property.
     %button{:onclick => "$('#lead-purchased').foundation('reveal','close');"} Show me the listing
     %a.close-reveal-modal x
 -if @listing.created_at > (Time.now - 5.seconds)
