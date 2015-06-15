@@ -20,9 +20,9 @@ class UsersController < ApplicationController
 
   def index
     if user_signed_in?
-      @users = User.with_distance_to(current_user.address).order("distance")
+      @users = User.where(:confirm_code => nil).with_distance_to(current_user.address).order("distance")
     else
-      @users = User.all
+      @users = User.where(:confirm_code => nil).all
     end
 
     @dealmaker_tags = User.dealmaker_counts
