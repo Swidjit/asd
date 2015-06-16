@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   def announce_account
     if self.confirm_code == '-1'
-      #UserMailer.announce_account(self).deliver
+      UserMailer.announce_account(self).deliver
     else
       UserMailer.announce_account_transfer(self).deliver
     end
