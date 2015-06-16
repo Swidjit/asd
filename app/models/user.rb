@@ -29,8 +29,8 @@ class User < ActiveRecord::Base
   after_create :announce_account
 
   def announce_account
-    if self.confirm_code.nil?
-      UserMailer.announce_account(self).deliver
+    if self.confirm_code == '-1'
+      #UserMailer.announce_account(self).deliver
     else
       UserMailer.announce_account_transfer(self).deliver
     end

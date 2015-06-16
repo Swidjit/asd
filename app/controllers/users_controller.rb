@@ -20,9 +20,10 @@ class UsersController < ApplicationController
 
   def index
     if user_signed_in?
-      @users = User.where(:confirm_code => nil).with_distance_to(current_user.address).order("distance")
+      @users = User.where(:confirm_code => '-1').all
+      #@users = @users.with_distance_to(current_user.address).order("distance")
     else
-      @users = User.where(:confirm_code => nil).all
+      @users = User.where(:confirm_code => '-1').all
     end
 
     @dealmaker_tags = User.dealmaker_counts
@@ -83,8 +84,7 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to :back
     else
-      @user.confirm_code = nil
-      @user.save
+
       sign_in @user, :bypass => true
       redirect_to edit_password_user_path(@user)
     end
@@ -109,11 +109,12 @@ class UsersController < ApplicationController
 
   def filter
     if user_signed_in?
-      @users = User.with_distance_to(current_user.address).order("distance")
+      #@users = User.with_distance_to(current_user.address).order("distance")
+      @users = User.all
     else
       @users = User.all
     end
-    @users = @users.where(:confirm_code => nil)
+    @users = @users.where(:confirm_code => '-1')
     if params.has_key?(:location)  && params[:location].length > 0
       @users = User.near(params[:location],10)
     end
@@ -178,6 +179,7 @@ class UsersController < ApplicationController
             @user.max_deal = 999999999
             @user.min_deal = 10000000
         end
+        @user.confirm_code = '-1'
         @user.save
         sign_in(@user, :bypass => true)
         redirect_to root_path, notice: 'Your profile was successfully updated.'
