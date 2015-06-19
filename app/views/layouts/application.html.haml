@@ -16,6 +16,9 @@
     .screen-size
     =render :partial => 'layouts/head'
     #content
+      .row#upgrade
+        .large-12.columns{:style => "background-color: #d0021b;"}
+          %p 6/19/15 9:00a - Site upgrade in process. Please keep in mind that some content will be missing and some pages may not load as we complete this process over the course of today.
       = yield
     #buy-token-form.reveal-modal{"data-reveal" => ""}
       %h4 Hmm, looks like you don't have any tokens
