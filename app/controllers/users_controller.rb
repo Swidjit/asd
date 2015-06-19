@@ -188,6 +188,8 @@ class UsersController < ApplicationController
       end
 
     else
+      puts "rendering"
+      puts @user
       render :layout => "full"
     end
   end
@@ -253,6 +255,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+    puts "hey"
+    puts params[:id]
+    puts @user
   end
   def user_password_params
     # NOTE: Using `strong_parameters` gem
