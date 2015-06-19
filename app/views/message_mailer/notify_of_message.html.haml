@@ -1,4 +1,4 @@
 %p= "Hello #{@user.username}!"
 %p= "#{@sender.username} has sent you the following message on AnySizeDeals.com:"
 %p= @message
-%p=link_to "Read your messages", "http://www.anysizedeals.com/#{user_conversations_path(@user)}"
+%p=link_to "Read your messages", "http://www.anysizedeals.com#{user_conversations_path(@user)}"
