@@ -15,4 +15,8 @@ class UserMailer < ActionMailer::Base
     puts @message
     mail(:subject => "Welcome to AnySizeDeals.com", :to => user.email)
   end
+  def announce_to_admin(user)
+    @user = user
+    mail(:subject => "New User", :to => 'snson@anysizedeals.com')
+  end
 end
