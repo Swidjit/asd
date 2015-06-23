@@ -19,7 +19,7 @@
               =f.hidden_field :latitude
               =f.hidden_field :longitude
               =f.hidden_field :city
-
+              #notice
             .large-6.columns
               %label Property Type
               =f.select(:property_type, ['','1-4 units','5-10 units','11-20 units', '20+ units','Commercial','Office','Retail','Shopping Center','Condominium', 'Townhouse','Mixed Use','Vacant Lot','Land','Other'], {}, { :class => 'my_style_class' })
@@ -43,11 +43,26 @@
                 %label Size (SF)
                 =f.number_field :square_footage, :step => 100
 
-        =f.submit "next step: add photos", :class => "button"
+        =f.submit "next step: add photos", :class => "button", :id => 'submit-listing'
+
+#address-needed.reveal-modal{"data-reveal" => ""}
+  %p
+
 :javascript
   $(document).on('ready page:load', function(){
 
     initialize();
+    $('#submit-listing').on('click', function(e) {
+      e.preventDefault();
+      console.log($('#listing_latitude').val());
+      if($('#listing_latitude').val().length > 0) {
+        $('#new_listing').submit();
+      }
+      else {
+        $('#notice').html("Hmmm, it looks like we can't recognize your address.  Please select one of the address suggested in the dropdown that appears as you type.");
+      }
+
+    });
 
   });
 
