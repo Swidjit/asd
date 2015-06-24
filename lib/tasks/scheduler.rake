@@ -7,7 +7,7 @@ namespace :scheduler do
   end
 
   task :announce_new_deals => :environment do
-    new_listings = Listing.where('created_at > ?',Time.now - 24.hours)
+    new_listings = Listing.paid.where('created_at > ?',Time.now - 24.hours)
     if new_listings.length > 0
 
       User.all.each do |u|
