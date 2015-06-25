@@ -9,6 +9,7 @@ Rails.application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
+  config.action_mailer.default_url_options = {:host => 'www.anysizedeals.com'}
   # Code is not reloaded between requests.
   config.cache_classes = false
   config.paperclip_defaults = {
@@ -21,6 +22,7 @@ Rails.application.configure do
   }
 
   config.app_domain = 'anysizedeals.herokuapp.com'
+'
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
