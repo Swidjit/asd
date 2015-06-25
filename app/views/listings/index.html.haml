@@ -6,7 +6,7 @@
     -if @listings.size > 0
       =render @listings
     -else
-      %p no matches
+      %p No listings
   .large-4.columns
     %h4{:style=>"margin: 10px 0 12px;"} Filter By
     =form_tag(filter_listings_path, remote: true, id: 'filter-form', method: 'get') do

@@ -76,6 +76,9 @@ class ListingsController < ApplicationController
     if params.has_key?(:location) && params[:location].length > 0
       @listings = Listing.near(params[:location],25)
     end
+    if @listings.size < 1
+      render 'empty_filter'
+    end
   end
 
   def generate_lead
