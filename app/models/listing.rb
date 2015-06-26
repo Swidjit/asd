@@ -4,7 +4,7 @@ class Listing < ActiveRecord::Base
 
   belongs_to :user
   has_many :images, :dependent => :delete_all
-  scope :paid, -> { joins(:user).where("users.tokens > 0") }
+  scope :paid, -> { joins(:user).where("tokens > 0") }
 
   has_many :leads, :dependent => :delete_all
   geocoded_by :address   # can also be an IP address
