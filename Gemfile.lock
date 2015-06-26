@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/rorlab/pageless-rails.git
+  revision: 6bc646321b139846f7db7679e57992973d8f36ed
+  specs:
+    pageless-rails (0.0.3)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: bc8eafe4fbf0ec6cf42c78fc1b737d569beb06e8
   specs:
@@ -233,6 +240,7 @@ GEM
     unf_ext (0.0.7.1)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -252,6 +260,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   omniauth-facebook
+  pageless-rails!
   paperclip!
   pg
   rabl
@@ -265,3 +274,4 @@ DEPENDENCIES
   stripe!
   turbolinks
   uglifier (>= 1.3.0)
+  will_paginate

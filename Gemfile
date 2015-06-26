@@ -29,6 +29,8 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
 gem 's3_direct_upload'
+gem 'will_paginate'
+gem 'pageless-rails', github: 'rorlab/pageless-rails'
 
 gem 'rabl'
 group :assets do

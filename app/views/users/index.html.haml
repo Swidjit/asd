@@ -10,6 +10,7 @@
     %h4{:style=>"margin: 0px 0 12px;"} Search for Real Estate Professionals with Complimentary Needs
     #users
       =render @users
+    = pageless(@users.total_pages, users_path, '#users')
   #filters.large-4.medium-5.small-12.columns
     %h4{:style=>"margin: 0px 0 12px;"} filter users
     =form_tag(filter_users_path, remote: true, id: 'filter-form', method: 'get') do

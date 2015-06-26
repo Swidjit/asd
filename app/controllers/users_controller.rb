@@ -38,7 +38,9 @@ class UsersController < ApplicationController
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
-
+    puts @users
+    @users = @users.paginate(:page => params[:page], :per_page => 20)
+    puts @users
   end
 
   def update
@@ -145,6 +147,9 @@ class UsersController < ApplicationController
     if params.has_key?(:expertise)  && params[:expertise].length > 0
       @users = @users.tagged_with(params[:expertise],:on => :expertise)
     end
+    puts @users
+    @users = @users.paginate(:page => params[:page], :per_page => 20)
+    puts @users
     if @users.size < 1
       render 'empty_filter'
     end
