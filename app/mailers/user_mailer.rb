@@ -19,4 +19,8 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:subject => "New User", :to => 'snson@anysizedeals.com')
   end
+  def notify_of_pending_transfer(user)
+    @user = user
+    mail(:subject => "AnySizedeals.com Account Transfer Pending", :to => @user.email)
+  end
 end
