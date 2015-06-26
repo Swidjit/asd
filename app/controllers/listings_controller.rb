@@ -55,7 +55,8 @@ class ListingsController < ApplicationController
       @listings = @listings.where(:property_type => params[:property_type])
     end
     if params.has_key?(:status)  && params[:status].length > 0
-      @listings = @listings.where(:status => params[:status].downcase)
+      @listings = @listings.where(:status => params[:status])
+
     end
     if params.has_key?(:deal_size)  && params[:deal_size].length > 0
       case params[:deal_size].to_i
