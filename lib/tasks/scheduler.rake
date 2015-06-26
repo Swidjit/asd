@@ -8,7 +8,6 @@ namespace :scheduler do
 
   task :announce_new_deals => :environment do
 
-    puts 'heyey'
     new_listings = Listing.paid.where('listings.created_at > ?', Time.now-24.hours)
 
     if new_listings.length > 0
