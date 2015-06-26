@@ -6,7 +6,8 @@
 
 
   .large-8.medium-7.small-12.columns
-    %h4{:style=>"margin: 0px 0 12px;"} Find Dealmakers
+    %h3 Dealmakers
+    %h4{:style=>"margin: 0px 0 12px;"} Search for Real Estate Professionals with Complimentary Needs
     #users
       =render @users
   #filters.large-4.medium-5.small-12.columns
@@ -38,6 +39,7 @@
 
 
   });
+  $('.connections').css("border-bottom","3px solid red");
 :javascript
   $(document).on('ready page:load', function(){
 

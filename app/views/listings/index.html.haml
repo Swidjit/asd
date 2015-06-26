@@ -3,6 +3,8 @@
 #map-canvas
 .row
   #listings.large-8.columns{:style=>"margin: 0px 0 12px;"}
+    %h3 Dealflow
+    %h4{:style=>"margin: 0px 0 12px;"} Find Investment Properties that Fit your Criteria.
     -if @listings.size > 0
       =render @listings
     -else
@@ -30,6 +32,7 @@
   $(document).on('ready page:load', function(){
 
     initialize();
+    $('.dealflow').css("border-bottom","3px solid red");
 
   });
 
